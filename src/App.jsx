@@ -22,7 +22,7 @@ function App() {
       <Navbar />
       <Hero />
       <Footer />
-      <Sugar background="oklch(var(--n))" color="oklch(var(--b1))" time={1000}/>
+      <Sugar background="oklch(var(--n))" color="oklch(var(--b1))" time={0}/>
     </React.Fragment>
   );
 }
