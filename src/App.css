@@ -5,16 +5,3 @@
 .hovergrow:hover {
     transform: scale(1.13);
 }
-
-/* Initial state of the preloader */
-#preloader {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-/* Hide class to trigger fade-out */
-#preloader.hide {
-    opacity: 0;
-    visibility: hidden;
-}
