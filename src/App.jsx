@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Sugar } from "react-preloaders";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 
-import Home from "./components/pages/Home/home";
+import "./App.css";
 import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
-import "./App.css";
+import Home from "./components/pages/Home/home";
 import AntLogic from "./components/pages/Projects/Antlogic/antlogic";
 import ICSYAK from "./components/pages/Projects/ICSYAK/icsyak";
 
@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <Router basename="/Portfolio">
+      <Router>
         <Sugar
           customLoading={loading}
           background={"oklch(var(--n))"}
