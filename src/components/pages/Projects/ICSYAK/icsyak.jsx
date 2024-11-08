@@ -39,7 +39,7 @@ function ICSYAK() {
               <span className="font-bold bg-secondary text-primary-content">
                 Discord
               </span>
-              ; it also supports <span className="italic">on-demand</span>{" "}
+              , supporting <span className="italic">on-demand</span>{" "}
               <span className="font-bold">thread lookup</span> and{" "}
               <span className="font-bold">reply display</span> for{" "}
               <span className="font-bold">1000+</span> students.

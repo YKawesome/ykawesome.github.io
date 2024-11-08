@@ -27,14 +27,14 @@ function Footer() {
               filter: `drop-shadow(0px 1000px 0 oklch(var(--b1)))`,
               transform: "translateY(-1000px)",
               width: "6rem",
-              marginLeft: "-1vh"
+              marginLeft: "-1vh",
             }}
           />
         </div>
         <p>
           Yousef Khan
           <br />
-          making fun stuff. for fun people.
+          making cool stuff. for cool people.
         </p>
       </aside>
       <nav>
@@ -107,6 +107,18 @@ function Footer() {
             </svg>
           </a>
         </div>
+      </nav>
+      <nav>
+        <h6 className="footer-title">Website Info</h6>
+        Built with React + Vite, TailwindCSS, and DaisyUI. <br />
+        Hosted on GitHub Pages.
+        <br /> © 2024 Yousef Khan. All rights reserved.
+        <a
+          className="link link-secondary"
+          href="https://github.com/YKawesome/Portfolio"
+        >
+          Source
+        </a>
       </nav>
     </footer>
   );
