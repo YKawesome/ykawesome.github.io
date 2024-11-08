@@ -5,19 +5,25 @@ function Navbar() {
   return (
     <div className="navbar bg-neutral text-neutral-content">
       <div className="">
-        <a href="/Portfolio" className="btn btn-ghost text-xl">Yousef Khan</a>
+        <a href="/Portfolio" className="btn btn-ghost text-xl">
+          Yousef Khan
+        </a>
       </div>
       <div className="avatar flex-1">
         <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src={avatar} />
+          <img alt="Tailwind CSS Navbar component" src={avatar} />
         </div>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a href="https://drive.google.com/file/d/1Vp9he2YazHY5kEKJP5P4DwKnGaaJSd3j/view?usp=sharing" target="_blank" className="hovergrow">Resume</a>
+            <a
+              href="https://drive.google.com/file/d/1Vp9he2YazHY5kEKJP5P4DwKnGaaJSd3j/view?usp=sharing"
+              target="_blank"
+              className="hovergrow"
+            >
+              Resume
+            </a>
           </li>
           <li>
             <details>
@@ -27,7 +33,7 @@ function Navbar() {
                   <Link to="/projects/antlogic">AntLogic</Link>
                 </li>
                 <li>
-                  <a>World</a>
+                  <Link to="/projects/ICSYAK">ICSYAK</Link>
                 </li>
               </ul>
             </details>

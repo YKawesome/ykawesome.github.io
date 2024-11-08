@@ -7,6 +7,7 @@ import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
 import "./App.css";
 import AntLogic from "./components/pages/Projects/Antlogic/antlogic";
+import ICSYAK from "./components/pages/Projects/ICSYAK/icsyak";
 
 class App extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class App extends Component {
           {/* Projects */}
           <Route path="/projects" element={<Home />} />
           <Route path="/projects/antlogic" element={<AntLogic />} />
+          <Route path="/projects/ICSYAK" element={<ICSYAK />} />
 
 
         </Routes>
