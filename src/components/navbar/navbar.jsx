@@ -18,7 +18,7 @@ function Navbar() {
         <ul className="menu menu-horizontal px-1">
           <li>
             <a
-              href="https://drive.google.com/file/d/1Vp9he2YazHY5kEKJP5P4DwKnGaaJSd3j/view?usp=sharing"
+              href="https://drive.google.com/file/d/19dnjPAveJrBK573LncnqrjFn1EmANEv7/view?usp=sharing"
               target="_blank"
               className="hovergrow"
             >
