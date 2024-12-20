@@ -115,7 +115,7 @@ function Footer() {
         <br /> © 2024 Yousef Khan. All rights reserved.
         <a
           className="link link-secondary"
-          href="https://github.com/YKawesome/Portfolio"
+          href="https://github.com/YKawesome/ykawesome.github.io"
         >
           Source
         </a>

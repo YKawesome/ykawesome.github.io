@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className="navbar bg-neutral text-neutral-content">
       <div className="">
-        <a href="/Portfolio" className="btn btn-ghost text-xl">
+        <a href="/" className="btn btn-ghost text-xl">
           Yousef Khan
         </a>
       </div>
