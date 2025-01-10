@@ -8,6 +8,7 @@ import Navbar from "./components/navbar/navbar";
 import Home from "./components/pages/Home/home";
 import AntLogic from "./components/pages/Projects/Antlogic/antlogic";
 import ICSYAK from "./components/pages/Projects/ICSYAK/icsyak";
+import Resume from "./components/resume/resume";
 
 class App extends Component {
   constructor(props) {
@@ -38,6 +39,9 @@ class App extends Component {
         <Routes>
           {/* Home */}
           <Route path="/" element={<Home />} />
+
+          {/* Resume */}
+          <Route path="/resume" element={<Resume />} />
 
           {/* Projects */}
           <Route path="/projects" element={<Home />} />
