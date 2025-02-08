@@ -17,12 +17,13 @@ function Navbar() {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link
-              to="/resume"
+            <a
+              href="https://drive.google.com/file/d/1gFGDGcrqh3tTlglrr3nUPW2Wf8l8-nbs/view?usp=sharing"
+              target="_blank"
               className="hovergrow"
             >
               Resume
-            </Link>
+            </a>
           </li>
           <li>
             <details>
