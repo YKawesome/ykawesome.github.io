@@ -8,6 +8,7 @@ import Navbar from "./components/navbar/navbar";
 import Home from "./components/pages/Home/home";
 import AntLogic from "./components/pages/Projects/Antlogic/antlogic";
 import ICSYAK from "./components/pages/Projects/ICSYAK/icsyak";
+import Splitter from "./components/pages/Splitter/splitter";
 
 class App extends Component {
   constructor(props) {
@@ -39,10 +40,17 @@ class App extends Component {
           {/* Home */}
           <Route path="/" element={<Home />} />
 
+          {/* Misc */}
+          <Route path="/splitter" element={<Splitter />} />
+
           {/* Projects */}
           <Route path="/projects" element={<Home />} />
           <Route path="/projects/antlogic" element={<AntLogic />} />
           <Route path="/projects/ICSYAK" element={<ICSYAK />} />
+
+          { /* 404 */}
+          <Route path="*" element={<Home />} />
+
 
 
         </Routes>
