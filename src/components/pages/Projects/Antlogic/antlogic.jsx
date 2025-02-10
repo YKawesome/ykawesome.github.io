@@ -20,7 +20,7 @@ function AntLogic() {
             <div className="mt-6"></div>
             <TypeIt
               className="mt-20 text-lg md:text-xl"
-              options={{ startDelay: 1500, speed: 40 }}
+              options={{ startDelay: 1500, speed: 23 }}
             >
               An <span className="italic">interactive</span>{" "}
               <span className="font-bold bg-primary text-primary-content">
