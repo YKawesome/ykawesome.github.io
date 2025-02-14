@@ -18,8 +18,15 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
+      shetr: false,
     };
   }
+
+  toggleShetr = () => {
+    this.setState((prevState) => ({
+      shetr: !prevState.shetr,
+    }));
+  };
 
   async componentDidMount() {
     try {
@@ -40,28 +47,29 @@ class App extends Component {
           color={"oklch(var(--b1))"}
         />
 
-        <Navbar />
+        <Navbar shetr={this.state.shetr}/>
 
         <Routes>
           {/* Home */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home shetr={this.state.shetr} toggleShetr={this.toggleShetr}/>} />
 
           {/* Misc */}
           <Route path="/splitter" element={<Splitter />} />
 
           {/* Projects */}
-          <Route path="/projects" element={<Home />} />
           <Route path="/projects/antlogic" element={<AntLogic />} />
           <Route path="/projects/ICSYAK" element={<ICSYAK />} />
 
           { /* 404 */}
           <Route path="*" element={<Home />} />
 
+          { /* Shetr */ }
+
 
 
         </Routes>
 
-        <Footer />
+        <Footer shetr={this.state.shetr}/>
       </Router>
     );
   }
