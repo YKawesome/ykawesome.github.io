@@ -1,10 +1,13 @@
 import React from "react";
 import Hero from "../../components/hero/hero";
+import ShetrHero from "../../components/hero/shetrHero";
 
-function Home() {
+function Home({shetr = false, toggleShetr}) {
   return (
     <>
-      <Hero />
+      {
+        shetr ? <ShetrHero toggleShetr={toggleShetr}/> : <Hero toggleShetr={toggleShetr}/>
+      }
     </>
   );
 }

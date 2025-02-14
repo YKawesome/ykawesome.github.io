@@ -1,3 +1,7 @@
+:root {
+    background-color: oklch(var(--n));
+}
+
 .hovergrow {
     transition: transform 0.5s;
 }

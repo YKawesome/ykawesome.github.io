@@ -1,9 +1,9 @@
 import TypeIt from "typeit-react";
 import { images } from "../../utils/preloadimages";
 
-function Hero() {
+function Hero({ toggleShetr }) {
   const heroBg = images["herobg.png"];
-  
+
   return (
     <div
       className="hero min-h-screen"
@@ -22,7 +22,7 @@ function Hero() {
             I'm a Computer Science Student at UCI. I'm passionate about many
             things, but I truly love making things that save people time.
           </p>
-          <p className="mb-5 text-xl">Also, I love spreadsheets.</p>
+          <p className="mb-5 text-xl">Also, I love <span onClick={toggleShetr}>spreadsheets</span>.</p>
           <p className="mb-5">And discord.</p>
           {/* <button className="btn btn-neutral">Get Started</button> */}
         </div>
