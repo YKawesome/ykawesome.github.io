@@ -5,10 +5,13 @@ import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
-import Home from "./components/pages/Home/home";
-import AntLogic from "./components/pages/Projects/Antlogic/antlogic";
-import ICSYAK from "./components/pages/Projects/ICSYAK/icsyak";
-import Splitter from "./components/pages/Splitter/splitter";
+import Home from "./pages/Home/home";
+import AntLogic from "./pages/Projects/Antlogic/antlogic";
+import ICSYAK from "./pages/Projects/ICSYAK/icsyak";
+import Splitter from "./pages/Splitter/splitter";
+
+import { preloadImages } from "./utils/preloadimages";
+
 
 class App extends Component {
   constructor(props) {
@@ -18,10 +21,13 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 100); // Set loading to false after 1 second
+  async componentDidMount() {
+    try {
+      await preloadImages();
+    } catch (error) {
+      console.error("Error preloading images:", error);
+    }
+    this.setState({ loading: false });
   }
 
   render() {

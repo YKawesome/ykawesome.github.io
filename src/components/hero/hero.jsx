@@ -1,7 +1,9 @@
 import TypeIt from "typeit-react";
-import heroBg from "../../assets/herobg.png";
+import { images } from "../../utils/preloadimages";
 
 function Hero() {
+  const heroBg = images["herobg.png"];
+  
   return (
     <div
       className="hero min-h-screen"

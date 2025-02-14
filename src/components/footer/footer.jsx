@@ -1,7 +1,9 @@
 import "../../App.css";
-import logo from "../../assets/logo.png";
+import { images } from "../../utils/preloadimages";
 
 function Footer() {
+  const logo = images["logo.png"];
+
   return (
     <footer className="footer bg-neutral text-neutral-content p-10">
       <aside>

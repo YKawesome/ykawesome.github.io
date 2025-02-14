@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import banner from "../../../assets/shetrbanner.png";
+import { images } from "../../utils/preloadimages";
 
 function Splitter() {
+  const banner = images["shetrbanner.png"];
+
   const [file, setFile] = useState(null);
   const [croppedImages, setCroppedImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");

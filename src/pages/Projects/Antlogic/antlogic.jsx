@@ -1,8 +1,9 @@
 import React from "react";
 import TypeIt from "typeit-react";
-import antLogicImage from "../../../../assets/antlogic.png";
+import { images } from "../../../utils/preloadimages";
 
 function AntLogic() {
+  const antLogicImage = images["antlogic.png"];
   return (
     <div>
       <div

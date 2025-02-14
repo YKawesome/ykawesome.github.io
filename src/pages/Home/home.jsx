@@ -1,6 +1,5 @@
 import React from "react";
-import Hero from "../../hero/hero";
-import Footer from "../../footer/footer";
+import Hero from "../../components/hero/hero";
 
 function Home() {
   return (

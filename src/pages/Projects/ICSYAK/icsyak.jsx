@@ -1,8 +1,9 @@
 import React from "react";
 import TypeIt from "typeit-react";
-import icsyakImage from "../../../../assets/icsyak.png";
+import { images } from "../../../utils/preloadimages";
 
 function ICSYAK() {
+  const icsyakImage = images["icsyak.png"];
   return (
     <div>
       <div

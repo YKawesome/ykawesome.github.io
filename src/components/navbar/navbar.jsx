@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import avatar from "../../assets/avatar.png";
+import { images } from "../../utils/preloadimages";
 
 function Navbar() {
+  const avatar = images["avatar.png"];
+  
   return (
     <div className="navbar bg-neutral text-neutral-content">
       <div className="">
