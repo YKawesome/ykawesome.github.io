@@ -6,6 +6,7 @@ function Splitter() {
 
   const [file, setFile] = useState(null);
   const [croppedImages, setCroppedImages] = useState([]);
+  const [rows, setRows] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -24,7 +25,10 @@ function Splitter() {
   const handleSplit = () => {
     if (!file) {
       setErrorMessage("Please select a file first.");
-
+      return;
+    }
+    if (rows < 1) {
+      setErrorMessage("Rows must be a positive integer.");
       return;
     }
 
@@ -34,83 +38,86 @@ function Splitter() {
       const img = new Image();
       img.onload = () => {
         const { width, height } = img;
-        const baseWidth = 3104;
-        const baseHeight = 1350;
+        const baseWidth = 3104; // Base total width for 3 columns
+        const baseHeight = 1350; // Base height for one row
 
-        // Validate that the image is an integer multiple of the base dimensions
-        if (width % baseWidth !== 0 || height % baseHeight !== 0) {
+        // Determine scale factor from the width
+        if (width % baseWidth !== 0) {
+          setErrorMessage("Image width must be an integer multiple of 3104.");
+          return;
+        }
+        const k = width / baseWidth;
+
+        // For multi-row banners the total expected height is (baseHeight * rows * k)
+        if (height !== baseHeight * rows * k) {
           setErrorMessage(
-            "Image dimensions must be an integer multiple of 3104×1350."
+            `For ${rows} row(s), the image height must be ${
+              baseHeight * rows * k
+            } (i.e. each row is ${baseHeight * k}px tall).`
           );
           return;
         }
-        const scaleW = width / baseWidth;
-        const scaleH = height / baseHeight;
-        if (scaleW !== scaleH) {
-          setErrorMessage(
-            "Width and height scale factors do not match. Please use a properly scaled image."
-          );
-          return;
-        }
-        const k = scaleW; // Scale factor (e.g., 2 for a 2× image)
 
-        // Define base crop parameters:
+        // Define base crop parameters for one row:
         // Crop 1: (0, 0, 1080, 1350)
-        // Crop 2: (1012, 0, 2092, 1350)
-        // Crop 3: (2024, 0, 3104, 1350)
-        const baseCropWidth = 1080; // Width of the crop in the base image
-        const baseOffset = 1012; // Horizontal offset between crops in the base image
+        // Crop 2: (1012, 0, 1080, 1350)
+        // Crop 3: (2024, 0, 1080, 1350)
+        const baseCropWidth = 1080; // Width of one crop in the base image
+        const baseOffset = 1012; // Horizontal offset for subsequent crops in the base image
 
-        // Scale crop parameters according to k
+        // Scale crop parameters according to the scale factor k
         const scaledCropWidth = baseCropWidth * k;
         const scaledOffset = baseOffset * k;
-        const scaledCropHeight = baseHeight * k;
+        const scaledCropHeight = baseHeight * k; // Height for one row
 
-        // Define the three crop rectangles (x, y, width, height)
-        const cropRects = [
-          { x: 0, y: 0, width: scaledCropWidth, height: scaledCropHeight },
-          {
-            x: scaledOffset,
-            y: 0,
-            width: scaledCropWidth,
-            height: scaledCropHeight,
-          },
-          {
-            x: scaledOffset * 2,
-            y: 0,
-            width: scaledCropWidth,
-            height: scaledCropHeight,
-          },
-        ];
+        // Generate the cropped images for each row and each of the 3 columns
+        const results = [];
+        for (let r = 0; r < rows; r++) {
+          const yOffset = r * scaledCropHeight;
+          // Loop for each column (3 columns)
+          for (let c = 0; c < 3; c++) {
+            let x = 0;
+            if (c === 0) {
+              x = 0;
+            } else if (c === 1) {
+              x = scaledOffset;
+            } else if (c === 2) {
+              x = scaledOffset * 2;
+            }
+            const canvas = document.createElement("canvas");
+            canvas.width = scaledCropWidth;
+            canvas.height = scaledCropHeight;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(
+              img,
+              x,
+              yOffset,
+              scaledCropWidth,
+              scaledCropHeight, // Source rectangle for this crop
+              0,
+              0,
+              scaledCropWidth,
+              scaledCropHeight // Destination rectangle
+            );
+            results.push({
+              dataUrl: canvas.toDataURL("image/png"),
+              filename: `split_r${r + 1}_c${c + 1}_${file.name}`,
+            });
+          }
+        }
 
-        // Generate the cropped images
-        const results = cropRects.map((rect) => {
-          const canvas = document.createElement("canvas");
-          canvas.width = rect.width;
-          canvas.height = rect.height;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(
-            img,
-            rect.x,
-            rect.y,
-            rect.width,
-            rect.height, // Source rectangle
-            0,
-            0,
-            rect.width,
-            rect.height // Destination rectangle
-          );
-          return canvas.toDataURL("image/png");
-        });
-        setCroppedImages(results);
-        setSuccessMessage("Image split successfully! Download should start right now :D");
+        // Update state and set success message
+        setCroppedImages(results.map((res) => res.dataUrl));
+        setSuccessMessage(
+          "Image split successfully! Download should start right now :D"
+        );
         setErrorMessage("");
 
-        // Automatically download each cropped image with the prefix "split_"
-        results.forEach((dataUrl, index) => {
+        // Automatically download each cropped image with a row/column prefix
+        results.forEach((result) => {
           const link = document.createElement("a");
-          link.href = dataUrl;
-          link.download = `split_${index + 1}_${file.name}`;
+          link.href = result.dataUrl;
+          link.download = result.filename;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -148,7 +155,9 @@ function Splitter() {
               3:4; bleeding is needed to make the banner look right without
               cutoff/cropping.
               <br />
-              <span className="font-bold">Currently only supports 3x1 banners.</span>
+              <span className="font-bold">
+                Supports multi-row banners now (each row is split into 3 parts).
+              </span>
             </p>
             <div className="flex flex-col space-y-4 items-center justify-center">
               <input
@@ -162,6 +171,13 @@ function Splitter() {
                     ? "file-input-success"
                     : "file-input-primary"
                 }`}
+              />
+              <input
+                type="number"
+                placeholder="Rows"
+                min={1}
+                onChange={(e) => setRows(parseInt(e.target.value, 10) || 1)}
+                className="input input-bordered input-accent text-base-content max-w-xs w-full"
               />
               <button
                 className="btn btn-secondary max-w-xs w-full hovergrow"
