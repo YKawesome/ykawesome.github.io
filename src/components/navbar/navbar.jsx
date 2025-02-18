@@ -20,7 +20,15 @@ function Navbar({ shetr = false }) {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           {shetr ? (
-            <></>
+            <>
+              <li>
+                <p>WIP :D</p>
+              </li>
+              <li>
+                <Link to="/splitter">Splitter</Link>
+              </li>
+
+            </>
           ) : (
             <>
               <li>

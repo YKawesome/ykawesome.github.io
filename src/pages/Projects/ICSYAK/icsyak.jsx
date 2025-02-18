@@ -71,14 +71,14 @@ function ICSYAK() {
         </div>
       </div>
 
-      <div className="hero min-h-fit">
+      <div className="hero min-h-fit bg-base-100">
 		
         <div className="overflow-x-auto max-w-md">
 			<h1 className="text-4xl md:text-6xl text-base-content text-center font-bold mt-10 mb-5">Courses Served</h1>
           <table className="table">
             {/* head */}
             <thead>
-              <tr className="font-bold text-base-content md:text-xl">
+              <tr className="font-bold text-base-content bg-base-200 md:text-xl">
                 <th></th>
                 <th>Dept</th>
                 <th>#</th>
@@ -100,13 +100,13 @@ function ICSYAK() {
                 <td>ICS</td>
                 <td>6D</td>
                 <td>Gassko</td>
-                <td>W24</td>
+                <td>W24, W25</td>
               </tr>
               <tr>
                 <th>3</th>
                 <td>ICS</td>
                 <td>45C</td>
-                <td>Klefstd</td>
+                <td>Klefstad</td>
                 <td>S24</td>
               </tr>
               <tr>
@@ -122,6 +122,13 @@ function ICSYAK() {
                 <td>51</td>
                 <td>Dutt</td>
                 <td>W24</td>
+              </tr>
+              <tr>
+                <th>5</th>
+                <td>ICS</td>
+                <td>53</td>
+                <td>Wong-ma</td>
+                <td>W25</td>
               </tr>
               {/* STATS row */}
               <tr>
@@ -153,6 +160,18 @@ function ICSYAK() {
                 <td>122A</td>
                 <td>Wong-ma</td>
                 <td>F24</td>
+              </tr>
+              <tr>
+                <th>10</th>
+                <td>CS</td>
+                <td>171</td>
+                <td>Kask</td>
+                <td>W25</td>
+              </tr>
+              { /* Total */ }
+              <tr className="font-bold bg-base-200">
+                <th>Total</th>
+                <td colSpan="4">10 courses, 5 quarters, 8 Profs, 1000+ students</td>
               </tr>
             </tbody>
           </table>
