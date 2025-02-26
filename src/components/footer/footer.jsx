@@ -36,7 +36,7 @@ function Footer({ shetr = false }) {
         <p>
           {shetr ? "SHETR" : "Yousef Khan"}
           <br />
-          making cool petrs. for cool people.
+          making cool {shetr ? "petrs" : "things"}. for cool people.
         </p>
       </aside>
       <nav>
