@@ -33,7 +33,7 @@ function Navbar({ shetr = false }) {
             <>
               <li>
                 <a
-                  href="https://drive.google.com/file/d/1gFGDGcrqh3tTlglrr3nUPW2Wf8l8-nbs/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
                   target="_blank"
                   className="hovergrow"
                 >
