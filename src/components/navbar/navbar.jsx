@@ -27,6 +27,9 @@ function Navbar({ shetr = false }) {
               <li>
                 <Link to="/splitter">Splitter</Link>
               </li>
+              <li>
+                <Link to="/ktane">KTANE</Link>
+              </li>
 
             </>
           ) : (
