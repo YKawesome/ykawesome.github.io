@@ -22,9 +22,11 @@ function KTANE() {
                         style={{ transform: `rotate(${rotation}deg)` }}
                         alt="Hexamaze puzzle"
                     />
-                    <div className="max-w-md mt-4 join"> {/* Added margin-top for spacing */}
-                        <button className="btn btn-primary join-item" onClick={handleRotate}>Rotate 60°</button>
-                        <button className="btn btn-secondary join-item" onClick={resetRotation}>Reset</button>
+                    <div className="max-w-md mt-4">
+                        <div className="join">
+                            <button className="btn btn-primary join-item" onClick={handleRotate}>Rotate 60°</button>
+                            <button className="btn btn-secondary join-item" onClick={resetRotation}>Reset</button>
+                        </div>
                     </div>
                 </div>
             </div>
