@@ -11,6 +11,7 @@ import ICSYAK from "./pages/Projects/ICSYAK/icsyak";
 import Splitter from "./pages/Splitter/splitter";
 
 import { preloadImages } from "./utils/preloadimages";
+import KTANE from "./pages/KTANE/KTANE";
 
 
 class App extends Component {
@@ -55,6 +56,7 @@ class App extends Component {
 
           {/* Misc */}
           <Route path="/splitter" element={<Splitter />} />
+          <Route path="/ktane" element={<KTANE />} />
 
           {/* Projects */}
           <Route path="/projects/antlogic" element={<AntLogic />} />
@@ -62,8 +64,6 @@ class App extends Component {
 
           { /* 404 */}
           <Route path="*" element={<Home />} />
-
-          { /* Shetr */ }
 
 
 
