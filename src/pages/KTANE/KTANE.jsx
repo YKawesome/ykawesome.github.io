@@ -28,6 +28,12 @@ function KTANE() {
                             <button className="btn btn-secondary join-item" onClick={resetRotation}>Reset</button>
                         </div>
                     </div>
+                    <img
+                        src={images["hexamini.png"]}
+                        className="w-1/4 transition-transform duration-300"
+                        style={{ transform: `rotate(${rotation}deg)` }}
+                        alt="Hexamaze puzzle"
+                    />
                 </div>
             </div>
 
