@@ -53,6 +53,9 @@ function Navbar({ shetr = false }) {
                     <li>
                       <Link to="/projects/ICSYAK">ICSYAK</Link>
                     </li>
+                    <li>
+                      <Link to="/projects/checkersai">CheckersAI</Link>
+                    </li>
                   </ul>
                 </details>
               </li>

@@ -12,6 +12,7 @@ import Splitter from "./pages/Splitter/splitter";
 
 import { preloadImages } from "./utils/preloadimages";
 import KTANE from "./pages/KTANE/KTANE";
+import CheckersAI from "./pages/Projects/CheckersAI/CheckersAI";
 
 
 class App extends Component {
@@ -61,6 +62,7 @@ class App extends Component {
           {/* Projects */}
           <Route path="/projects/antlogic" element={<AntLogic />} />
           <Route path="/projects/ICSYAK" element={<ICSYAK />} />
+          <Route path="/projects/CheckersAI" element={<CheckersAI />} />
 
           { /* 404 */}
           <Route path="*" element={<Home />} />
