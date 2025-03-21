@@ -14,32 +14,32 @@ function Hexamaze() {
 
     return (
         <>
-            <div className="hero bg-secondary text-secondary-content h-[15vh]">
+            <div className="hero bg-secondary text-secondary-content h-[12vh]">
                 <div className="hero-content text-center flex flex-col items-center">
-                    <p className="text-5xl font-bold">On the subject of Hexamazes...</p>
-                    <p className="text-xl"> Click Rotate to rotate the maze!</p>
+                    <p className="md:text-5xl text-2xl font-bold">On the Subject of Hexamazes</p>
+                    <p className="md:text-xl text-lg"> Click the maze to rotate it!</p>
                 </div>
             </div>
-            <div className="hero bg-base-200 min-h-screen py-5">
+            <div className="hero bg-base-200 py-5">
                 <div className="hero-content flex flex-col items-center text-center">
                     <img
-                        src={images["hexamaze.png"]}
-                        className="w-7/12 transition-transform duration-300"
+                        src={images["hexamini.png"]}
+                        className="w-1/4 transition-transform duration-300 cursor-grab"
                         style={{ transform: `rotate(${rotation}deg)` }}
                         alt="Hexamaze puzzle"
+                        onClick={handleRotate}
+                    />
+                    <img
+                        src={images["hexamaze.png"]}
+                        className="w-7/12 transition-transform duration-300 cursor-grab"
+                        style={{ transform: `rotate(${rotation}deg)` }}
+                        alt="Hexamaze puzzle"
+                        onClick={handleRotate}
                     />
                     <div className="max-w-md mt-4">
-                        <div className="join">
-                            <button className="btn btn-primary join-item" onClick={handleRotate}>Rotate 60°</button>
-                            <button className="btn btn-secondary join-item" onClick={resetRotation}>Reset</button>
-                        </div>
+                        <button className="btn btn-secondary" onClick={resetRotation}>Reset</button>
                     </div>
-                    <img
-                        src={images["hexamini.png"]}
-                        className="w-1/4 transition-transform duration-300"
-                        style={{ transform: `rotate(${rotation}deg)` }}
-                        alt="Hexamaze puzzle"
-                    />
+
                 </div>
             </div>
         </>
