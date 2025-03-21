@@ -21,29 +21,29 @@ function CheckersAI() {
                         </TypeIt>
                         <div className="mt-6"></div>
                         <TypeIt
-                            className="mt-20 text-lg md:text-xl"
+                            className="mt-20 text-xl md:text-2xl"
                             options={{ startDelay: 1500, speed: 23 }}
                         >
-                            <span className="font-bold bg-primary text-primary-content">
+                            <span className="font-bold bg-primary text-primary-content px-0.5">
                                 Final Project
                             </span>{" "}
                             for{" "}
                             <span className="italic">CS 171: Introduction to Artificial Intelligence</span>;
                             a{" "}
-                            <span className="font-bold bg-accent text-primary-content">
+                            <span className="font-bold bg-accent text-accent-content px-0.5">
                                 checkers AI
                             </span>{" "}
                             that uses{" "}
-                            <span className="font-bold bg-secondary text-primary-content">
+                            <span className="font-bold bg-secondary text-secondary-content px-0.5">
                                 Monte Carlo Tree Search
                             </span>{" "}
                             with a{" "}
-                            <span className="font-bold bg-primary text-primary-content">
+                            <span className="font-bold bg-primary text-primary-content px-0.5">
                                 capture heuristic
                             </span>{" "}
                             to play checkers.
                         </TypeIt>
-                        <p className="py-3 text-base md:text-lg">
+                        <p className="py-3 md:text-xl text-lg">
                             Developed in collaboration with:
                         </p>
                         <ul className="">
@@ -73,7 +73,7 @@ function CheckersAI() {
                                 </button>
                             </a> */}
                             <a href="https://docs.google.com/document/d/e/2PACX-1vSbCRCgaWrp4FFz6-SIwOA14mpsjQdnclNBKv-ZiVK7XEGrOb8XncNN3IbeGuq0zebwoe-frBf5Ogix/pub" target="_blank">
-                                <button className="btn btn-accent my-6 join-item">
+                                <button className="btn btn-lg btn-accent my-6 join-item">
                                     Final Report
                                 </button>
                             </a>

@@ -12,13 +12,14 @@ function Hero({ toggleShetr }) {
           `url(${heroBg})`,
       }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-overlay"></div>
+      <div className="hero-overlay opacity-50"></div>
       <div className="hero-content text-neutral-content text-center">
-        <div className="max-w-md">
-          <TypeIt className="mb-10 text-5xl font-bold" options={{ startDelay: 1500 }}>
+        <div className="lg:max-w-xl max-w-md">
+          <TypeIt className="mb-10 text-6xl font-bold" options={{ startDelay: 1500 }}>
             hi, i'm yousef khan.
           </TypeIt>
-          <p className="mb-5 mt-5 text-2xl">
+          <p className="mb-5 mt-5 text-3xl max-w-lg">
             I'm a Computer Science Student at UCI. I'm passionate about many
             things, but I truly love making things that save people time.
           </p>

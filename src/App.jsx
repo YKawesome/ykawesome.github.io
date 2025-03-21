@@ -4,7 +4,7 @@ import { Route, HashRouter as Router, Routes } from "react-router-dom";
 
 import "./App.css";
 import Footer from "./components/footer/footer";
-import Navbar from "./components/navbar/navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/home";
 import AntLogic from "./pages/Projects/Antlogic/antlogic";
 import ICSYAK from "./pages/Projects/ICSYAK/icsyak";
@@ -45,15 +45,15 @@ class App extends Component {
       <Router>
         <Sugar
           customLoading={loading}
-          background={"oklch(var(--n))"}
-          color={"oklch(var(--b1))"}
+          background="var(--color-neutral)"
+          color="var(--color-neutral-content)"
         />
 
-        <Navbar shetr={this.state.shetr}/>
+        <Navbar shetr={this.state.shetr} />
 
         <Routes>
           {/* Home */}
-          <Route path="/" element={<Home shetr={this.state.shetr} toggleShetr={this.toggleShetr}/>} />
+          <Route path="/" element={<Home shetr={this.state.shetr} toggleShetr={this.toggleShetr} />} />
 
           {/* Misc */}
           <Route path="/splitter" element={<Splitter />} />
@@ -71,7 +71,7 @@ class App extends Component {
 
         </Routes>
 
-        <Footer shetr={this.state.shetr}/>
+        <Footer shetr={this.state.shetr} />
       </Router>
     );
   }

@@ -11,7 +11,8 @@ function ShetrHero({ toggleShetr }) {
         backgroundImage: `url(${shetrHeroBg})`,
       }}
     >
-      <div className="hero-overlay bg-opacity-75"></div>
+      <div className="hero-overlay"></div>
+      <div className="hero-overlay"></div>
       <div className="hero-content text-neutral-content text-center">
         <div className="max-w-md">
           <TypeIt

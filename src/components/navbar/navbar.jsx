@@ -6,47 +6,53 @@ function Navbar({ shetr = false }) {
   const shetravatar = images["shetravatar.png"];
 
   return (
-    <div className="navbar bg-neutral text-neutral-content">
-      <div className="">
-        <a href="/" className="btn btn-ghost text-xl">
+    <div className="navbar bg-neutral text-neutral-content min-h-[5vh]">
+      <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] lg:ml-0">
+        <a href="/" className="btn btn-ghost lg:text-2xl text-xl">
           {shetr ? "SHETR" : "Yousef Khan"}
         </a>
-      </div>
-      <div className="avatar flex-1">
-        <div className="w-10 rounded-full">
-          <img alt="Avatar" src={shetr ? shetravatar : avatar} />
+        <div className="avatar flex-1 lg:ml-2">
+          <div className="w-10 rounded-full">
+            <img alt="Avatar" src={shetr ? shetravatar : avatar} />
+          </div>
         </div>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+
+
+      <div className="flex grow justify-end px-2">
+        <div className="flex items-stretch">
           {shetr ? (
             <>
-              <li>
-                <p>WIP :D</p>
-              </li>
-              <li>
-                <Link to="/splitter">Splitter</Link>
-              </li>
-              <li>
-                <Link to="/ktane">KTANE</Link>
-              </li>
-
+              <a className="btn btn-ghost rounded-field">WIP :D</a>
+              <Link className="btn btn-ghost rounded-field" to="/splitter">
+                Splitter
+              </Link>
+              <Link className="btn btn-ghost rounded-field" to="/ktane">
+                KTANE
+              </Link>
             </>
           ) : (
             <>
-              <li>
-                <a
-                  href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
-                  target="_blank"
-                  className="hovergrow"
+              <a
+                className="btn btn-ghost rounded-field hovergrow"
+                href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
+                target="_blank"
+              >
+                Resume
+              </a>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost rounded-field hovergrow"
                 >
-                  Resume
-                </a>
-              </li>
-              <li>
-                <details>
-                  <summary className="hovergrow">Projects</summary>
-                  <ul className="bg-neutral rounded-t-none p-2">
+                  Projects
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="menu dropdown-content bg-neutral rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+                >
+                  <>
                     <li>
                       <Link to="/projects/antlogic">AntLogic</Link>
                     </li>
@@ -56,12 +62,12 @@ function Navbar({ shetr = false }) {
                     <li>
                       <Link to="/projects/checkersai">CheckersAI</Link>
                     </li>
-                  </ul>
-                </details>
-              </li>
+                  </>
+                </ul>
+              </div>
             </>
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );

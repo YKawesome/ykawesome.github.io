@@ -1,5 +1,5 @@
 :root {
-    background-color: oklch(var(--n));
+    --root-bg: var(--color-neutral);
 }
 
 .hovergrow {
@@ -8,4 +8,8 @@
 
 .hovergrow:hover {
     transform: scale(1.13);
+}
+
+.logorecolor {
+    filter: invert(98%) sepia(50%) saturate(487%) hue-rotate(319deg) brightness(99%) contrast(87%);
 }

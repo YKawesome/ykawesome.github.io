@@ -20,24 +20,24 @@ function ICSYAK() {
             </TypeIt>
             <div className="mt-6"></div>
             <TypeIt
-              className="mt-20 text-lg md:text-xl"
+              className="mt-20 text-xl md:text-2xl"
               options={{ startDelay: 1500, speed: 23 }}
             >
               A{" "}
-              <span className="font-bold bg-primary text-primary-content">
+              <span className="font-bold bg-primary text-primary-content px-0.5">
                 Discord Bot
               </span>{" "}
               that <span className="italic">automatically</span> pulls threads
               from{" "}
-              <span className="font-bold bg-accent text-primary-content">
+              <span className="font-bold bg-accent text-accent-content px-0.5">
                 Ed Discussion
               </span>{" "}
               and{" "}
-              <span className="font-bold bg-accent text-primary-content">
+              <span className="font-bold bg-accent text-primary-content px-0.5">
                 Piazza
               </span>{" "}
               into{" "}
-              <span className="font-bold bg-secondary text-primary-content">
+              <span className="font-bold bg-secondary text-secondary-content px-0.5">
                 Discord
               </span>
               , supporting <span className="italic">on-demand</span>{" "}
@@ -45,14 +45,13 @@ function ICSYAK() {
               <span className="font-bold">reply display</span> for{" "}
               <span className="font-bold">1000+</span> students.
             </TypeIt>
-            <p className="py-3 text-base md:text-lg">
+            <p className="py-3 text-lg md:text-xl">
               Developed for ICS 6B/6D Fall 2023. <br />
-              Expanded to:
             </p>
 
             <div className="join hovergrow">
               <a href="https://github.com/YKawesome/ICSYAK" target="_blank">
-                <button className="btn btn-secondary my-6 join-item">
+                <button className="btn btn-secondary btn-lg my-6 join-item">
                   GitHub
                 </button>
               </a>

@@ -4,7 +4,8 @@ function KTANE() {
 
     return (
         <>
-            {/* <Hexamaze /> */}
+            
+            <Hexamaze />
 
         </>
     );

@@ -142,7 +142,8 @@ function Splitter() {
           backgroundImage: `url(${banner})`,
         }}
       >
-        <div className="hero-overlay bg-opacity-95"></div>
+        <div className="hero-overlay"></div>
+        <div className="hero-overlay"></div>
         <div className="hero-content text-neutral-content text-center">
           <div className="lg:max-w-lg max-w-md">
             <h1 className="mb-5 lg:text-6xl text-5xl font-bold">

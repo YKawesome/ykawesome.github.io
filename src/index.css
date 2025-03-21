@@ -1,3 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: retro;
+}
+@plugin "daisyui/theme" {
+  name: "retro";
+  default: true;
+  --color-neutral: oklch(28.42% 0.0095 355.53);
+  --color-neutral-content: oklch(91.64% 0.0346 90.52);
+  --color-base-100: oklch(91.64% 0.0346 90.52);
+  --color-base-200: oklch(88.27% 0.0494 91.77);
+  --color-base-300: oklch(84.15% 0.0648 90.51);
+  --color-accent: oklch(70.57% 0.125 53.7);
+  --color-secondary: oklch(80.77% 0.0517 160.28);
+  --color-primary: oklch(77.04% 0.1029 23.4);
+  --depth: 1;
+  --noise: 1;
+}
