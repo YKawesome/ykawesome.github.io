@@ -1,4 +1,5 @@
 import Hexamaze from "./Hexamaze";
+import SkewedSlots from "./SkewedSlots";
 
 function KTANE() {
 
@@ -6,6 +7,7 @@ function KTANE() {
         <>
             
             <Hexamaze />
+            <SkewedSlots />
 
         </>
     );
