@@ -35,7 +35,7 @@ function Navbar({ shetr = false }) {
             <>
               <a
                 className="btn btn-ghost rounded-field hovergrow"
-                href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
+                href="https://drive.google.com/file/d/1BIS5fku_vO_cuy38PgntfNzWpXQL6Cxy/view?usp=sharing"
                 target="_blank"
               >
                 Resume
