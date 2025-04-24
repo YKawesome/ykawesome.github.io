@@ -1,6 +1,6 @@
 import React from "react";
-import Hero from "../../components/hero/hero";
-import ShetrHero from "../../components/hero/shetrHero";
+import Hero from "../../components/Hero/Hero";
+import ShetrHero from "../../components/Hero/ShetrHero";
 
 function Home({shetr = false, toggleShetr}) {
   return (
