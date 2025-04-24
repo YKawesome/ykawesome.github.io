@@ -3,12 +3,12 @@ import { Sugar } from "react-preloaders";
 import { Route, HashRouter as Router, Routes } from "react-router-dom";
 
 import "./App.css";
-import Footer from "./components/footer/footer";
+import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/Home/home";
-import AntLogic from "./pages/Projects/Antlogic/antlogic";
-import ICSYAK from "./pages/Projects/ICSYAK/icsyak";
-import Splitter from "./pages/Splitter/splitter";
+import Home from "./pages/Home/Home";
+import AntLogic from "./pages/Projects/Antlogic/Antlogic";
+import ICSYAK from "./pages/Projects/ICSYAK/ICSYAK";
+import Splitter from "./pages/Splitter/Splitter";
 
 import { preloadImages } from "./utils/preloadimages";
 import KTANE from "./pages/KTANE/KTANE";
