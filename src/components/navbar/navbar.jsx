@@ -6,7 +6,7 @@ function Navbar({ shetr = false }) {
   const shetravatar = images["shetravatar.png"];
 
   return (
-    <div className="navbar bg-neutral text-neutral-content min-h-[5vh]">
+    <div className="navbar bg-neutral text-neutral-content min-h-[8vh]">
       <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] lg:ml-0">
         <a href="/" className="btn btn-ghost lg:text-2xl text-xl">
           {shetr ? "SHETR" : "Yousef Khan"}

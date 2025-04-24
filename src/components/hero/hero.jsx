@@ -6,7 +6,7 @@ function Hero({ toggleShetr }) {
 
   return (
     <div
-      className="hero min-h-screen"
+      className="hero h-[92vh]"
       style={{
         backgroundImage:
           `url(${heroBg})`,
