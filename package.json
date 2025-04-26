@@ -7,7 +7,8 @@
     "homepage": "./",
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -u \"github-actions[bot] <github-actions[bot]@users.noreply.github.com>\"",
+    "deploy": "gh-pages -d dist",
+    "deploy:ci": "gh-pages -d dist -u \"github-actions[bot] <github-actions[bot]@users.noreply.github.com>\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
