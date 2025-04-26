@@ -8,7 +8,7 @@
     "dev": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "deploy:ci": "gh-pages -d dist -u \"github-actions[bot] <github-actions[bot]@users.noreply.github.com>\"",
+    "deploy:ci": "gh-pages -d dist -r https://x-access-token:${GH_TOKEN}@github.com/YKawesome/ykawesome.github.io.git",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
