@@ -1,11 +1,17 @@
 import React from "react";
 import TypeIt from "typeit-react";
 import { images } from "../../../utils/preloadimages";
+import { motion } from "framer-motion";
 
 function ICSYAK() {
   const icsyakImage = images["icsyak.png"];
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div
         className="hero  min-h-screen"
         style={{
@@ -13,14 +19,14 @@ function ICSYAK() {
         }}
       >
         <div className="hero-overlay bg-opacity-70"></div>
-        <div className="hero-content text-neutral-content text-center">
-          <div className="max-w-md">
-            <TypeIt className="text-6xl md:text-8xl text-neutral-content font-bold mb-20">
+        <div className="hero-content text-neutral-content sm:text-center">
+          <div className="md:w-lg sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
+            <TypeIt className="text-6xl md:text-8xl text-neutral-content font-bold mb-20 ">
               ICSYAK.
             </TypeIt>
             <div className="mt-6"></div>
             <TypeIt
-              className="mt-20 text-xl md:text-2xl"
+              className="mt-20 text-lg sm:text-xl md:text-2xl"
               options={{ startDelay: 1500, speed: 23 }}
             >
               A{" "}
@@ -45,13 +51,13 @@ function ICSYAK() {
               <span className="font-bold">reply display</span> for{" "}
               <span className="font-bold">1000+</span> students.
             </TypeIt>
-            <p className="py-3 text-lg md:text-xl">
+            <p className="py-3 text-md sm:text-lg md:text-xl">
               Developed for ICS 6B/6D Fall 2023. <br />
             </p>
 
             <div className="join hovergrow">
               <a href="https://github.com/YKawesome/ICSYAK" target="_blank">
-                <button className="btn btn-secondary btn-lg my-6 join-item">
+                <button className="btn btn-secondary md:btn-lg mt-3 join-item">
                   GitHub
                 </button>
               </a>
@@ -178,7 +184,7 @@ function ICSYAK() {
         </div>
 		
       </div>
-    </div>
+    </motion.div>
   );
 }
 

@@ -1,12 +1,18 @@
 import TypeIt from "typeit-react";
 import { images } from "../../../utils/preloadimages";
 import CodeBlock from "./CodeBlock";
+import { motion } from "framer-motion";
 
 function CheckersAI() {
     const CheckersAIImage = images["checkersai.png"];
     // const antLogicImage = images["antlogic.png"];
     return (
-        <div>
+        <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
             <div
                 className="hero min-h-screen"
                 style={{
@@ -14,14 +20,14 @@ function CheckersAI() {
                 }}
             >
                 <div className="hero-overlay bg-opacity-70"></div>
-                <div className="hero-content text-neutral-content text-center">
-                    <div className="max-w-md">
-                        <TypeIt className="text-5xl md:text-7xl text-neutral-content font-bold mb-20">
+                <div className="hero-content text-neutral-content sm:text-center">
+                    <div className="md:w-lg sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
+                        <TypeIt className="text-4xl sm:text-5xl md:text-7xl text-neutral-content font-bold mb-20">
                             CheckersAI.
                         </TypeIt>
                         <div className="mt-6"></div>
                         <TypeIt
-                            className="mt-20 text-xl md:text-2xl"
+                            className="mt-20 text-xl sm:text-xl md:text-2xl"
                             options={{ startDelay: 1500, speed: 23 }}
                         >
                             <span className="font-bold bg-primary text-primary-content px-0.5">
@@ -43,7 +49,7 @@ function CheckersAI() {
                             </span>{" "}
                             to play checkers.
                         </TypeIt>
-                        <p className="py-3 md:text-xl text-lg">
+                        <p className="py-3 md:text-xl sm:text-lg text-md">
                             Developed in collaboration with:
                         </p>
                         <ul className="">
@@ -73,7 +79,7 @@ function CheckersAI() {
                                 </button>
                             </a> */}
                             <a href="https://docs.google.com/document/d/e/2PACX-1vSbCRCgaWrp4FFz6-SIwOA14mpsjQdnclNBKv-ZiVK7XEGrOb8XncNN3IbeGuq0zebwoe-frBf5Ogix/pub" target="_blank">
-                                <button className="btn btn-lg btn-accent my-6 join-item">
+                                <button className="btn btn-sm sm:btn-lg btn-accent mt-6 join-item">
                                     Final Report
                                 </button>
                             </a>
@@ -94,7 +100,7 @@ function CheckersAI() {
                     </div>
                 </div>
             </div> */}
-        </div>
+        </motion.div>
     );
 }
 

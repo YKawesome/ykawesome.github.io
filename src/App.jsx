@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Sugar } from "react-preloaders";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import "./App.css";
 import Footer from "./components/Footer/Footer";
@@ -9,72 +10,62 @@ import Home from "./pages/Home/Home";
 import AntLogic from "./pages/Projects/Antlogic/Antlogic";
 import ICSYAK from "./pages/Projects/ICSYAK/ICSYAK";
 import Splitter from "./pages/Splitter/Splitter";
-
-import { preloadImages } from "./utils/preloadimages";
 import KTANE from "./pages/KTANE/KTANE";
 import CheckersAI from "./pages/Projects/CheckersAI/CheckersAI";
 
+import { preloadImages } from "./utils/preloadimages";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      shetr: false,
-    };
-  }
+function AnimatedRoutes({ shetr, toggleShetr }) {
+  const location = useLocation();
 
-  toggleShetr = () => {
-    this.setState((prevState) => ({
-      shetr: !prevState.shetr,
-    }));
-  };
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home shetr={shetr} toggleShetr={toggleShetr} />} />
+        <Route path="/splitter" element={<Splitter />} />
+        <Route path="/ktane" element={<KTANE />} />
+        <Route path="/projects/antlogic" element={<AntLogic />} />
+        <Route path="/projects/ICSYAK" element={<ICSYAK />} />
+        <Route path="/projects/CheckersAI" element={<CheckersAI />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
-  async componentDidMount() {
-    try {
-      await preloadImages();
-    } catch (error) {
-      console.error("Error preloading images:", error);
+function App() {
+  const [loading, setLoading] = useState(true);
+  const [shetr, setShetr] = useState(false);
+
+  const toggleShetr = () => setShetr((prev) => !prev);
+
+  useEffect(() => {
+    async function loadImages() {
+      try {
+        await preloadImages();
+      } catch (error) {
+        console.error("Error preloading images:", error);
+      }
+      setLoading(false);
     }
-    this.setState({ loading: false });
-  }
+    loadImages();
+  }, []);
 
-  render() {
-    const { loading } = this.state;
-    return (
-      <Router>
-        <Sugar
-          customLoading={loading}
-          background="var(--color-neutral)"
-          color="var(--color-neutral-content)"
-        />
+  return (
+    <Router>
+      <Sugar
+        customLoading={loading}
+        background="var(--color-neutral)"
+        color="var(--color-neutral-content)"
+      />
 
-        <Navbar shetr={this.state.shetr} />
+      <Navbar shetr={shetr} />
 
-        <Routes>
-          {/* Home */}
-          <Route path="/" element={<Home shetr={this.state.shetr} toggleShetr={this.toggleShetr} />} />
+      <AnimatedRoutes shetr={shetr} toggleShetr={toggleShetr} />
 
-          {/* Misc */}
-          <Route path="/splitter" element={<Splitter />} />
-          <Route path="/ktane" element={<KTANE />} />
-
-          {/* Projects */}
-          <Route path="/projects/antlogic" element={<AntLogic />} />
-          <Route path="/projects/ICSYAK" element={<ICSYAK />} />
-          <Route path="/projects/CheckersAI" element={<CheckersAI />} />
-
-          { /* 404 */}
-          <Route path="*" element={<Home />} />
-
-
-
-        </Routes>
-
-        <Footer shetr={this.state.shetr} />
-      </Router>
-    );
-  }
+      <Footer shetr={shetr} />
+    </Router>
+  );
 }
 
 export default App;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { images } from "../../utils/preloadimages";
+import { motion } from "framer-motion";
 
 function Splitter() {
   const banner = images["shetrbanner.png"];
@@ -135,7 +136,12 @@ function Splitter() {
   };
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div
         className="hero min-h-screen"
         style={{
@@ -144,9 +150,9 @@ function Splitter() {
       >
         <div className="hero-overlay"></div>
         <div className="hero-overlay"></div>
-        <div className="hero-content text-neutral-content text-center">
-          <div className="lg:max-w-lg max-w-md">
-            <h1 className="mb-5 lg:text-6xl text-5xl font-bold">
+        <div className="hero-content text-neutral-content md:text-center">
+          <div className="md:w-xl sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
+            <h1 className="mb-5 md:text-6xl text-5xl font-bold text-center">
               IG Banner Splitter
             </h1>
             <p className="mb-5">
@@ -200,7 +206,7 @@ function Splitter() {
       {errorMessage && (
         <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
       )}
-    </>
+    </motion.div>
   );
 }
 
