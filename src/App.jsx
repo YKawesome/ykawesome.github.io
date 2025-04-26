@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Sugar } from "react-preloaders";
-import { Route, HashRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import "./App.css";
 import Footer from "./components/Footer/Footer";
