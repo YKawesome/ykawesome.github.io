@@ -6,7 +6,7 @@ function Hero({ toggleShetr }) {
 
   return (
     <div
-      className="hero h-[92vh]"
+      className="hero min-h-screen"
       style={{
         backgroundImage:
           `url(${heroBg})`,
@@ -16,10 +16,10 @@ function Hero({ toggleShetr }) {
       <div className="hero-overlay opacity-50"></div>
       <div className="hero-content text-neutral-content text-center">
         <div className="lg:max-w-xl max-w-md">
-          <TypeIt className="mb-10 text-6xl font-bold" options={{ startDelay: 1500 }}>
+          <TypeIt className="mb-10 text-4xl sm:text-6xl font-bold" options={{ startDelay: 1500 }}>
             hi, i'm yousef khan.
           </TypeIt>
-          <p className="mb-5 mt-5 text-3xl max-w-lg">
+          <p className="mb-5 mt-5 text-2xl sm:text-3xl max-w-lg">
             I'm a Computer Science Student at UCI. I'm passionate about many
             things, but I truly love making things that save people time.
           </p>

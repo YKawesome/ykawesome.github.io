@@ -14,13 +14,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-hover-card": "^1.1.11",
     "@tailwindcss/vite": "^4.0.14",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.503.0",
     "motion": "^12.9.2",
     "prismjs": "^1.30.0",
+    "qss": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-preloaders": "^3.0.3",
     "react-router-dom": "^6.27.0",
+    "tailwind-merge": "^3.2.0",
     "typeit-react": "^2.7.7"
   },
   "devDependencies": {
@@ -38,6 +44,7 @@
     "globals": "^15.11.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^4.0.14",
+    "tw-animate-css": "^1.2.8",
     "vite": "^5.4.10",
     "vite-plugin-static-copy": "^2.2.0"
   }

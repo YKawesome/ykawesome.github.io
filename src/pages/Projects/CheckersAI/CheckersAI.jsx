@@ -2,6 +2,7 @@ import TypeIt from "typeit-react";
 import { images } from "../../../utils/preloadimages";
 import CodeBlock from "./CodeBlock";
 import { motion } from "framer-motion";
+import { LinkPreview } from "../../../components/ui/link-preview";
 
 function CheckersAI() {
     const CheckersAIImage = images["checkersai.png"];
@@ -55,16 +56,16 @@ function CheckersAI() {
                         <ul className="">
                             <li>
                                 Amin Boukour{" "}
-                                <a
-                                    href="https://github.com/AaBoukour"
+                                <LinkPreview
+                                    url="https://github.com/ABoukour"
                                     className="link link-primary font-bold"
                                     target="_blank"
                                 >
                                     (ABoukour)
-                                </a>
+                                </LinkPreview>
                             </li>
                         </ul>
-                        <div className="join hovergrow">
+                        <div className="hovergrow">
                             {/* <a
                                 href="https://github.com/benjamin-cates/ant_logic?tab=readme-ov-file"
                                 target="_blank"
@@ -78,11 +79,11 @@ function CheckersAI() {
                                     Live Site
                                 </button>
                             </a> */}
-                            <a href="https://docs.google.com/document/d/e/2PACX-1vSbCRCgaWrp4FFz6-SIwOA14mpsjQdnclNBKv-ZiVK7XEGrOb8XncNN3IbeGuq0zebwoe-frBf5Ogix/pub" target="_blank">
-                                <button className="btn btn-sm sm:btn-lg btn-accent mt-6 join-item">
+                            <LinkPreview url="https://docs.google.com/document/d/e/2PACX-1vSbCRCgaWrp4FFz6-SIwOA14mpsjQdnclNBKv-ZiVK7XEGrOb8XncNN3IbeGuq0zebwoe-frBf5Ogix/pub" target="_blank">
+                                <button className="btn btn-sm sm:btn-lg btn-accent mt-6">
                                     Final Report
                                 </button>
-                            </a>
+                            </LinkPreview>
                         </div>
                     </div>
                 </div>

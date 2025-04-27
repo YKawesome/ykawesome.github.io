@@ -2,6 +2,7 @@ import React from "react";
 import TypeIt from "typeit-react";
 import { images } from "../../../utils/preloadimages";
 import { motion } from "framer-motion";
+import { LinkPreview } from "../../../components/ui/link-preview";
 
 function ICSYAK() {
   const icsyakImage = images["icsyak.png"];
@@ -38,9 +39,13 @@ function ICSYAK() {
               <span className="font-bold bg-accent text-accent-content px-0.5">
                 Ed Discussion
               </span>{" "}
-              and{" "}
+              ,{" "}
               <span className="font-bold bg-accent text-primary-content px-0.5">
                 Piazza
+              </span>{" "}
+              , and{" "}
+              <span className="font-bold bg-accent text-primary-content px-0.5">
+                GradeScope
               </span>{" "}
               into{" "}
               <span className="font-bold bg-secondary text-secondary-content px-0.5">
@@ -55,12 +60,12 @@ function ICSYAK() {
               Developed for ICS 6B/6D Fall 2023. <br />
             </p>
 
-            <div className="join hovergrow">
-              <a href="https://github.com/YKawesome/ICSYAK" target="_blank">
-                <button className="btn btn-secondary md:btn-lg mt-3 join-item">
+            <div className="hovergrow">
+              <LinkPreview url="https://github.com/YKawesome/ICSYAK" target="_blank">
+                <button className="btn btn-secondary md:btn-lg mt-3">
                   GitHub
                 </button>
-              </a>
+              </LinkPreview>
               {/* <a href="https://ant-logic.thebenjicat.dev/" target="_blank">
                     <button className="btn btn-primary my-6 join-item">
                     Live Site
@@ -77,9 +82,10 @@ function ICSYAK() {
       </div>
 
       <div className="hero min-h-fit bg-base-100">
-		
         <div className="overflow-x-auto max-w-md">
-			<h1 className="text-4xl md:text-6xl text-base-content text-center font-bold mt-10 mb-5">Courses Served</h1>
+          <h1 className="text-4xl md:text-6xl text-base-content text-center font-bold mt-10 mb-5">
+            Courses Served
+          </h1>
           <table className="table">
             {/* head */}
             <thead>
@@ -173,16 +179,17 @@ function ICSYAK() {
                 <td>Kask</td>
                 <td>W25</td>
               </tr>
-              { /* Total */ }
+              {/* Total */}
               <tr className="font-bold bg-base-200">
                 <th>Total</th>
-                <td colSpan="4">10 courses, 5 quarters, 8 Profs, 1000+ students</td>
+                <td colSpan="4">
+                  10 courses, 5 quarters, 8 Profs, 1000+ students
+                </td>
               </tr>
             </tbody>
           </table>
-		  <div className="mb-10"></div>
+          <div className="mb-10"></div>
         </div>
-		
       </div>
     </motion.div>
   );

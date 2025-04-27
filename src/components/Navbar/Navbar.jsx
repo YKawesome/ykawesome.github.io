@@ -6,7 +6,7 @@ function Navbar({ shetr = false }) {
   const shetravatar = images["shetravatar.png"];
 
   return (
-    <div className="navbar bg-neutral text-neutral-content min-h-[8vh]">
+    <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-[5rem]">
       <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] lg:ml-0">
         <a href="/" className="btn btn-ghost lg:text-2xl text-xl">
           {shetr ? "SHETR" : "Yousef Khan"}
@@ -34,7 +34,7 @@ function Navbar({ shetr = false }) {
           ) : (
             <>
               <a
-                className="btn btn-ghost rounded-field hovergrow"
+                className="btn lg:btn-lg btn-ghost rounded-field hovergrow"
                 href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
                 target="_blank"
               >
@@ -44,13 +44,13 @@ function Navbar({ shetr = false }) {
                 <div
                   tabIndex={0}
                   role="button"
-                  className="btn btn-ghost rounded-field hovergrow"
+                  className="btn lg:btn-lg btn-ghost rounded-field hovergrow"
                 >
                   Projects
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu dropdown-content bg-neutral rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
+                  className="menu dropdown-content bg-neutral rounded-box z-1 mt-4 w-52 p-2 shadow-sm lg:text-lg"
                 >
                   <>
                     <li>

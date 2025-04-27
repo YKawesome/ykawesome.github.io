@@ -2,6 +2,7 @@ import React from "react";
 import TypeIt from "typeit-react";
 import { images } from "../../../utils/preloadimages";
 import { motion } from "framer-motion";
+import { LinkPreview } from "../../../components/ui/link-preview";
 
 function AntLogic() {
   const antLogicImage = images["antlogic.png"];
@@ -20,7 +21,7 @@ function AntLogic() {
       >
         <div className="hero-overlay bg-opacity-70"></div>
         <div className="hero-content text-neutral-content sm:text-center">
-          <div className="md:w-lg sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
+          <div className="md:w-lg sm:w-sm w-xs p-8 bg-black/20 glass rounded-2xl shadow-2xl">
             <TypeIt className="text-5xl md:text-8xl text-neutral-content font-bold mb-20">
               AntLogic.
             </TypeIt>
@@ -49,44 +50,50 @@ function AntLogic() {
             <ul>
               <li>
                 Benjamin Cates{" "}
-                <a
-                  href="https://github.com/benjamin-cates"
+                <LinkPreview
+                  url="https://github.com/benjamin-cates"
                   className="link link-primary font-bold"
                   target="_blank"
                 >
                   (benjamin-cates)
-                </a>
+                </LinkPreview>
               </li>
               <li>
                 Jackson Podgorski{" "}
-                <a
-                  href="https://github.com/podskio"
+                <LinkPreview
+                  url="https://github.com/podskio"
                   className="link link-primary font-bold"
                   target="_blank"
                 >
                   (Podskio)
-                </a>
+                </LinkPreview>
               </li>
             </ul>
             <div className="join hovergrow mt-6">
-              <a
-                href="https://github.com/benjamin-cates/ant_logic?tab=readme-ov-file"
+              <LinkPreview
+                url="https://github.com/benjamin-cates/ant_logic?tab=readme-ov-file"
                 target="_blank"
               >
-                <button className="btn btn-sm md:btn-lg btn-secondary join-item">
+                <button className="btn btn-sm md:btn-lg btn-secondary join-item rounded-l-sm">
                   GitHub
                 </button>
-              </a>
-              <a href="https://ant-logic.thebenjicat.dev/" target="_blank">
+              </LinkPreview>
+              <LinkPreview
+                url="https://ant-logic.thebenjicat.dev/"
+                target="_blank"
+              >
                 <button className="btn btn-sm md:btn-lg btn-primary join-item">
                   Live Site
                 </button>
-              </a>
-              <a href="https://devpost.com/software/antlogic" target="_blank">
+              </LinkPreview>
+              <LinkPreview
+                url="https://devpost.com/software/antlogic"
+                target="_blank"
+              >
                 <button className="btn btn-sm md:btn-lg btn-accent join-item">
                   Devpost
                 </button>
-              </a>
+              </LinkPreview>
             </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ function ShetrHero({ toggleShetr }) {
 
   return (
     <div
-      className="hero h-[92vh]"
+      className="hero min-h-screen"
       style={{
         backgroundImage: `url(${shetrHeroBg})`,
       }}
