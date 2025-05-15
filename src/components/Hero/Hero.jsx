@@ -14,17 +14,17 @@ function Hero({ toggleShetr }) {
     >
       <div className="hero-overlay"></div>
       <div className="hero-overlay opacity-50"></div>
-      <div className="hero-content text-neutral-content text-center  rounded-2xl p-12 shadow-2xl">
-        <div className="lg:max-w-xl max-w-md">
-          <TypeIt className="mb-10 text-4xl sm:text-6xl font-bold" options={{ startDelay: 1500 }}>
+      <div className="hero-content text-neutral-content text-center rounded-2xl lg:p-12 lg:shadow-2xl">
+        <div className="lg:max-w-xl lg:w-xl max-w-md">
+          <TypeIt className="text-4xl sm:text-6xl font-bold" options={{ startDelay: 1500 }}>
             hi, i'm yousef khan.
           </TypeIt>
-          <p className="mb-5 mt-5 text-2xl sm:text-3xl max-w-lg">
+          <p className="mb-5 mt-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl max-w-md">
             I'm a Computer Science Student at UCI. I'm passionate about many
             things, but I truly love making things that save people time.
           </p>
           <p className="mb-5 text-xl">Also, I love <span onClick={toggleShetr}>spreadsheets</span>.</p>
-          <p className="mb-5">And discord.</p>
+          <p className="">And discord.</p>
           {/* <button className="btn btn-neutral">Get Started</button> */}
         </div>
       </div>
