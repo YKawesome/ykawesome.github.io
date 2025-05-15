@@ -2,7 +2,7 @@ import TypeIt from "typeit-react";
 import { images } from "../../utils/preloadimages";
 
 function Hero({ toggleShetr }) {
-  const heroBg = images["herobg.png"];
+  const heroBg = images["deeryakmainslow.gif"];
 
   return (
     <div
@@ -14,7 +14,7 @@ function Hero({ toggleShetr }) {
     >
       <div className="hero-overlay"></div>
       <div className="hero-overlay opacity-50"></div>
-      <div className="hero-content text-neutral-content text-center">
+      <div className="hero-content text-neutral-content text-center  rounded-2xl p-12 shadow-2xl">
         <div className="lg:max-w-xl max-w-md">
           <TypeIt className="mb-10 text-4xl sm:text-6xl font-bold" options={{ startDelay: 1500 }}>
             hi, i'm yousef khan.
