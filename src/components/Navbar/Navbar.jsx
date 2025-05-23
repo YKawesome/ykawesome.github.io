@@ -18,18 +18,14 @@ function Navbar({ shetr = false }) {
         </div>
       </div>
 
-
       <div className="flex grow justify-end px-2">
         <div className="flex items-stretch">
           {shetr ? (
             <>
-              <a className="btn btn-ghost rounded-field">WIP :D</a>
-              <Link className="btn btn-ghost rounded-field" to="/splitter">
-                Splitter
-              </Link>
-              <Link className="btn btn-ghost rounded-field" to="/ktane">
+              {/* <a className="btn lg:btn-lg btn-ghost rounded-field hovergrow">WIP :D</a> */}
+              {/* <Link className="btn lg:btn-lg btn-ghost rounded-field hovergrow" to="/ktane">
                 KTANE
-              </Link>
+              </Link> */}
             </>
           ) : (
             <>
@@ -61,6 +57,9 @@ function Navbar({ shetr = false }) {
                     </li>
                     <li>
                       <Link to="/projects/checkersai">CheckersAI</Link>
+                    </li>
+                    <li>
+                      <Link to="/projects/splitter">Splitter</Link>
                     </li>
                   </>
                 </ul>

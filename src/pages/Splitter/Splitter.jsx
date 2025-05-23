@@ -3,7 +3,7 @@ import { images } from "../../utils/preloadimages";
 import { motion } from "framer-motion";
 
 function Splitter() {
-  const banner = images["shetrbanner.png"];
+  const banner = images["suneri.png"];
 
   const [file, setFile] = useState(null);
   const [croppedImages, setCroppedImages] = useState([]);
@@ -148,7 +148,6 @@ function Splitter() {
           backgroundImage: `url(${banner})`,
         }}
       >
-        <div className="hero-overlay"></div>
         <div className="hero-overlay"></div>
         <div className="hero-content text-neutral-content md:text-center">
           <div className="md:w-xl sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">

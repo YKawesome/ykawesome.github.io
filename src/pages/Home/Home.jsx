@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../../components/Hero/Hero";
 import ShetrHero from "../../components/Hero/ShetrHero";
 import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 function Home({shetr = false, toggleShetr}) {
   return (
@@ -9,11 +10,31 @@ function Home({shetr = false, toggleShetr}) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.25}}
+      transition={{ duration: 0.3 }}
     >
-      {
-        shetr ? <ShetrHero toggleShetr={toggleShetr}/> : <Hero toggleShetr={toggleShetr}/>
-      }
+      <AnimatePresence mode="wait">
+        {shetr ? (
+          <motion.div
+            key="shetr"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <ShetrHero toggleShetr={toggleShetr} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="normal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <Hero toggleShetr={toggleShetr} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
