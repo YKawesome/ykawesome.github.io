@@ -14,10 +14,11 @@ function CS161() {
     const exam1 = getVal('exam1') / 10 * 10; // Normalize to percentage
     const exam2 = getVal('exam2') / 10 * 10;
 
-    const divideConquer = getVal('divideConquer') * 0.1;
-    const dynamicProgramming = getVal('dynamicProgramming') * 0.2;
-    const greedyProof = getVal('greedyProof') * 0.2;
-    const networkFlow = getVal('networkFlow') * 0.2;
+    // Each input is out of its respective max, convert to percent contribution
+    const divideConquer = getVal('divideConquer') / 1 * 10;
+    const dynamicProgramming = getVal('dynamicProgramming') / 2 * 20;
+    const greedyProof = getVal('greedyProof') / 2 * 20;
+    const networkFlow = getVal('networkFlow') / 2 * 20;
 
     const coreTopics = divideConquer + dynamicProgramming + greedyProof + networkFlow;
 
@@ -94,46 +95,46 @@ function CS161() {
               </h3>
               <div className="flex flex-col gap-2">
                 <fieldset className="form-control w-full">
-                  <legend className="fieldset-legend">Divide & Conquer (%) (10%)</legend>
+                  <legend className="fieldset-legend">Divide & Conquer (out of 1) (10%)</legend>
                   <input
                     type="number"
                     min="0"
-                    max="100"
+                    max="1"
                     className="input input-bordered w-full"
-                    placeholder="e.g. 90"
+                    placeholder="e.g. 1"
                     name="divideConquer"
                   />
                 </fieldset>
                 <fieldset className="form-control w-full">
-                  <legend className="fieldset-legend">Dynamic Programming (%) (20%)</legend>
+                  <legend className="fieldset-legend">Dynamic Programming (out of 2) (20%)</legend>
                   <input
                     type="number"
                     min="0"
-                    max="100"
+                    max="2"
                     className="input input-bordered w-full"
-                    placeholder="e.g. 85"
+                    placeholder="e.g. 2"
                     name="dynamicProgramming"
                   />
                 </fieldset>
                 <fieldset className="form-control w-full">
-                  <legend className="fieldset-legend">Greedy Algorithm Proof (%) (20%)</legend>
+                  <legend className="fieldset-legend">Greedy Algorithm Proof (out of 2) (20%)</legend>
                   <input
                     type="number"
                     min="0"
-                    max="100"
+                    max="2"
                     className="input input-bordered w-full"
-                    placeholder="e.g. 80"
+                    placeholder="e.g. 2"
                     name="greedyProof"
                   />
                 </fieldset>
                 <fieldset className="form-control w-full">
-                  <legend className="fieldset-legend">Network Flow (%) (20%)</legend>
+                  <legend className="fieldset-legend">Network Flow (out of 2) (20%)</legend>
                   <input
                     type="number"
                     min="0"
-                    max="100"
+                    max="2"
                     className="input input-bordered w-full"
-                    placeholder="e.g. 95"
+                    placeholder="e.g. 2"
                     name="networkFlow"
                   />
                 </fieldset>
