@@ -14,6 +14,7 @@ import KTANE from "./pages/KTANE/KTANE";
 import CheckersAI from "./pages/Projects/CheckersAI/CheckersAI";
 
 import { preloadImages } from "./utils/preloadimages";
+import Calculator from "./pages/Calculator/Calculator";
 
 function AnimatedRoutes({ shetr, toggleShetr }) {
   const location = useLocation();
@@ -28,6 +29,7 @@ function AnimatedRoutes({ shetr, toggleShetr }) {
         <Route path="/projects/ICSYAK" element={<ICSYAK />} />
         <Route path="/projects/CheckersAI" element={<CheckersAI />} />
         <Route path="/projects/splitter" element={<Splitter />} />'
+        <Route path="/calculator" element={<Calculator />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </AnimatePresence>
