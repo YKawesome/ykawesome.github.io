@@ -31,6 +31,7 @@ function Calculator() {
               <option value="CS162">CS162</option>
             </select>
           </fieldset>
+          <h1 className="text-4xl font-bold mt-4"> Grade Calculator</h1>
         </div>
         <AnimatePresence mode="wait">
           {selected === "" && (
