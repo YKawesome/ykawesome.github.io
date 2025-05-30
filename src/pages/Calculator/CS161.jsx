@@ -27,7 +27,7 @@ function CS161() {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen py-5">
+    <div className="hero bg-base-200 min-h-screen pb-5">
       <div className="hero-content text-center">
         <div className="max-w-2xl w-full">
           <h2 className="text-2xl font-bold mb-4">CS161 Grade Calculator</h2>

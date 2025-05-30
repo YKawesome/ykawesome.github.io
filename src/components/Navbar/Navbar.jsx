@@ -61,6 +61,9 @@ function Navbar({ shetr = false }) {
                     <li>
                       <Link to="/projects/splitter">Splitter</Link>
                     </li>
+                    <li>
+                      <Link to="/projects/calculator">Calculator</Link>
+                    </li>
                   </>
                 </ul>
               </div>

@@ -25,11 +25,13 @@ function AnimatedRoutes({ shetr, toggleShetr }) {
         <Route path="/" element={<Home shetr={shetr} toggleShetr={toggleShetr} />} />
         <Route path="/splitter" element={<Splitter />} />
         <Route path="/ktane" element={<KTANE />} />
+        <Route path="/calculator" element={<Calculator />} />
         <Route path="/projects/antlogic" element={<AntLogic />} />
         <Route path="/projects/ICSYAK" element={<ICSYAK />} />
         <Route path="/projects/CheckersAI" element={<CheckersAI />} />
         <Route path="/projects/splitter" element={<Splitter />} />'
-        <Route path="/calculator" element={<Calculator />} />
+        <Route path="/projects/calculator" element={<Calculator />} />
+        
         <Route path="*" element={<Home />} />
       </Routes>
     </AnimatePresence>
