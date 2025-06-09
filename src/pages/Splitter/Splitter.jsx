@@ -201,10 +201,6 @@ function Splitter() {
           </div>
         </div>
       </div>
-
-      {errorMessage && (
-        <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
-      )}
     </motion.div>
   );
 }
