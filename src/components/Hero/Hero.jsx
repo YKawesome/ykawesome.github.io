@@ -1,8 +1,23 @@
 import TypeIt from "typeit-react";
 import { images } from "../../utils/preloadimages";
+import { useState } from "react";
+
+const emojis = {};
+const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", { eager: true });
+
+for (const path in context) {
+  const fileName = path.split("/").pop();
+  emojis[fileName] = context[path].default;
+}
 
 function Hero({ toggleShetr }) {
+  const [emojiIndex, setEmojiIndex] = useState(3);
+  const emojiKeys = Object.values(emojis);
   const heroBg = images["deeryakmainslow.gif"];
+
+  const handleHover = () => {
+    setEmojiIndex((prevIndex) => (prevIndex + 1) % emojiKeys.length);
+  };
 
   return (
     <div
@@ -13,7 +28,7 @@ function Hero({ toggleShetr }) {
     >
       <div className="hero-overlay"></div>
       <div className="hero-overlay opacity-50"></div>
-      <div className="hero-content text-neutral-content text-center rounded-2xl lg:p-12 lg:shadow-2xl">
+      <div className="hero-content text-neutral-content text-center rounded-2xl lg:p-9 lg:pb-6 lg:shadow-2xl">
         <div className="lg:max-w-xl lg:w-xl max-w-md">
           <TypeIt
             className="text-4xl sm:text-6xl font-bold"
@@ -28,8 +43,18 @@ function Hero({ toggleShetr }) {
           <p className="mb-5 text-xl">
             Also, I love <span onClick={toggleShetr}>spreadsheets</span>.
           </p>
-          <p className="">And discord.</p>
-          {/* <button className="btn btn-neutral">Get Started</button> */}
+          <p className="mb-5">
+            and discord.
+          </p>
+          <div className="justify-center flex">
+            <img
+              src={emojiKeys[emojiIndex]}
+              alt="spreadsheets"
+              className="h-16 w-16 hover:cursor-none clickable transition-transform duration-400 ease-in-out transform hover:scale-110"
+              onMouseEnter={() => window.innerWidth >= 640 && handleHover()}
+              onClick={() => window.innerWidth < 640 && handleHover()}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 :root {
     --root-bg: var(--color-neutral);
+    --cursor-color: var(--color-base-100);
 }
 
 .hovergrow {

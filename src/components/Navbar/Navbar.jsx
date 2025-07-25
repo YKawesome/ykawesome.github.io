@@ -8,10 +8,10 @@ function Navbar({ shetr = false }) {
   return (
     <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-[5rem]">
       <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] sm:ml-0">
-        <Link to="/" className="btn btn-ghost sm:text-2xl text-xl">
+        <Link to="/" className="btn btn-ghost text-2xl">
           {shetr ? "SHETR" : "Yousef Khan"}
         </Link>
-        <div className="avatar flex-1 sm:ml-2">
+        <div className="avatar flex-1 sm:flex hidden">
           <div className="w-10 rounded-full">
             <img alt="Avatar" src={shetr ? shetravatar : avatar} />
           </div>
@@ -30,46 +30,125 @@ function Navbar({ shetr = false }) {
           ) : (
             <>
               <a
-                className="btn lg:btn-lg btn-ghost rounded-field hovergrow"
+                className="btn lg:btn-lg btn-ghost rounded-field hovergrow hidden sm:flex"
                 href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
                 target="_blank"
               >
                 Resume
               </a>
               <div className="drawer drawer-end">
-                <input id="projects-drawer" type="checkbox" className="drawer-toggle" />
+                <input
+                  id="projects-drawer"
+                  type="checkbox"
+                  className="drawer-toggle"
+                />
                 <div className="drawer-content">
                   {/* Navbar content here */}
                   <div
                     tabIndex={0}
                     role="button"
-                    className="btn lg:btn-lg btn-ghost rounded-field hovergrow"
+                    className="btn lg:btn-lg btn-ghost rounded-field hovergrow cursor-none"
                   >
-                    <label htmlFor="projects-drawer" className="cursor-pointer">Projects</label>
+                    <label htmlFor="projects-drawer" className="cursor-none sm:block hidden">
+                      Projects
+                    </label>
+                    <label htmlFor="projects-drawer">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-6 w-6 stroke-current sm:hidden">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                      </svg>
+                    </label>
                   </div>
                 </div>
                 <div className="drawer-side z-10">
-                  <label htmlFor="projects-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                  <ul className="menu bg-neutral text-neutral-content min-h-full w-80 p-4">
+                  <label
+                    htmlFor="projects-drawer"
+                    aria-label="close sidebar"
+                    className="drawer-overlay"
+                  ></label>
+                  <ul className="menu bg-neutral text-neutral-content min-h-full w-80 p-4 sm:text-2xl gap-1">
                     {/* Sidebar content here */}
-                    <li>
-                      <Link to="/" onClick={() => (document.getElementById('projects-drawer').checked = false)}>Home</Link>
+                    <li className="sm:hidden">
+                      <a
+                        href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Resume
+                      </a>
                     </li>
                     <li>
-                      <Link to="/projects/antlogic" onClick={() => (document.getElementById('projects-drawer').checked = false)}>AntLogic</Link>
+                      <Link
+                        to="/"
+                        onClick={() =>
+                          (document.getElementById(
+                            "projects-drawer"
+                          ).checked = false)
+                        }
+                      >
+                        Home
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/projects/ICSYAK" onClick={() => (document.getElementById('projects-drawer').checked = false)}>ICSYAK</Link>
+                      <Link
+                        to="/projects/antlogic"
+                        onClick={() =>
+                          (document.getElementById(
+                            "projects-drawer"
+                          ).checked = false)
+                        }
+                      >
+                        AntLogic
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/projects/checkersai" onClick={() => (document.getElementById('projects-drawer').checked = false)}>CheckersAI</Link>
+                      <Link
+                        to="/projects/ICSYAK"
+                        onClick={() =>
+                          (document.getElementById(
+                            "projects-drawer"
+                          ).checked = false)
+                        }
+                      >
+                        ICSYAK
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/projects/splitter" onClick={() => (document.getElementById('projects-drawer').checked = false)}>Splitter</Link>
+                      <Link
+                        to="/projects/checkersai"
+                        onClick={() =>
+                          (document.getElementById(
+                            "projects-drawer"
+                          ).checked = false)
+                        }
+                      >
+                        CheckersAI
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/projects/calculator" onClick={() => (document.getElementById('projects-drawer').checked = false)}>Calculator</Link>
+                      <Link
+                        to="/projects/splitter"
+                        onClick={() =>
+                          (document.getElementById(
+                            "projects-drawer"
+                          ).checked = false)
+                        }
+                      >
+                        Splitter
+                      </Link>
                     </li>
+                    <li>
+                      <Link
+                        to="/projects/calculator"
+                        onClick={() =>
+                          (document.getElementById(
+                            "projects-drawer"
+                          ).checked = false)
+                        }
+                      >
+                        Calculator
+                      </Link>
+                    </li>
+
                     <div className="mt-auto flex justify-end gap-4">
                       <a
                         href="https://www.instagram.com/yak_awesome/profilecard/?igsh=MzRlODBiNWFlZA=="

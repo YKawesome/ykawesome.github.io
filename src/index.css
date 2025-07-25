@@ -2,7 +2,7 @@
 /* @import "tw-animate-css"; */
 
 @plugin "daisyui" {
-  themes: retro;
+  themes: retro --default;
 }
 @plugin "daisyui/theme" {
   name: "retro";
