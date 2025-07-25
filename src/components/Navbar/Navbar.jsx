@@ -7,7 +7,7 @@ function Navbar({ shetr = false }) {
 
   return (
     <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-[5rem]">
-      <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] lg:ml-0">
+      <div className="ps-4 flex flex-row ml-[-1.5rem] lg:ml-0">
         <Link to="/" className="btn btn-ghost lg:text-2xl text-xl">
           {shetr ? "SHETR" : "Yousef Khan"}
         </Link>
