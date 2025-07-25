@@ -22,13 +22,12 @@ function AntLogic() {
         <div className="hero-overlay bg-opacity-70"></div>
         <div className="hero-content text-neutral-content sm:text-center">
           <div className="md:w-lg sm:w-sm w-xs p-8 bg-black/20 glass rounded-2xl shadow-2xl">
-            <TypeIt className="text-5xl md:text-8xl text-neutral-content font-bold mb-20">
+            <div className="text-5xl md:text-8xl text-neutral-content font-bold mb-6">
               AntLogic.
-            </TypeIt>
-            <div className="mt-6"></div>
+            </div>
             <TypeIt
-              className="mt-20 text-lg sm:text-xl md:text-2xl"
-              options={{ startDelay: 1500, speed: 23 }}
+              className="text-lg sm:text-xl md:text-2xl"
+              options={{ speed: 23 }}
             >
               An <span className="italic">interactive</span>{" "}
               <span className="font-bold bg-primary text-primary-content px-0.5">

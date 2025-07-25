@@ -8,9 +8,9 @@ function Navbar({ shetr = false }) {
   return (
     <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-[5rem]">
       <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] lg:ml-0">
-        <a href="/" className="btn btn-ghost lg:text-2xl text-xl">
+        <Link to="/" className="btn btn-ghost lg:text-2xl text-xl">
           {shetr ? "SHETR" : "Yousef Khan"}
-        </a>
+        </Link>
         <div className="avatar flex-1 lg:ml-2">
           <div className="w-10 rounded-full">
             <img alt="Avatar" src={shetr ? shetravatar : avatar} />
@@ -36,36 +36,42 @@ function Navbar({ shetr = false }) {
               >
                 Resume
               </a>
-              <div className="dropdown dropdown-end">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn lg:btn-lg btn-ghost rounded-field hovergrow"
-                >
-                  Projects
+              <div className="drawer drawer-end">
+                <input id="projects-drawer" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content">
+                  {/* Navbar content here */}
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn lg:btn-lg btn-ghost rounded-field hovergrow"
+                  >
+                    <label htmlFor="projects-drawer" className="cursor-pointer">Projects</label>
+                  </div>
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="menu dropdown-content bg-neutral rounded-box z-1 mt-4 w-52 p-2 shadow-sm lg:text-lg"
-                >
-                  <>
+                <div className="drawer-side z-10">
+                  <label htmlFor="projects-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                  <ul className="menu bg-neutral text-neutral-content min-h-full w-80 p-4">
+                    {/* Sidebar content here */}
                     <li>
-                      <Link to="/projects/antlogic">AntLogic</Link>
+                      <Link to="/" onClick={() => (document.getElementById('projects-drawer').checked = false)}>Home</Link>
                     </li>
                     <li>
-                      <Link to="/projects/ICSYAK">ICSYAK</Link>
+                      <Link to="/projects/antlogic" onClick={() => (document.getElementById('projects-drawer').checked = false)}>AntLogic</Link>
                     </li>
                     <li>
-                      <Link to="/projects/checkersai">CheckersAI</Link>
+                      <Link to="/projects/ICSYAK" onClick={() => (document.getElementById('projects-drawer').checked = false)}>ICSYAK</Link>
                     </li>
                     <li>
-                      <Link to="/projects/splitter">Splitter</Link>
+                      <Link to="/projects/checkersai" onClick={() => (document.getElementById('projects-drawer').checked = false)}>CheckersAI</Link>
                     </li>
                     <li>
-                      <Link to="/projects/calculator">Calculator</Link>
+                      <Link to="/projects/splitter" onClick={() => (document.getElementById('projects-drawer').checked = false)}>Splitter</Link>
                     </li>
-                  </>
-                </ul>
+                    <li>
+                      <Link to="/projects/calculator" onClick={() => (document.getElementById('projects-drawer').checked = false)}>Calculator</Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </>
           )}

@@ -22,13 +22,12 @@ function ICSYAK() {
         <div className="hero-overlay bg-opacity-70"></div>
         <div className="hero-content text-neutral-content sm:text-center">
           <div className="md:w-lg sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
-            <TypeIt className="text-6xl md:text-8xl text-neutral-content font-bold mb-20 ">
+            <div className="text-6xl md:text-8xl text-neutral-content font-bold mb-6 ">
               ICSYAK.
-            </TypeIt>
-            <div className="mt-6"></div>
+            </div>
             <TypeIt
-              className="mt-20 text-lg sm:text-xl md:text-2xl"
-              options={{ startDelay: 1500, speed: 23 }}
+              className=" text-lg sm:text-xl md:text-2xl"
+              options={{ speed: 23 }}
             >
               A{" "}
               <span className="font-bold bg-primary text-primary-content px-0.5">
@@ -61,7 +60,10 @@ function ICSYAK() {
             </p>
 
             <div className="hovergrow">
-              <LinkPreview url="https://github.com/YKawesome/ICSYAK" target="_blank">
+              <LinkPreview
+                url="https://github.com/YKawesome/ICSYAK"
+                target="_blank"
+              >
                 <button className="btn btn-secondary md:btn-lg mt-3">
                   GitHub
                 </button>
@@ -81,11 +83,11 @@ function ICSYAK() {
         </div>
       </div>
 
-      <div className="hero min-h-fit bg-base-100">
-        <div className="overflow-x-auto max-w-md">
-          <h1 className="text-4xl md:text-6xl text-base-content text-center font-bold mt-10 mb-5">
-            Courses Served
-          </h1>
+      <div className="hero min-h-fit bg-base-100 flex flex-col items-center justify-center">
+        <h1 className="text-4xl md:text-6xl text-base-content text-center font-bold mt-10 mb-5">
+          Courses Served
+        </h1>
+        <div className="overflow-x-auto sm:w-7/12 w-10/12">
           <table className="table">
             {/* head */}
             <thead>

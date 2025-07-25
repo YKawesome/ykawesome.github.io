@@ -23,13 +23,12 @@ function CheckersAI() {
                 <div className="hero-overlay bg-opacity-70"></div>
                 <div className="hero-content text-neutral-content sm:text-center">
                     <div className="md:w-lg sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
-                        <TypeIt className="text-4xl sm:text-5xl md:text-7xl text-neutral-content font-bold mb-20">
+                        <div className="text-4xl sm:text-5xl md:text-7xl text-neutral-content font-bold mb-5">
                             CheckersAI.
-                        </TypeIt>
-                        <div className="mt-6"></div>
+                        </div>
                         <TypeIt
-                            className="mt-20 text-xl sm:text-xl md:text-2xl"
-                            options={{ startDelay: 1500, speed: 23 }}
+                            className=" text-xl sm:text-xl md:text-2xl"
+                            options={{ speed: 23 }}
                         >
                             <span className="font-bold bg-primary text-primary-content px-0.5">
                                 Final Project
