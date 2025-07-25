@@ -7,11 +7,11 @@ function Navbar({ shetr = false }) {
 
   return (
     <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-[5rem]">
-      <div className="ps-4 flex flex-row ml-[-1.5rem] lg:ml-0">
-        <Link to="/" className="btn btn-ghost lg:text-2xl text-xl">
+      <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] sm:ml-0">
+        <Link to="/" className="btn btn-ghost sm:text-2xl text-xl">
           {shetr ? "SHETR" : "Yousef Khan"}
         </Link>
-        <div className="avatar flex-1 lg:ml-2">
+        <div className="avatar flex-1 sm:ml-2">
           <div className="w-10 rounded-full">
             <img alt="Avatar" src={shetr ? shetravatar : avatar} />
           </div>
