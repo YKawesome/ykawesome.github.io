@@ -3,6 +3,11 @@
     --cursor-color: var(--color-base-100);
 }
 
+::selection {
+    background-color: var(--color-base-100);
+    color: var(--color-base-content);
+}
+
 .hovergrow {
     transition: transform 0.5s;
 }

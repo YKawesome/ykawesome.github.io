@@ -11,7 +11,17 @@ function Footer({ shetr = false }) {
       <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 xl:text-lg">
         <aside>
           <div className="logorecolor">
-            <img src={logo} alt="logo" className="w-30 ml-[-1rem] invert" />
+            <img
+              src={logo}
+              alt="logo"
+              className="w-30 ml-[-1rem] invert transition-transform duration-500 ease-in-out"
+              onClick={(e) => {
+                e.target.style.transform = "rotate(360deg)";
+                setTimeout(() => {
+                  e.target.style.transform = "rotate(0deg)";
+                }, 500);
+              }}
+            />
           </div>
           <p>
             {shetr ? "SHETR" : "Yousef Khan"}
