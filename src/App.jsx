@@ -59,6 +59,18 @@ function App() {
     loadImages();
   }, []);
 
+  useEffect(() => {
+    const titles = ["Y", "Yo", "You", "Yous", "Youse", "Yousef", "Yousef K", "Yousef Kh", "Yousef Kha", "Yousef Khan", "Yousef Kha", "Yousef Kh", "Yousef K", "Yousef", "Youse", "Yous", "You", "Yo", "Y", "YK", "YKa", "YKaw", "YKawe", "YKawes", "YKaweso", "YKawesom", "YKawesome", "YKawesom", "YKaweso", "YKawes", "YKawe", "YKaw", "YKa", "YK"];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      document.title = titles[index];
+      index = (index + 1) % titles.length;
+    }, 300);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <Router>
       <Sugar

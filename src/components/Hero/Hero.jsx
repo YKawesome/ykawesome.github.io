@@ -2,7 +2,6 @@ import TypeIt from "typeit-react";
 import { images } from "../../utils/preloadimages";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import blackNoise from "../../assets/blacknoise.png";
 
 const emojis = {};
 const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", { eager: true });
@@ -26,7 +25,7 @@ const FuzzyOverlay = () => {
         repeatType: "mirror",
       }}
       style={{
-        backgroundImage: `url(${blackNoise})`,
+        backgroundImage: `url(${images["blacknoise.png"]})`,
       }}
       className="pointer-events-none absolute -inset-[100%] opacity-[5%]"
     />
