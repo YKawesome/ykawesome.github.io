@@ -3,6 +3,7 @@ import { Sugar } from "react-preloaders";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import AnimatedCursor from "react-animated-cursor";
+import { useMediaQuery } from "react-responsive";
 
 import "./App.css";
 import Footer from "./components/Footer/Footer";
@@ -42,6 +43,7 @@ function AnimatedRoutes({ shetr, toggleShetr }) {
 function App() {
   const [loading, setLoading] = useState(true);
   const [shetr, setShetr] = useState(false);
+  const isNotMobile = useMediaQuery({ minWidth: 640 });
 
   const toggleShetr = () => setShetr((prev) => !prev);
 
@@ -65,27 +67,29 @@ function App() {
         color="var(--color-neutral-content)"
       />
 
-      <AnimatedCursor
-        innerSize={12}
-        outerSize={32}
-        innerScale={1}
-        outerScale={2.5}
-        hasBlendMode={true}
-        clickables={[
-          'a',
-          'button',
-          'img[class*="clickable"]',
-          'div[role="button"]',
-        ]}
-        showSystemCursor={false}
-        innerStyle={{
-          backgroundColor: "var(--cursor-color)",
-        }}
-        outerStyle={{
-          backgroundColor: "var(--cursor-color)",
-          mixBlendMode: "overlay",
-        }}
-      />
+      {isNotMobile && (
+        <AnimatedCursor
+          innerSize={12}
+          outerSize={32}
+          innerScale={1}
+          outerScale={2.5}
+          hasBlendMode={true}
+          clickables={[
+            'a',
+            'button',
+            'img[class*="clickable"]',
+            'div[role="button"]',
+          ]}
+          showSystemCursor={false}
+          innerStyle={{
+            backgroundColor: "var(--cursor-color)",
+          }}
+          outerStyle={{
+            backgroundColor: "var(--cursor-color)",
+            mixBlendMode: "overlay",
+          }}
+        />
+      )}
 
       <Navbar shetr={shetr} />
 
