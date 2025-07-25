@@ -27,7 +27,7 @@ const FuzzyOverlay = () => {
       style={{
         backgroundImage: `url(${images["blacknoise.png"]})`,
       }}
-      className="pointer-events-none absolute -inset-[100%] opacity-[5%]"
+      className="pointer-events-none absolute -inset-[100%] opacity-[4%]"
     />
   );
 };
@@ -49,7 +49,7 @@ function Hero({ toggleShetr }) {
       }}
     >
       <div className="hero-overlay"></div>
-      <div className="hero-overlay opacity-50"></div>
+      <div className="hero-overlay opacity-40"></div>
       <FuzzyOverlay />
       
       <div className="hero-content text-neutral-content text-center rounded-2xl lg:p-9 lg:pb-6 lg:shadow-2xl">
