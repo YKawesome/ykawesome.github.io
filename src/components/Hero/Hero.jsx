@@ -2,10 +2,8 @@ import TypeIt from "typeit-react";
 import { images } from "../../utils/preloadimages";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { DragCloseDrawer } from "../BottomDrawer/DragCloseDrawer";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import ProjectDisplay from "../ui/ProjectDisplay"; // Import the new reusable component
-import ProjectsDrawer from "../ui/ProjectsDrawer"; // Import the new ProjectsDrawer component
+import { useNavigate } from "react-router-dom";
+import ProjectsDrawer from "../ui/ProjectsDrawer";
 
 const emojis = {};
 const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", {
@@ -90,11 +88,23 @@ function Hero({ toggleShetr }) {
             hi, i'm yousef khan.
           </TypeIt>
           <p className="mb-5 mt-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl max-w-md">
-            I'm a Computer Science Student at UCI. I'm passionate about many
-            things, but I truly love making things that save people time.
+            I'm a{" "}
+            <span className="hover:bg-primary hover:text-primary-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5">
+              Computer Science Student
+            </span>{" "}
+            at{" "}
+            <span className="hover:bg-secondary hover:text-secondary-content transform hover:-rotate-2 inline-block transition-transform ease-in-out px-0.5">
+              UCI
+            </span>
+            . I'm passionate about many things, but I truly love{" "}
+            <span className="hover:bg-accent hover:text-accent-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5">
+              making things
+            </span>{" "}
+            that save people time.
           </p>
           <p className="mb-5 text-xl">
-            Also, I love <span onClick={toggleShetr}>spreadsheets</span>.
+            {/* Also, I love <span onClick={toggleShetr}>spreadsheets</span>. */}
+            Also, I love spreadsheets.
           </p>
           <p className="mb-5">and discord.</p>
           <div className="justify-center flex" onClick={handleOpenDrawer}>
