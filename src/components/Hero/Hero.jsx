@@ -1,10 +1,16 @@
 import TypeIt from "typeit-react";
 import { images } from "../../utils/preloadimages";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { DragCloseDrawer } from "../BottomDrawer/DragCloseDrawer";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import ProjectDisplay from "../ui/ProjectDisplay"; // Import the new reusable component
+import ProjectsDrawer from "../ui/ProjectsDrawer"; // Import the new ProjectsDrawer component
 
 const emojis = {};
-const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", { eager: true });
+const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", {
+  eager: true,
+});
 
 for (const path in context) {
   const fileName = path.split("/").pop();
@@ -20,7 +26,7 @@ const FuzzyOverlay = () => {
       }}
       transition={{
         repeat: Infinity,
-        duration: .2,
+        duration: 0.2,
         ease: "linear",
         repeatType: "mirror",
       }}
@@ -36,10 +42,33 @@ function Hero({ toggleShetr }) {
   const [emojiIndex, setEmojiIndex] = useState(3);
   const emojiKeys = Object.values(emojis);
   const heroBg = images["deeryakmainslow.gif"];
+  const [open, setOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState(null); // Track active project
+  const highlightRef = useRef(null);
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleHover = () => {
     setEmojiIndex((prevIndex) => (prevIndex + 1) % emojiKeys.length);
   };
+
+  const handleOpenDrawer = () => {
+    if (window.innerWidth >= 1024) {
+      setOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (highlightRef.current && !highlightRef.current.contains(event.target)) {
+        setActiveProject(null); // Reset active project
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div
@@ -51,7 +80,7 @@ function Hero({ toggleShetr }) {
       <div className="hero-overlay"></div>
       <div className="hero-overlay opacity-40"></div>
       <FuzzyOverlay />
-      
+
       <div className="hero-content text-neutral-content text-center rounded-2xl lg:p-9 lg:pb-6 lg:shadow-2xl">
         <div className="lg:max-w-xl lg:w-xl max-w-md">
           <TypeIt
@@ -68,17 +97,26 @@ function Hero({ toggleShetr }) {
             Also, I love <span onClick={toggleShetr}>spreadsheets</span>.
           </p>
           <p className="mb-5">and discord.</p>
-          <div className="justify-center flex">
+          <div className="justify-center flex" onClick={handleOpenDrawer}>
             <img
               src={emojiKeys[emojiIndex]}
               alt="emojis"
-              className="h-16 w-16 hover:cursor-none clickable transition-transform duration-400 ease-in-out transform hover:scale-110"
+              className="h-16 w-16 hover:cursor-none clickable transition-transform duration-400 ease-in-out transform hover:scale-110 hover:rotate-[12deg]"
               onMouseEnter={() => window.innerWidth >= 640 && handleHover()}
               onClick={() => window.innerWidth < 640 && handleHover()}
             />
           </div>
         </div>
       </div>
+
+      <ProjectsDrawer
+        open={open}
+        setOpen={setOpen}
+        activeProject={activeProject}
+        setActiveProject={setActiveProject}
+        navigate={navigate}
+        highlightRef={highlightRef}
+      />
     </div>
   );
 }

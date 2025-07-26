@@ -90,6 +90,7 @@ function App() {
             'a',
             'button',
             'img[class*="clickable"]',
+            'div[class*="clickable"]',
             'div[role="button"]',
           ]}
           showSystemCursor={false}
