@@ -1,6 +1,5 @@
 import TypeIt from "typeit-react";
 import { images } from "../../../utils/preloadimages";
-import CodeBlock from "./CodeBlock";
 import { motion } from "framer-motion";
 import { LinkPreview } from "../../../components/ui/link-preview";
 
@@ -78,7 +77,7 @@ function CheckersAI() {
                                     Live Site
                                 </button>
                             </a> */}
-                            <LinkPreview url="https://docs.google.com/document/d/e/2PACX-1vSbCRCgaWrp4FFz6-SIwOA14mpsjQdnclNBKv-ZiVK7XEGrOb8XncNN3IbeGuq0zebwoe-frBf5Ogix/pub" target="_blank">
+                            <LinkPreview url="https://docs.google.com/document/d/1IN9ijCWQVAfQLkW-jE5PGGN-ucdlqjwJAsfMfAFGgkg/edit?usp=sharing" target="_blank">
                                 <button className="btn btn-sm sm:btn-lg btn-accent mt-6">
                                     Final Report
                                 </button>

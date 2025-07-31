@@ -1,4 +1,3 @@
-import React from "react";
 import TypeIt from "typeit-react";
 import { images } from "../../../utils/preloadimages";
 import { motion } from "framer-motion";

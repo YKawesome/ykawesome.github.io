@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "../../App.css";
 import { images } from "../../utils/preloadimages";
 import { LinkPreview } from "../ui/link-preview";

@@ -85,10 +85,10 @@ function Hero({ toggleShetr }) {
             className="text-4xl sm:text-6xl font-bold"
             options={{ startDelay: 1500 }}
           >
-            hi, i'm yousef khan.
+            hi, i&apos;m yousef khan.
           </TypeIt>
           <p className="mb-5 mt-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl max-w-md">
-            I'm a{" "}
+            I&apos;m a{" "}
             <span className="hover:bg-primary hover:text-primary-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5">
               Computer Science Student
             </span>{" "}
@@ -96,7 +96,7 @@ function Hero({ toggleShetr }) {
             <span className="hover:bg-secondary hover:text-secondary-content transform hover:-rotate-2 inline-block transition-transform ease-in-out px-0.5">
               UCI
             </span>
-            . I'm passionate about many things, but I truly love{" "}
+            . I&apos;m passionate about many things, but I truly love{" "}
             <span className="hover:bg-accent hover:text-accent-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5">
               making things
             </span>{" "}

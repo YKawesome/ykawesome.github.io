@@ -141,8 +141,8 @@ function Navbar({ shetr = false }) {
 
   return (
     <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-[5rem]">
-      <div className="ps-4 hovergrow flex flex-row ml-[-1.5rem] sm:ml-0">
-        <Link to="/" className="btn btn-ghost text-2xl">
+      <div className="ps-4 md:hovergrow flex flex-row md:ml-[-1rem] ml-[-1rem]">
+        <Link to="/" className="btn btn-ghost text-2xl mr-1">
           {shetr ? "SHETR" : "Yousef Khan"}
         </Link>
         <Avatar shetr={shetr} />

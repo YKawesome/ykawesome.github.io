@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Sugar } from "react-preloaders";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -31,7 +31,7 @@ function AnimatedRoutes({ shetr, toggleShetr }) {
         <Route path="/projects/antlogic" element={<AntLogic />} />
         <Route path="/projects/ICSYAK" element={<ICSYAK />} />
         <Route path="/projects/CheckersAI" element={<CheckersAI />} />
-        <Route path="/projects/splitter" element={<Splitter />} />'
+        <Route path="/projects/splitter" element={<Splitter />} />
         <Route path="/projects/calculator" element={<Calculator />} />
         
         <Route path="*" element={<Home />} />
