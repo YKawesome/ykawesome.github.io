@@ -154,7 +154,7 @@ function Splitter() {
             <h1 className="mb-5 md:text-6xl text-5xl font-bold text-center">
               IG Banner Splitter
             </h1>
-            <p className="mb-5">
+            <p className="mb-5 sm:text-lg">
               A tool for splitting banner posts for the new Instagram Ratio.{" "}
               <br />
               Made because while the new post ratio is 4:5, the grid preview is
@@ -162,8 +162,12 @@ function Splitter() {
               cutoff/cropping.
               <br />
               <span className="font-bold">
-                Supports multi-row banners now (each row is split into 3 parts).
+                Image should be a 3104x1350px PNG file or a multiple.
               </span>
+              <br />
+              {/* <span className="font-bold">
+                Supports multi-row banners now (each row is split into 3 parts).
+              </span> */}
             </p>
             <div className="flex flex-col space-y-4 items-center justify-center">
               <input
