@@ -156,7 +156,7 @@ function Navbar({ shetr = false }) {
             <>
               <a
                 className="btn lg:btn-lg btn-ghost rounded-field hovergrow hidden sm:flex"
-                href="https://drive.google.com/file/d/1-T7IONZ96Tdb4z64huYpUPHzRTqoVNwu/view?usp=sharing"
+                href="https://drive.google.com/file/d/1_wkETPw1CbfxEgRH5lkLRoDOx-hdJEeQ/view?usp=sharing"
                 target="_blank"
               >
                 Resume
