@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { images } from "../../utils/preloadimages";
+import { postsMeta } from "../../pages/Blog/posts/postsMeta";
+import PropTypes from 'prop-types';
 
 function Avatar({ shetr }) {
   const avatar = images["avatar.png"];
@@ -34,7 +36,8 @@ function DrawerContent({ closeDrawer }) {
           Resume
         </a>
       </li>
-      {links.map(({ to, label, icon }) => (
+      <li className="mt-2 font-bold opacity-70 uppercase text-sm tracking-wide">Projects</li>
+      {links.map(({ to, label }) => (
         <li key={to}>
           <Link to={to} onClick={closeDrawer}>
             {/* <img src={icon} alt={`${label} icon`} className="inlinie-block w-7 h-7 mask mask-squircle" /> */}
@@ -42,6 +45,23 @@ function DrawerContent({ closeDrawer }) {
           </Link>
         </li>
       ))}
+      <div className="divider my-2"></div>
+      <li className="mt-1 font-bold opacity-70 uppercase text-sm tracking-wide">Blog</li>
+      <li>
+        <Link to="/blog" onClick={closeDrawer} className="">
+          All Posts
+        </Link>
+      </li>
+      {postsMeta.slice(0, 6).map((p) => (
+        <li key={p.slug} className="ps-2">
+          <Link to={`/blog/${p.slug}`} onClick={closeDrawer} className="text-base border-l-4 border-neutral-content/30 hover:border-neutral-content/70 rounded-none">
+            {p.title.length > 28 ? p.title.slice(0, 25) + '…' : p.title}
+          </Link>
+        </li>
+      ))}
+      {postsMeta.length > 6 && (
+        <li className="ps-2 italic opacity-70 text-sm">+ {postsMeta.length - 6} more</li>
+      )}
       <div className="mt-auto flex justify-end gap-4">
         <SocialLinks />
       </div>
@@ -148,7 +168,7 @@ function Navbar({ shetr = false }) {
         <Avatar shetr={shetr} />
       </div>
 
-      <div className="flex grow justify-end px-2">
+      <div className="flex grow justify-end px-1">
         <div className="flex items-stretch">
           {shetr ? (
             <></>
@@ -177,7 +197,7 @@ function Navbar({ shetr = false }) {
                       htmlFor="projects-drawer"
                       className="cursor-none sm:block hidden"
                     >
-                      Projects
+                      Projects | Blog
                     </label>
                     <label htmlFor="projects-drawer">
                       <svg
@@ -214,3 +234,15 @@ function Navbar({ shetr = false }) {
 }
 
 export default Navbar;
+
+Avatar.propTypes = {
+  shetr: PropTypes.bool,
+};
+
+DrawerContent.propTypes = {
+  closeDrawer: PropTypes.func.isRequired,
+};
+
+Navbar.propTypes = {
+  shetr: PropTypes.bool,
+};

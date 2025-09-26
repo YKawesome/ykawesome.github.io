@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import { Sugar } from "react-preloaders";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -17,6 +18,12 @@ import CheckersAI from "./pages/Projects/CheckersAI/CheckersAI";
 
 import { preloadImages } from "./utils/preloadimages";
 import Calculator from "./pages/Calculator/Calculator";
+import Blog from "./pages/Blog/Blog";
+import ICSYAKBot from "./pages/Blog/posts/ICSYAKBot";
+import AntlogicDesign from "./pages/Blog/posts/AntlogicDesign";
+import CheckersAIMinimax from "./pages/Blog/posts/CheckersAIMinimax";
+import HexamazeNotes from "./pages/Blog/posts/HexamazeNotes";
+import OpenlabSetup from "./pages/Blog/posts/OpenlabSetup";
 
 function AnimatedRoutes({ shetr, toggleShetr }) {
   const location = useLocation();
@@ -33,11 +40,32 @@ function AnimatedRoutes({ shetr, toggleShetr }) {
         <Route path="/projects/CheckersAI" element={<CheckersAI />} />
         <Route path="/projects/splitter" element={<Splitter />} />
         <Route path="/projects/calculator" element={<Calculator />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/building-icsyak-discord-bot" element={<ICSYAKBot />} />
+        <Route path="/blog/antlogic-puzzle-pathfinding-design" element={<AntlogicDesign />} />
+        <Route path="/blog/checkers-ai-minimax-style" element={<CheckersAIMinimax />} />
+        <Route path="/blog/hexamaze-notes-ktane-module" element={<HexamazeNotes />} />
+  <Route path="/blog/setting-up-openlab" element={<OpenlabSetup />} />
         
         <Route path="*" element={<Home />} />
       </Routes>
     </AnimatePresence>
   );
+}
+
+AnimatedRoutes.propTypes = {
+  shetr: PropTypes.bool.isRequired,
+  toggleShetr: PropTypes.func.isRequired,
+};
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname]);
+
+  return null;
 }
 
 function App() {
@@ -73,6 +101,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Sugar
         customLoading={loading}
         background="var(--color-neutral)"
