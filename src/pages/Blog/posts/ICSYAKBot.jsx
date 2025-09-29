@@ -27,9 +27,12 @@ export default function ICSYAKBot() {
               </span>
               <span className="badge badge-accent badge-outline">EdTech</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">Building ICSYAK</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+              Building ICSYAK
+            </h1>
             <p className="mt-4 opacity-90 text-lg">
-              Unifying Ed Discussion, Piazza, and Gradescope into a single conversational hub inside Discord.
+              Unifying Ed Discussion, Piazza, and Gradescope into a single
+              conversational hub inside Discord.
             </p>
             <div className="mt-6 flex flex-wrap gap-4 justify-center text-sm opacity-80">
               <span>Published: Feb 2025</span>
@@ -40,7 +43,7 @@ export default function ICSYAKBot() {
         </div>
       </div>
       {/* Article Body */}
-      <article className="prose prose-invert max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      <article className="prose prose-invert max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
         {/* Meta Panel */}
         <div className="not-prose grid gap-4 md:grid-cols-3 my-6">
           <div className="stat bg-base-200/30 rounded-xl p-4">
@@ -53,7 +56,7 @@ export default function ICSYAKBot() {
             <div className="stat-value text-secondary">1.5k+</div>
             <div className="stat-desc">Peak concurrency 600+</div>
           </div>
-            <div className="stat bg-base-200/30 rounded-xl p-4">
+          <div className="stat bg-base-200/30 rounded-xl p-4">
             <div className="stat-title opacity-70">Courses Utilized</div>
             <div className="stat-value text-accent">15+</div>
             <div className="stat-desc">Across 7 quarters</div>
@@ -62,19 +65,61 @@ export default function ICSYAKBot() {
 
         {/* Table of Contents */}
         <details className="not-prose collapse collapse-arrow bg-base-200/40 border border-base-300 rounded-xl">
-          <summary className="collapse-title font-semibold">Table of Contents</summary>
+          <summary className="collapse-title font-semibold">
+            Table of Contents
+          </summary>
           <div className="collapse-content">
             <ol className="list-decimal ps-5 space-y-1 text-sm">
-              <li><a href="#problem" className="link link-hover">The Fragmentation Problem</a></li>
-              <li><a href="#goals" className="link link-hover">Constraints & Goals</a></li>
-              <li><a href="#arch" className="link link-hover">Architecture</a></li>
-              <li><a href="#commands" className="link link-hover">Command Design</a></li>
-              <li><a href="#features" className="link link-hover">Feature Modules</a></li>
-              <li><a href="#hosting" className="link link-hover">Hosting & Deployment</a></li>
-              <li><a href="#stack" className="link link-hover">Tech Stack</a></li>
-              <li><a href="#setup" className="link link-hover">Getting Started</a></li>
-              <li><a href="#directory" className="link link-hover">Directory Overview</a></li>
-              <li><a href="#lessons" className="link link-hover">Lessons Learned</a></li>
+              <li>
+                <a href="#problem" className="link link-hover">
+                  Scattered Segments
+                </a>
+              </li>
+              <li>
+                <a href="#goals" className="link link-hover">
+                  Constraints & Goals
+                </a>
+              </li>
+              <li>
+                <a href="#arch" className="link link-hover">
+                  Architecture
+                </a>
+              </li>
+              <li>
+                <a href="#commands" className="link link-hover">
+                  Command Design
+                </a>
+              </li>
+              <li>
+                <a href="#features" className="link link-hover">
+                  Feature Modules
+                </a>
+              </li>
+              <li>
+                <a href="#hosting" className="link link-hover">
+                  Hosting & Deployment
+                </a>
+              </li>
+              <li>
+                <a href="#stack" className="link link-hover">
+                  Tech Stack
+                </a>
+              </li>
+              <li>
+                <a href="#setup" className="link link-hover">
+                  Getting Started
+                </a>
+              </li>
+              <li>
+                <a href="#directory" className="link link-hover">
+                  Directory Overview
+                </a>
+              </li>
+              <li>
+                <a href="#lessons" className="link link-hover">
+                  Lessons Learned
+                </a>
+              </li>
             </ol>
           </div>
         </details>
@@ -83,16 +128,18 @@ export default function ICSYAKBot() {
           id="problem"
           className="text-2xl font-semibold tracking-tight mt-10 mb-3"
         >
-          1. The Fragmentation Problem
+          1. Scattered Segments
         </h2>
-        <p>
+        <p className="leading-relaxed">
           <strong>Ed Discussion</strong> and <strong>Piazza</strong> were the{" "}
-          <em>official</em> course forums; Discord was the unofficial,
-          student‑run space. The problem wasn’t that the official tools lacked
-          features—it was that a large chunk of students just didn’t open them
-          often enough. Answers, clarifications, and deadline adjustments would
-          happen and no one would notice! Or worse, there&apos;d be accidental
-          misinformation and people would start freaking out.
+          <em>official</em> course forums for a lot of my classes, and Discord
+          was the unofficial, student‑run space (that I happened to really like
+          making). The problem wasn’t that the official tools lacked features,
+          it was that a large chunk of students just didn’t open them often.
+          Answers, clarifications, and deadline adjustments would happen and no
+          one would notice, or worse, there&apos;d be accidental misinformation
+          and people would start freaking out (and then I'd have to deal with
+          that).
         </p>
         <div className="alert alert-info not-prose my-4">
           <span>
@@ -100,50 +147,87 @@ export default function ICSYAKBot() {
             on a different platform within the same hour.
           </span>
         </div>
-        <p>
-          So the thesis became: don’t build a new destination—
-          <em>
-            just bring the answers inside the space students already
-            have open
-          </em>
-          . Bringing threads into Discord collapsed the gap between “official
+        <p className="leading-relaxed">
+          Bringing threads into Discord collapsed the gap between “official
           record” and “where people actually look,” making previously missed
           information immediately more accessible.
         </p>
 
-        <h2 id="goals" className="text-2xl font-semibold tracking-tight mt-10 mb-3">2. Constraints & Goals</h2>
+        <h2
+          id="goals"
+          className="text-2xl font-semibold tracking-tight mt-10 mb-3"
+        >
+          2. Constraints & Goals
+        </h2>
         <div className="not-prose mt-2">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">Zero Friction</h4>
-              <p className="text-sm opacity-85">One short slash command or passive glance—no multi‑step navigation.</p>
+              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+                Zero Friction
+              </h4>
+              <p className="text-sm opacity-85">
+                One short slash command or passive glance—no multi‑step
+                navigation.
+              </p>
             </div>
             <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">Opt‑In Delivery</h4>
-              <p className="text-sm opacity-85"><code>@EdPings</code> role via native onboarding; only people who chose it get notified.</p>
+              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+                Opt‑In Delivery
+              </h4>
+              <p className="text-sm opacity-85">
+                <code>@EdPings</code> role via native onboarding; only people
+                who chose it get notified.
+              </p>
             </div>
             <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">No Spam</h4>
-              <p className="text-sm opacity-85">Debounced + filtered; minor edits don’t cascade into repost storms.</p>
+              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+                No Spam
+              </h4>
+              <p className="text-sm opacity-85">
+                Debounced + filtered; minor edits don’t cascade into repost
+                storms.
+              </p>
             </div>
             <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">Scoped Ingestion</h4>
-              <p className="text-sm opacity-85">Started all categories → shifted to pinned‑only; kept category code path for future courses.</p>
+              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+                Scoped Ingestion
+              </h4>
+              <p className="text-sm opacity-85">
+                Started all categories → shifted to pinned‑only; kept category
+                code path for future courses.
+              </p>
             </div>
             <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">Resilient</h4>
-              <p className="text-sm opacity-85">Backoff, snapshot cache & queue hide upstream flakiness.</p>
+              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+                Resilient
+              </h4>
+              <p className="text-sm opacity-85">
+                Backoff, snapshot cache & queue hide upstream flakiness.
+              </p>
             </div>
             <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">Auditable</h4>
-              <p className="text-sm opacity-85">Deterministic formatting + logs answer &ldquo;who saw what when&rdquo;.</p>
+              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+                Auditable
+              </h4>
+              <p className="text-sm opacity-85">
+                Deterministic formatting + logs answer &ldquo;who saw what
+                when&rdquo;.
+              </p>
             </div>
             <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col sm:col-span-2 lg:col-span-3">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">Evolvable</h4>
-              <p className="text-sm opacity-85">Composable modules (role gating, category filter, pin filter) added incrementally as I discovered Discord API features.</p>
+              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+                Evolvable
+              </h4>
+              <p className="text-sm opacity-85">
+                Composable modules (role gating, category filter, pin filter)
+                added incrementally as I discovered Discord API features.
+              </p>
             </div>
           </div>
-          <p className="mt-6 text-sm opacity-80 text-center">A pattern developed where I&apos;d notice friction, learn a new discord.py feature, and add something new :)</p>
+          <p className="mt-6 text-sm opacity-80 text-center">
+            A pattern developed where I&apos;d notice friction, learn a new
+            discord.py feature, and add something new :)
+          </p>
         </div>
 
         <h2
@@ -153,37 +237,38 @@ export default function ICSYAKBot() {
           3. Architecture
         </h2>
 
-        <p>
+        <p className="leading-relaxed">
           I kept everything in <strong>discord.py</strong> instead of using
-          discord.js because I had zero JavaScript experience at the time, but
-          I had already shipped a small Python bot in high school and genuinely
+          discord.js because I had zero JavaScript experience at the time, but I
+          had already shipped a small Python bot in high school and genuinely
           liked the language. Sticking with the Python ecosystem meant I could
           move faster and debug without feeling lost in a new stack.
         </p>
-        <p>
-          Around the same time I was taking <strong>ICS32A</strong> and <strong>ICS33</strong>,
-          which dove into intermediate Python features like decorators. That
-          accidentally unlocked a lot of understanding for the bot—suddenly
-          <code>@bot.command()</code> and <code>@tasks.loop()</code> weren’t enchantment table language,
-          I knew they were just functions wrapping other functions (and kind of formatting my command for Discord).
+        <p className="leading-relaxed">
+          Around the same time I was taking <strong>ICS32A</strong> and{" "}
+          <strong>ICS33</strong>, which dove into intermediate Python features
+          like decorators. That accidentally unlocked a lot of understanding for
+          the bot—suddenly
+          <code>@bot.command()</code> and <code>@tasks.loop()</code> weren’t
+          enchantment table language, I knew they were just functions wrapping
+          other functions (and kind of formatting my command for Discord).
         </p>
-        <p>
+        <p className="leading-relaxed">
           Operationally, every class gets its own scheduled task that wakes up
-          every 30 minutes. The loop grabs the newest threads from Ed and Piazza,
-          normalizes them into a shared shape, then compares the IDs against what
-          the Discord channel has already seen.
+          every 30 minutes. The loop grabs the newest threads from Ed and
+          Piazza, normalizes them into a shared shape, then compares the IDs
+          against what the Discord channel has already seen.
         </p>
-        <pre className="mockup-code text-xs my-2">
+        <pre className="mockup-code text-xs leading-snug my-3">
           <code>{`  class THREADGRABBER(commands.Cog):
         def __init__(self, bot):
             self.bot = bot
             self.get_6b_pinned.start()
-            self.get_141_pinned.start()
 
         @tasks.loop(minutes=30)
         async def get_6b_pinned(self):
-            await self.do_ed_message(course_id=87345, channel_id=1354098640951578667,
-                                    role_id=1197816299536003072, category="Pinned")
+            await self.do_ed_message(course_id=____, channel_id=____,
+                                    role_id=_____, category="Pinned")
 
         async def do_ed_message(self, course_id, channel_id, role_id, category=None):
             channel = await self.bot.fetch_channel(channel_id)
@@ -199,51 +284,21 @@ export default function ICSYAKBot() {
                 await msg.add_reaction("❤️")
                 await channel.send(f"<@&{role_id}>")`}</code>
         </pre>
-        <p>
-          The <code>seen</code> set pulled from the last 100 messages is the lightweight guard
-          against duplicate storms—if a thread ID has already been announced, the
-          loop simply skips it on the next poll. Each class runs the same pattern
-          with a different course ID, channel, and role tag, which keeps the Cog
-          composable as enrollment shifts.
+        <p className="leading-relaxed">
+          The <code>seen</code> set pulled from the last 100 messages is the
+          lightweight guard against duplicate storms—if a thread ID has already
+          been announced, the loop simply skips it on the next poll. Each class
+          runs the same pattern with a different course ID, channel, and role
+          tag, which keeps the Cog composable as enrollment shifts.
         </p>
 
         <div className="alert alert-warning not-prose my-4">
-          <span>Limitation: Ed Discussion API occasionally redacts comment authors, so I either anonymize (&quot;anonymous&quot;) or omit the line. The data model keeps the author optional.</span>
+          <span>
+            Limitation: Ed Discussion API occasionally redacts comment authors,
+            so I either anonymize (&quot;anonymous&quot;) or omit the line. The
+            data model keeps the author optional.
+          </span>
         </div>
-        <h2
-          id="lessons"
-          className="text-2xl font-semibold tracking-tight mt-10 mb-3"
-        >
-          10. Lessons Learned
-        </h2>
-        <ul>
-          <li>
-            Separate fetch from publish early to prevent cascading retries.
-          </li>
-          <li>
-            Students skim; formatting density matters more than emoji flair.
-          </li>
-          <li>
-            Canonical data shapes avoid format drift and reduce conditionals.
-          </li>
-          <li>
-            Track latency + miss rates even for “small” bots—regression
-            detection is free wins.
-          </li>
-          <li>
-            Opt‑in &gt; forced: voluntary roles + onboarding questions kept trust
-            high and reduced mute/unsubscribe churn.
-          </li>
-          <li>
-            Build latent capability early (category filters) — later pivots (pinned‑only)
-            become a config change, not a rewrite.
-          </li>
-        </ul>
-
-        <blockquote>
-          Simplicity outperformed cleverness. A queue + snapshot + normalized
-          shape beat premature microservices.
-        </blockquote>
       </article>
     </motion.div>
   );

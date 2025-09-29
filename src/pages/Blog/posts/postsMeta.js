@@ -5,15 +5,15 @@
 // 3. Link will appear automatically in Blog listing (if imported in Blog page)
 
 export const postsMeta = [
-//   {
-//     id: 1,
-//     slug: 'building-icsyak-discord-bot',
-//     title: 'Building ICSYAK: A Discord Bot for Class Forums',
-//     date: 'Feb 2025',
-//     tags: ['discord', 'automation', 'education'],
-//     imageKey: 'icsyak.png',
-//     excerpt: 'How I designed and built a bot that mirrors Ed Discussion, Piazza, and Gradescope threads into Discord for 1000+ students.',
-//   },
+  {
+    id: 1,
+    slug: 'building-icsyak-discord-bot',
+    title: 'Building ICSYAK: A Discord Bot for Class Forums',
+    date: 'Feb 2025',
+    tags: ['discord', 'automation', 'education'],
+    imageKey: 'icsyak.png',
+    excerpt: 'How I designed and built a bot that mirrors Ed Discussion, Piazza, and Gradescope threads into Discord for 1000+ students.',
+  },
 //   {
 //     id: 2,
 //     slug: 'antlogic-puzzle-pathfinding-design',
