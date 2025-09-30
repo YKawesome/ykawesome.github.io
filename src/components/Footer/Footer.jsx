@@ -1,8 +1,13 @@
 import "../../App.css";
 import { images } from "../../utils/preloadimages";
 import { LinkPreview } from "../ui/link-preview";
+import { useAchievements } from "../../context/AchievementsContext";
+import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 function Footer({ shetr = false }) {
+  const { unlock, achievements } = useAchievements();
+  const secretUnlocked = achievements.find(a => a.id === 'secret-click')?.unlocked;
   const logo = images["logo.png"];
 
   const socialLinks = [
@@ -84,6 +89,9 @@ function Footer({ shetr = false }) {
               className="w-30 ml-[-1rem] invert transition-transform duration-500 ease-in-out clickable"
               onClick={(e) => {
                 e.target.style.transform = "rotate(360deg)";
+                if (!secretUnlocked) {
+                  unlock('secret-click');
+                }
                 setTimeout(() => {
                   e.target.style.transform = "rotate(0deg)";
                 }, 500);
@@ -91,7 +99,14 @@ function Footer({ shetr = false }) {
             />
           </div>
           <p>
-            {shetr ? "SHETR" : "Yousef Khan"}
+            {shetr ? "SHETR" : "Yousef Khan"}{" "}
+            <Link
+              to="/achievements"
+              aria-label="View achievements"
+              className="achievement-star-hint focus:outline-none focus:ring focus:ring-primary/60"
+            >
+              ★
+            </Link>
             <br />
             making cool {shetr ? "petrs" : "things"}. for cool people.
           </p>
@@ -130,3 +145,7 @@ function Footer({ shetr = false }) {
 }
 
 export default Footer;
+
+Footer.propTypes = {
+  shetr: PropTypes.bool,
+};

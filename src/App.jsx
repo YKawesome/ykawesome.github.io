@@ -24,6 +24,7 @@ import AntlogicDesign from "./pages/Blog/posts/AntlogicDesign";
 import CheckersAIMinimax from "./pages/Blog/posts/CheckersAIMinimax";
 import HexamazeNotes from "./pages/Blog/posts/HexamazeNotes";
 import OpenlabSetup from "./pages/Blog/posts/OpenlabSetup";
+import Achievements from "./pages/Achievements/Achievements";
 
 function AnimatedRoutes({ shetr, toggleShetr }) {
   const location = useLocation();
@@ -46,6 +47,7 @@ function AnimatedRoutes({ shetr, toggleShetr }) {
         <Route path="/blog/checkers-ai-minimax-style" element={<CheckersAIMinimax />} />
         <Route path="/blog/hexamaze-notes-ktane-module" element={<HexamazeNotes />} />
   <Route path="/blog/setting-up-openlab" element={<OpenlabSetup />} />
+    <Route path="/achievements" element={<Achievements />} />
         
         <Route path="*" element={<Home />} />
       </Routes>

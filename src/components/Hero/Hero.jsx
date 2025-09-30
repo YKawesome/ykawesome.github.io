@@ -1,9 +1,10 @@
 import TypeIt from "typeit-react";
 import { images } from "../../utils/preloadimages";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import ProjectsDrawer from "../ui/ProjectsDrawer";
+import { useAchievements } from "../../context/AchievementsContext";
 
 const emojis = {};
 const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", {
@@ -36,7 +37,7 @@ const FuzzyOverlay = () => {
   );
 };
 
-function Hero({ toggleShetr }) {
+function Hero() {
   const [emojiIndex, setEmojiIndex] = useState(3);
   const emojiKeys = Object.values(emojis);
   const heroBg = images["deeryakmainslow.gif"];
@@ -44,9 +45,28 @@ function Hero({ toggleShetr }) {
   const [activeProject, setActiveProject] = useState(null); // Track active project
   const highlightRef = useRef(null);
   const navigate = useNavigate(); // Initialize navigate
+  const { achievements, unlock } = useAchievements();
+  const emojiMasterUnlocked = useMemo(() => achievements.find(a => a.id === 'emoji-master')?.unlocked, [achievements]);
+  const [seen, setSeen] = useState(() => new Set([emojiKeys[3]])); // track unique emojis
 
   const handleHover = () => {
-    setEmojiIndex((prevIndex) => (prevIndex + 1) % emojiKeys.length);
+    setEmojiIndex((prevIndex) => {
+      const next = (prevIndex + 1) % emojiKeys.length;
+      setSeen(prev => {
+        if (emojiMasterUnlocked) return prev; // no need to track
+        if (!prev.has(emojiKeys[next])) {
+          const updated = new Set(prev);
+            updated.add(emojiKeys[next]);
+            // unlock if all seen
+            if (updated.size === emojiKeys.length && !emojiMasterUnlocked) {
+              unlock('emoji-master');
+            }
+          return updated;
+        }
+        return prev;
+      });
+      return next;
+    });
   };
 
   const handleOpenDrawer = () => {
@@ -132,3 +152,5 @@ function Hero({ toggleShetr }) {
 }
 
 export default Hero;
+
+Hero.propTypes = {};

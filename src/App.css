@@ -19,3 +19,24 @@
 .logorecolor {
     filter: invert(98%) sepia(50%) saturate(487%) hue-rotate(319deg) brightness(99%) contrast(87%);
 }
+
+@keyframes starPulseSpin {
+    0% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0px rgba(255,255,200,0.0)); }
+    40% { transform: scale(1.15) rotate(10deg); filter: drop-shadow(0 0 4px rgba(255,255,180,0.4)); }
+    55% { transform: scale(1.05) rotate(-8deg); }
+    70% { transform: scale(1.18) rotate(6deg); filter: drop-shadow(0 0 6px rgba(255,255,160,0.5)); }
+    100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0px rgba(255,255,200,0.0)); }
+}
+
+.achievement-star-hint {
+    display: inline-block;
+    animation: starPulseSpin 3.8s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.achievement-star-hint:hover {
+    animation-play-state: paused;
+    transform: scale(1.25) rotate(12deg);
+    filter: drop-shadow(0 0 8px rgba(255,255,180,0.7));
+}

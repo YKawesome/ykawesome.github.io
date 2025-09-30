@@ -52,6 +52,12 @@ function DrawerContent({ closeDrawer }) {
           All Posts
         </Link>
       </li>
+      {/* <li className="mt-1 font-bold opacity-70 uppercase text-sm tracking-wide">Fun</li> */}
+      {/* <li>
+        <Link to="/achievements" onClick={closeDrawer} className="">
+          Achievements
+        </Link>
+      </li> */}
       {postsMeta.slice(0, 6).map((p) => (
         <li key={p.slug} className="ps-2">
           <Link to={`/blog/${p.slug}`} onClick={closeDrawer} className="text-base border-l-4 border-neutral-content/30 hover:border-neutral-content/70 rounded-none">
