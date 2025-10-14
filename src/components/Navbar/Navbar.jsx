@@ -29,7 +29,7 @@ function DrawerContent({ closeDrawer }) {
     <ul className="menu bg-neutral text-neutral-content min-h-full w-80 p-4 text-2xl gap-1">
       <li className="sm:hidden">
         <a
-          href="https://drive.google.com/file/d/1Btq2-jyancHuOpClUi1aQusLX5mcrKrQ/view?usp=sharing"
+          href="https://drive.google.com/file/d/1P8rwZNMan-wUPgPJyWlqM2suorCkh-Jb/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
         >
