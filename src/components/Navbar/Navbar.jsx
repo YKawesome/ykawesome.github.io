@@ -3,6 +3,8 @@ import { images } from "../../utils/preloadimages";
 import { postsMeta } from "../../pages/Blog/posts/postsMeta";
 import PropTypes from 'prop-types';
 
+const RESUME_LINK = "https://drive.google.com/file/d/1P8rwZNMan-wUPgPJyWlqM2suorCkh-Jb/view?usp=sharing"
+
 function Avatar({ shetr }) {
   const avatar = images["avatar.png"];
   const shetravatar = images["shetravatar.png"];
@@ -29,7 +31,7 @@ function DrawerContent({ closeDrawer }) {
     <ul className="menu bg-neutral text-neutral-content min-h-full w-80 p-4 text-2xl gap-1">
       <li className="sm:hidden">
         <a
-          href="https://drive.google.com/file/d/1P8rwZNMan-wUPgPJyWlqM2suorCkh-Jb/view?usp=sharing"
+          href={RESUME_LINK}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -182,7 +184,7 @@ function Navbar({ shetr = false }) {
             <>
               <a
                 className="btn lg:btn-lg btn-ghost rounded-field hovergrow hidden sm:flex"
-                href="https://drive.google.com/file/d/1_wkETPw1CbfxEgRH5lkLRoDOx-hdJEeQ/view?usp=sharing"
+                href={RESUME_LINK}
                 target="_blank"
               >
                 Resume
