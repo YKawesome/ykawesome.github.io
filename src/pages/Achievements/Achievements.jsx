@@ -81,7 +81,6 @@ export default function Achievements() {
             <summary className="collapse-title font-semibold">How this works</summary>
             <div className="collapse-content text-sm leading-relaxed space-y-3">
               <p>Achievements are stored locally in your browser. Clearing site data or using another device will reset them (for now).</p>
-              <p>Right now this is a mockup with one auto-unlocked achievement. More interactive ones (secret clicks, night visits, streaks) can be added incrementally.</p>
               <p>Want to suggest one? Ping me :)</p>
             </div>
           </details>
