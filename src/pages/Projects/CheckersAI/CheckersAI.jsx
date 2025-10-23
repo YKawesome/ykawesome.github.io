@@ -14,19 +14,19 @@ function CheckersAI() {
       transition={{ duration: 0.25 }}
     >
             <div
-                className="hero min-h-screen"
+                className="min-h-screen hero"
                 style={{
                     backgroundImage: `url(${CheckersAIImage})`,
                 }}
             >
                 <div className="hero-overlay bg-opacity-70"></div>
                 <div className="hero-content text-neutral-content sm:text-center">
-                    <div className="md:w-lg sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
-                        <div className="text-4xl sm:text-5xl md:text-7xl text-neutral-content font-bold mb-5">
+                    <div className="p-8 shadow-2xl md:w-lg sm:w-sm w-xs glass bg-black/20 rounded-2xl">
+                        <div className="mb-5 text-4xl font-bold sm:text-5xl md:text-7xl text-neutral-content">
                             CheckersAI.
                         </div>
                         <TypeIt
-                            className=" text-xl sm:text-xl md:text-2xl"
+                            className="text-xl  sm:text-xl md:text-2xl"
                             options={{ speed: 23 }}
                         >
                             <span className="font-bold bg-primary text-primary-content px-0.5">
@@ -56,7 +56,7 @@ function CheckersAI() {
                                 Amin Boukour{" "}
                                 <LinkPreview
                                     url="https://github.com/ABoukour"
-                                    className="link link-primary font-bold"
+                                    className="font-bold link link-primary"
                                     target="_blank"
                                 >
                                     (ABoukour)
@@ -68,17 +68,17 @@ function CheckersAI() {
                                 href="https://github.com/benjamin-cates/ant_logic?tab=readme-ov-file"
                                 target="_blank"
                             >
-                                <button className="btn btn-secondary my-6 join-item">
+                                <button className="my-6 btn btn-secondary join-item">
                                     GitHub
                                 </button>
                             </a> */}
                             {/* <a href="https://ant-logic.thebenjicat.dev/" target="_blank">
-                                <button className="btn btn-primary my-6 join-item">
+                                <button className="my-6 btn btn-primary join-item">
                                     Live Site
                                 </button>
                             </a> */}
                             <LinkPreview url="https://docs.google.com/document/d/1IN9ijCWQVAfQLkW-jE5PGGN-ucdlqjwJAsfMfAFGgkg/edit?usp=sharing" target="_blank">
-                                <button className="btn btn-sm sm:btn-lg btn-accent mt-6">
+                                <button className="mt-6 btn btn-sm sm:btn-lg btn-accent">
                                     Final Report
                                 </button>
                             </LinkPreview>
@@ -88,7 +88,7 @@ function CheckersAI() {
             </div>
 
             {/* <div className="hero bg-base-200 h-[50vh]">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="flex-col hero-content lg:flex-row-reverse">
                     <CodeBlock />
                     <div>
                         <h1 className="text-5xl font-bold">Node Class</h1>

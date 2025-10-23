@@ -65,15 +65,15 @@ export const DragCloseDrawer = ({ open, setOpen, children }) => {
               bottom: 0.5,
             }}
           >
-            <div className="absolute left-0 right-0 top-0 z-10 flex justify-center bg-neutral p-4">
+            <div className="absolute top-0 left-0 right-0 z-10 flex justify-center p-4 bg-neutral">
               <button
                 onPointerDown={(e) => {
                   controls.start(e);
                 }}
-                className="h-2 w-14 cursor-grab touch-none rounded-full bg-neutral-content/20 active:cursor-grabbing"
+                className="h-2 rounded-full w-14 cursor-grab touch-none bg-neutral-content/20 active:cursor-grabbing"
               ></button>
             </div>
-            <div className="relative z-0 h-full overflow-y-scroll p-4 pt-12">
+            <div className="relative z-0 h-full p-4 pt-12 overflow-y-scroll">
               {children}
             </div>
           </motion.div>

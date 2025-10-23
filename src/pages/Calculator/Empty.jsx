@@ -10,9 +10,9 @@ function Empty() {
       transition={{ duration: 0.25 }}
     >
       <div className="hero bg-base-200 min-h-[50vh]">
-        <div className="hero-content text-center text-base-content pb-16">
-          <div className="max-w-xl w-full bg-base-300 bg-opacity-70 glass p-8 rounded-2xl shadow-2xl">
-            <div className="text-4xl md:text-6xl font-bold mb-6">
+        <div className="pb-16 text-center hero-content text-base-content">
+          <div className="w-full max-w-xl p-8 shadow-2xl bg-base-300 bg-opacity-70 glass rounded-2xl">
+            <div className="mb-6 text-4xl font-bold md:text-6xl">
               Grade Calculator.
             </div>
             <div className="mt-6"></div>

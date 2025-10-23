@@ -79,9 +79,9 @@ function SkewedSlots() {
     <>
       {/* Header */}
       <div className="hero bg-secondary text-secondary-content h-[12vh]">
-        <div className="hero-content text-center flex flex-col items-center">
-          <p className="md:text-5xl text-2xl font-bold">On the Subject of Skewed Slots</p>
-          <p className="md:text-xl text-lg">Follow the rules and enter your digits below.</p>
+        <div className="flex flex-col items-center text-center hero-content">
+          <p className="text-2xl font-bold md:text-5xl">On the Subject of Skewed Slots</p>
+          <p className="text-lg md:text-xl">Follow the rules and enter your digits below.</p>
         </div>
       </div>
 
@@ -92,30 +92,30 @@ function SkewedSlots() {
           <input
             type="text"
             placeholder="Slot 1"
-            className="input input-bordered w-16 text-center"
+            className="w-16 text-center input input-bordered"
             value={slot1}
             onChange={(e) => setSlot1(e.target.value)}
           />
           <input
             type="text"
             placeholder="Slot 2"
-            className="input input-bordered w-16 text-center"
+            className="w-16 text-center input input-bordered"
             value={slot2}
             onChange={(e) => setSlot2(e.target.value)}
           />
           <input
             type="text"
             placeholder="Slot 3"
-            className="input input-bordered w-16 text-center"
+            className="w-16 text-center input input-bordered"
             value={slot3}
             onChange={(e) => setSlot3(e.target.value)}
           />
         </div>
 
         {/* Fieldset for ports */}
-        <fieldset className="fieldset p-4 bg-base-100 border border-base-300 rounded-box w-64 h0">
-          <legend className="fieldset-legend font-semibold">Ports</legend>
-          <label className="fieldset-label flex items-center space-x-2 my-1">
+        <fieldset className="w-64 p-4 border fieldset bg-base-100 border-base-300 rounded-box h0">
+          <legend className="font-semibold fieldset-legend">Ports</legend>
+          <label className="flex items-center my-1 fieldset-label space-x-2">
             <input
               type="checkbox"
               className="toggle"
@@ -124,7 +124,7 @@ function SkewedSlots() {
             />
             <span>RCA / PS2</span>
           </label>
-          <label className="fieldset-label flex items-center space-x-2 my-1">
+          <label className="flex items-center my-1 fieldset-label space-x-2">
             <input
               type="checkbox"
               className="toggle"
@@ -133,7 +133,7 @@ function SkewedSlots() {
             />
             <span>Parallel Port</span>
           </label>
-          <label className="fieldset-label flex items-center space-x-2 my-1">
+          <label className="flex items-center my-1 fieldset-label space-x-2">
             <input
               type="checkbox"
               className="toggle"
@@ -142,7 +142,7 @@ function SkewedSlots() {
             />
             <span>Unlit BOB</span>
           </label>
-          <label className="fieldset-label flex items-center space-x-2 my-1">
+          <label className="flex items-center my-1 fieldset-label space-x-2">
             <input
               type="checkbox"
               className="toggle"
@@ -154,34 +154,34 @@ function SkewedSlots() {
         </fieldset>
 
         {/* Fieldset for indicators & batteries */}
-        <fieldset className="fieldset p-4 bg-base-100 border border-base-300 rounded-box w-64">
-          <legend className="fieldset-legend font-semibold">Indicators & Batteries</legend>
-          <label className="fieldset-label flex flex-col my-2">
+        <fieldset className="w-64 p-4 border fieldset bg-base-100 border-base-300 rounded-box">
+          <legend className="font-semibold fieldset-legend">Indicators & Batteries</legend>
+          <label className="flex flex-col my-2 fieldset-label">
             <span>Lit Indicators</span>
             <input
               type="text"
               placeholder="0"
-              className="input input-bordered w-24"
+              className="w-24 input input-bordered"
               value={litIndicators}
               onChange={(e) => setLitIndicators(e.target.value)}
             />
           </label>
-          <label className="fieldset-label flex flex-col my-2">
+          <label className="flex flex-col my-2 fieldset-label">
             <span>Unlit Indicators</span>
             <input
               type="text"
               placeholder="0"
-              className="input input-bordered w-24"
+              className="w-24 input input-bordered"
               value={unlitIndicators}
               onChange={(e) => setUnlitIndicators(e.target.value)}
             />
           </label>
-          <label className="fieldset-label flex flex-col my-2">
+          <label className="flex flex-col my-2 fieldset-label">
             <span>Batteries</span>
             <input
               type="text"
               placeholder="0"
-              className="input input-bordered w-24"
+              className="w-24 input input-bordered"
               value={batteries}
               onChange={(e) => setBatteries(e.target.value)}
             />
@@ -199,21 +199,21 @@ function SkewedSlots() {
           <input
             type="number"
             placeholder="Slot 1"
-            className="input input-bordered w-16 text-center"
+            className="w-16 text-center input input-bordered"
             value={result[0]}
             disabled
           />
           <input
             type="number"
             placeholder="Slot 2"
-            className="input input-bordered w-16 text-center"
+            className="w-16 text-center input input-bordered"
             value={result[1]}
             disabled
           />
           <input
             type="number"
             placeholder="Slot 3"
-            className="input input-bordered w-16 text-center"
+            className="w-16 text-center input input-bordered"
             value={result[2]}
             disabled
           />

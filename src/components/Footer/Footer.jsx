@@ -80,13 +80,13 @@ function Footer({ shetr = false }) {
 
   return (
     <div>
-      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 xl:text-lg">
+      <footer className="p-10 footer sm:footer-horizontal bg-neutral text-neutral-content xl:text-lg">
         <aside>
           <div className="logorecolor">
             <img
               src={logo}
               alt="logo"
-              className="w-30 ml-[-1rem] invert transition-transform duration-500 ease-in-out clickable"
+              className="-ml-4 transition-transform duration-500 ease-in-out w-30 invert clickable"
               onClick={(e) => {
                 e.target.style.transform = "rotate(360deg)";
                 if (!secretUnlocked) {
@@ -117,7 +117,7 @@ function Footer({ shetr = false }) {
             {socialLinks.map((link, index) => (
               <LinkPreview
                 key={index}
-                className="transition-transform duration-400 ease-in-out transform hover:rotate-12 hover:scale-110"
+                className="transition-transform ease-in-out transform duration-400 hover:rotate-12 hover:scale-110"
                 url={link.url}
                 target="_blank"
               >

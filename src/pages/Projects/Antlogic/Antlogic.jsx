@@ -14,15 +14,15 @@ function AntLogic() {
       transition={{ duration: 0.25 }}
     >
       <div
-        className="hero min-h-screen"
+        className="min-h-screen hero"
         style={{
           backgroundImage: `url(${antLogicImage})`,
         }}
       >
         <div className="hero-overlay bg-opacity-70"></div>
         <div className="hero-content text-neutral-content sm:text-center">
-          <div className="md:w-lg sm:w-sm w-xs p-8 bg-black/20 glass rounded-2xl shadow-2xl">
-            <div className="text-5xl md:text-8xl text-neutral-content font-bold mb-6">
+          <div className="p-8 shadow-2xl md:w-lg sm:w-sm w-xs bg-black/20 glass rounded-2xl">
+            <div className="mb-6 text-5xl font-bold md:text-8xl text-neutral-content">
               AntLogic.
             </div>
             <TypeIt
@@ -51,7 +51,7 @@ function AntLogic() {
                 Benjamin Cates{" "}
                 <LinkPreview
                   url="https://github.com/benjamin-cates"
-                  className="link link-primary font-bold"
+                  className="font-bold link link-primary"
                   target="_blank"
                 >
                   (benjamin-cates)
@@ -61,19 +61,19 @@ function AntLogic() {
                 Jackson Podgorski{" "}
                 <LinkPreview
                   url="https://github.com/podskio"
-                  className="link link-primary font-bold"
+                  className="font-bold link link-primary"
                   target="_blank"
                 >
                   (Podskio)
                 </LinkPreview>
               </li>
             </ul>
-            <div className="join hovergrow mt-6">
+            <div className="mt-6 join hovergrow">
               <LinkPreview
                 url="https://github.com/benjamin-cates/ant_logic?tab=readme-ov-file"
                 target="_blank"
               >
-                <button className="btn btn-sm md:btn-lg btn-secondary join-item rounded-l-sm">
+                <button className="rounded-l-sm btn btn-sm md:btn-lg btn-secondary join-item">
                   GitHub
                 </button>
               </LinkPreview>

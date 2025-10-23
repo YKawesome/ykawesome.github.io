@@ -10,7 +10,7 @@ const CodeBlock = () => {
   }, []);
 
   return (
-    <div className="mockup-code w-full">
+    <div className="w-full mockup-code">
       <pre className="language-python">
         <code className="language-python">
           {`

@@ -60,7 +60,7 @@ function Blog() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="bg-base-100 min-h-screen"
+            className="min-h-screen bg-base-100"
         >
             {/* Hero */}
             <div
@@ -68,9 +68,9 @@ function Blog() {
                 style={{ backgroundImage: heroImage ? `url(${heroImage})` : undefined }}
             >
                 <div className="hero-overlay bg-opacity-70"></div>
-                <div className="hero-content text-center text-neutral-content">
+                <div className="text-center hero-content text-neutral-content">
                     <div className="max-w-2xl">
-                        <h1 className="text-5xl md:text-6xl font-bold">Blog</h1>
+                        <h1 className="text-5xl font-bold md:text-6xl">Blog</h1>
                         <p className="mt-4 opacity-90">
                             Notes, write-ups, and dev logs from projects I did for fun :D
                         </p>
@@ -79,11 +79,11 @@ function Blog() {
             </div>
 
             {/* Controls */}
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 -mt-10">
-                <div className="glass bg-base-100/60 backdrop-blur-md rounded-2xl shadow-xl p-4 sm:p-6">
+            <div className="max-w-6xl px-4 mx-auto -mt-10 sm:px-6">
+                <div className="p-4 shadow-xl glass bg-base-100/60 backdrop-blur-md rounded-2xl sm:p-6">
                     <div className="flex flex-col gap-4">
                         <div className="w-full">
-                            <label className="input input-bordered flex items-center gap-2 w-full">
+                            <label className="flex items-center w-full input input-bordered gap-2">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -98,7 +98,7 @@ function Blog() {
                                 </svg>
                                 <input
                                     type="text"
-                                    className="grow w-full"
+                                    className="w-full grow"
                                     placeholder="Search posts, tags, or text..."
                                     value={query}
                                     onChange={(e) => {
@@ -109,8 +109,8 @@ function Blog() {
                             </label>
                         </div>
 
-                        <div className="flex flex-wrap gap-2 items-center">
-                            <span className="text-sm opacity-70 mr-1">Tags:</span>
+                        <div className="flex flex-wrap items-center gap-2">
+                            <span className="mr-1 text-sm opacity-70">Tags:</span>
                             {allTags.map((tag) => {
                                 const active = selected.includes(tag);
                                 return (
@@ -127,7 +127,7 @@ function Blog() {
                             })}
                             {selected.length > 0 && (
                                 <button
-                                    className="btn btn-sm btn-ghost ml-1"
+                                    className="ml-1 btn btn-sm btn-ghost"
                                     onClick={() => {
                                         setSelected([]);
                                         setPage(1);
@@ -142,36 +142,36 @@ function Blog() {
             </div>
 
             {/* Posts grid */}
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+            <div className="max-w-6xl px-4 py-8 mx-auto sm:px-6">
                 {pageItems.length === 0 ? (
-                    <div className="text-center py-16 opacity-70">No posts found.</div>
+                    <div className="py-16 text-center opacity-70">No posts found.</div>
                 ) : (
                     <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                         {pageItems.map((post) => {
                             const src = images[post.imageKey];
                             return (
-                                <div key={post.id} className="card bg-base-100 shadow-xl overflow-hidden">
+                                <div key={post.id} className="overflow-hidden shadow-xl card bg-base-100">
                                     {src ? (
-                                        <figure className="max-h-40 overflow-hidden">
-                                            <img src={src} alt={post.title} className="w-full object-cover" />
+                                        <figure className="overflow-hidden max-h-40">
+                                            <img src={src} alt={post.title} className="object-cover w-full" />
                                         </figure>
                                     ) : (
-                                        <div className="h-40 w-full bg-base-200" />
+                                        <div className="w-full h-40 bg-base-200" />
                                     )}
                                     <div className="card-body">
                                         <div className="flex items-center justify-between gap-2">
                                             <h2 className="card-title text-base-content">{post.title}</h2>
                                             <span className="badge badge-ghost whitespace-nowrap">{post.date}</span>
                                         </div>
-                                        <p className="opacity-80 text-sm">{post.excerpt}</p>
-                                        <div className="flex flex-wrap gap-2 mt-2">
+                                        <p className="text-sm opacity-80">{post.excerpt}</p>
+                                        <div className="flex flex-wrap mt-2 gap-2">
                                             {post.tags.map((t) => (
                                                 <span key={t} className="badge badge-outline">
                                                     {t}
                                                 </span>
                                             ))}
                                         </div>
-                                        <div className="card-actions justify-end mt-3">
+                                        <div className="justify-end mt-3 card-actions">
                                             <Link className="btn btn-secondary btn-sm" to={`/blog/${post.slug}`}>
                                                 Read more
                                             </Link>

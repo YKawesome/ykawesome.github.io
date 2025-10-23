@@ -143,15 +143,15 @@ function Splitter() {
       transition={{ duration: 0.25 }}
     >
       <div
-        className="hero min-h-screen"
+        className="min-h-screen hero"
         style={{
           backgroundImage: `url(${banner})`,
         }}
       >
         <div className="hero-overlay"></div>
         <div className="hero-content text-neutral-content md:text-center">
-          <div className="md:w-xl sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
-            <h1 className="mb-5 md:text-6xl text-5xl font-bold text-center">
+          <div className="p-8 shadow-2xl md:w-xl sm:w-sm w-xs glass bg-black/20 rounded-2xl">
+            <h1 className="mb-5 text-5xl font-bold text-center md:text-6xl">
               IG Banner Splitter
             </h1>
             <p className="mb-5 sm:text-lg">
@@ -169,7 +169,7 @@ function Splitter() {
                 Supports multi-row banners now (each row is split into 3 parts).
               </span> */}
             </p>
-            <div className="flex flex-col space-y-4 items-center justify-center">
+            <div className="flex flex-col items-center justify-center space-y-4">
               <input
                 type="file"
                 accept="image/*"
@@ -187,10 +187,10 @@ function Splitter() {
                 placeholder="Rows"
                 min={1}
                 onChange={(e) => setRows(parseInt(e.target.value, 10) || 1)}
-                className="input input-bordered input-accent text-base-content max-w-xs w-full"
+                className="w-full max-w-xs input input-bordered input-accent text-base-content"
               />
               <button
-                className="btn btn-secondary max-w-xs w-full hovergrow"
+                className="w-full max-w-xs btn btn-secondary hovergrow"
                 onClick={handleSplit}
               >
                 Split!

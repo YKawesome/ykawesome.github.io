@@ -10,27 +10,27 @@ export default function OpenlabSetup() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className="bg-base-100 min-h-screen"
+      className="min-h-screen bg-base-100"
     >
       <div
         className="hero min-h-[40vh]"
         style={{ backgroundImage: hero ? `url(${hero})` : undefined }}
       >
         <div className="hero-overlay bg-opacity-70" />
-        <div className="hero-content text-center text-neutral-content">
+        <div className="text-center hero-content text-neutral-content">
           <div className="max-w-3xl">
-            <div className="flex flex-wrap justify-center gap-3 mb-4">
+            <div className="flex flex-wrap justify-center mb-4 gap-3">
               <span className="badge badge-primary badge-outline">UCI</span>
               <span className="badge badge-secondary badge-outline">ICS</span>
               <span className="badge badge-accent badge-outline">Workflow</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
               Setting Up Openlab Without Crashing Out
             </h1>
-            <p className="mt-4 opacity-90 text-lg">
+            <p className="mt-4 text-lg opacity-90">
               How to go get a one-command Openlab workflow for ICS classes.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4 justify-center text-sm opacity-80">
+            <div className="flex flex-wrap justify-center mt-6 text-sm gap-4 opacity-80">
               <span>Published: Feb 2025</span>
               <span>Reading time: ~5 min</span>
               <span>Tools: VPN, SSH, VS Code</span>
@@ -39,7 +39,7 @@ export default function OpenlabSetup() {
         </div>
       </div>
 
-      <article className="prose prose-invert max-w-3xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+      <article className="max-w-3xl px-4 py-12 mx-auto prose prose-invert sm:px-6 space-y-8">
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold tracking-tight">
             Why This Exists
@@ -84,7 +84,7 @@ export default function OpenlabSetup() {
           <h2 className="text-2xl font-semibold tracking-tight">
             First Connection: VPN + SSH
           </h2>
-          <ol className="space-y-3 leading-relaxed">
+          <ol className="leading-relaxed space-y-3">
             <li>Hop onto the UCI VPN (Full Tunnel).</li>
             <li>
               Open your terminal on your laptop—not VS Code yet, just the
@@ -102,7 +102,7 @@ export default function OpenlabSetup() {
           <p className="mt-6 leading-relaxed">
             If everything works, you&apos;ll land on a prompt that looks like:
           </p>
-          <pre className="mockup-code text-xs leading-snug my-3">
+          <pre className="my-3 text-xs leading-snug mockup-code">
             <code>{`    panteatr@circinus-30 ~ $`}</code>
           </pre>
         </section>
@@ -111,10 +111,10 @@ export default function OpenlabSetup() {
           <h2 className="text-2xl font-semibold tracking-tight">
             Optional: SSH Keys
           </h2>
-          <div className="alert alert-info not-prose my-4">
+          <div className="my-4 alert alert-info not-prose">
             <span>no more VPN, no more typing passwords, worth 5 min imo</span>
           </div>
-          <ol className="space-y-3 leading-relaxed">
+          <ol className="leading-relaxed space-y-3">
             <li>
               Create a key locally if you don&apos;t have one yet:{" "}
               <code>ssh-keygen</code>.
@@ -131,7 +131,7 @@ export default function OpenlabSetup() {
             <li>Reconnect to Openlab with your password one last time.</li>
             <li>
               Append the key to the authorized list:
-              <pre className="mockup-code text-xs leading-snug my-3">
+              <pre className="my-3 text-xs leading-snug mockup-code">
                 <code>{`    mkdir -p ~/.ssh
     printf "PASTE IT HERE" >> ~/.ssh/authorized_keys`}</code>
               </pre>
@@ -152,7 +152,7 @@ export default function OpenlabSetup() {
             Typing the full host every time is annoying. Create{" "}
             <code>~/.ssh/config</code> on your laptop and add:
           </p>
-          <pre className="mockup-code text-xs leading-snug my-3">
+          <pre className="my-3 text-xs leading-snug mockup-code">
             <code>{`    Host ics
         User ucinetid
         HostName openlab.ics.uci.edu`}</code>
@@ -171,14 +171,14 @@ export default function OpenlabSetup() {
             Once SSH works smoothly, you can use something like VS Code to
             directly access openlab:
           </p>
-          <ol className="space-y-3 leading-relaxed">
+          <ol className="leading-relaxed space-y-3">
             <li>
               Install the <em>Remote - SSH</em> extension (authored by
               Microsoft).
             </li>
             <li>
               Press
-              <span className="inline-flex items-center gap-1 mx-1">
+              <span className="inline-flex items-center mx-1 gap-1">
                 <kbd className="kbd">⌘</kbd>
                 <span>+</span>
                 <kbd className="kbd">⇧</kbd>
@@ -186,7 +186,7 @@ export default function OpenlabSetup() {
                 <kbd className="kbd">P</kbd>
               </span>
               (macOS) or
-              <span className="inline-flex items-center gap-1 mx-1">
+              <span className="inline-flex items-center mx-1 gap-1">
                 <kbd className="kbd">Ctrl</kbd>
                 <span>+</span>
                 <kbd className="kbd">Shift</kbd>
@@ -216,7 +216,7 @@ export default function OpenlabSetup() {
           <h2 className="text-2xl font-semibold tracking-tight">
             Troubleshooting + Expectations
           </h2>
-          <ul className="space-y-3 leading-relaxed">
+          <ul className="leading-relaxed space-y-3">
             <li>
               If a connection suddenly times out, it&apos;s probably the VPN.
               Reconnect or toggle between Split Tunnel / Full Tunnel modes.
@@ -226,7 +226,7 @@ export default function OpenlabSetup() {
               off and it should point out permission issues or DNS typos.
             </li>
           </ul>
-          <div className="alert alert-warning not-prose my-6">
+          <div className="my-6 alert alert-warning not-prose">
             <span>
               Follow this at your own risk. It works great for me, but
               you&apos;re responsible for your environment. When asking staff

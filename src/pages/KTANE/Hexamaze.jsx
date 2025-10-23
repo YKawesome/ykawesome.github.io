@@ -15,13 +15,13 @@ function Hexamaze() {
     return (
         <>
             <div className="hero bg-secondary text-secondary-content h-[12vh]">
-                <div className="hero-content text-center flex flex-col items-center">
-                    <p className="md:text-5xl text-2xl font-bold">On the Subject of Hexamazes</p>
-                    <p className="md:text-xl text-lg"> Click the maze to rotate it!</p>
+                <div className="flex flex-col items-center text-center hero-content">
+                    <p className="text-2xl font-bold md:text-5xl">On the Subject of Hexamazes</p>
+                    <p className="text-lg md:text-xl"> Click the maze to rotate it!</p>
                 </div>
             </div>
-            <div className="hero bg-base-200 py-5">
-                <div className="hero-content flex flex-col items-center text-center">
+            <div className="py-5 hero bg-base-200">
+                <div className="flex flex-col items-center text-center hero-content">
                     <img
                         src={images["hexamini.png"]}
                         className="w-1/4 transition-transform duration-300 cursor-grab"

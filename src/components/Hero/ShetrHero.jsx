@@ -6,17 +6,17 @@ function ShetrHero({ toggleShetr }) {
 
   return (
     <div
-      className="hero min-h-screen"
+      className="min-h-screen hero"
       style={{
         backgroundImage: `url(${shetrHeroBg})`,
       }}
     >
       <div className="hero-overlay"></div>
       <div className="hero-overlay"></div>
-      <div className="hero-content text-neutral-content text-center rounded-2xl lg:p-12 lg:shadow-2xl">
-        <div className="lg:max-w-xl lg:w-xl max-w-md">
-          <TypeIt className="text-4xl sm:text-6xl font-bold">hi, i'm SHETR.</TypeIt>
-          <p className="mb-5 mt-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl max-w-md">
+      <div className="text-center hero-content text-neutral-content rounded-2xl lg:p-12 lg:shadow-2xl">
+        <div className="max-w-md lg:max-w-xl lg:w-xl">
+          <TypeIt className="text-4xl font-bold sm:text-6xl">hi, i'm SHETR.</TypeIt>
+          <p className="max-w-md mt-5 mb-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl">
             I'm a petr who likes spreadsheets. I have plenty of interests,
             especially indie games!
           </p>

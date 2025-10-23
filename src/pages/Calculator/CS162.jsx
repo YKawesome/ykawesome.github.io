@@ -37,21 +37,21 @@ function CS162() {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-fit pb-5">
-      <div className="hero-content text-center">
+    <div className="pb-5 hero bg-base-200 min-h-fit">
+      <div className="text-center hero-content">
         <div className="sm:w-2xl">
           <form className="space-y-6">
             {/* Pre-lecture Preparation card moved above the row */}
-            <div className="card bg-base-300 shadow-lg p-4 h-full">
-              <h3 className="font-semibold mb-2">Pre-lecture Preparation & Artifacts (15%)</h3>
+            <div className="h-full p-4 shadow-lg card bg-base-300">
+              <h3 className="mb-2 font-semibold">Pre-lecture Preparation & Artifacts (15%)</h3>
               <div className="flex flex-col gap-2">
-                  <fieldset className="form-control w-full">
+                  <fieldset className="w-full form-control">
                     <legend className="fieldset-legend">Average Score (%)</legend>
-                    <input type="number" name="preLecture" className="input input-bordered w-full" placeholder="e.g. 90" />
+                    <input type="number" name="preLecture" className="w-full input input-bordered" placeholder="e.g. 90" />
                   </fieldset>
-                  <div className="flex gap-4 justify-center">
+                  <div className="flex justify-center gap-4">
                     {['art1', 'art2', 'art3'].map((name, i) => (
-                      <label className="form-control flex items-center gap-2" key={name}>
+                      <label className="flex items-center form-control gap-2" key={name}>
                         <span className="label-text">ART{i + 1}</span>
                         <input type="checkbox" className="toggle" name={name} />
                       </label>
@@ -60,46 +60,46 @@ function CS162() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-6 items-stretch">
+            <div className="flex flex-col items-stretch md:flex-row gap-6">
               {/* Core Topics column */}
-              <div className="w-full md:w-1/2 h-full">
-                <div className="card bg-base-300 shadow-lg p-4 h-full">
-                  <h3 className="font-semibold mb-2">Core Topics Competency (45%)</h3>
+              <div className="w-full h-full md:w-1/2">
+                <div className="h-full p-4 shadow-lg card bg-base-300">
+                  <h3 className="mb-2 font-semibold">Core Topics Competency (45%)</h3>
                   {[
                     ['regular', 'Not Regular (Out of 2.5)', '2.5'],
                     ['contextFree', 'Not Context-Free (Out of 2.5)', '2.5'],
                     ['undecidable', 'Not Decidable (Out of 2)', '2'],
                     ['npcomplete', 'NP-Complete (Out of 2)', '2'],
                   ].map(([name, label, max]) => (
-                    <fieldset className="form-control w-full" key={name}>
+                    <fieldset className="w-full form-control" key={name}>
                       <legend className="fieldset-legend">{label}</legend>
-                      <input type="number" name={name} max={max} className="input input-bordered w-full" placeholder={`e.g. ${max}`} />
+                      <input type="number" name={name} max={max} className="w-full input input-bordered" placeholder={`e.g. ${max}`} />
                     </fieldset>
                   ))}
                 </div>
               </div>
 
               {/* Mid Exams card */}
-              <div className="w-full md:w-1/2 h-full">
-                <div className="card bg-base-300 shadow-lg p-4 h-full">
-                  <h3 className="font-semibold mb-2">Mid-quarter Exams (40%)</h3>
+              <div className="w-full h-full md:w-1/2">
+                <div className="h-full p-4 shadow-lg card bg-base-300">
+                  <h3 className="mb-2 font-semibold">Mid-quarter Exams (40%)</h3>
                   {[1, 2, 3, 4].map(n => (
-                    <fieldset className="form-control w-full" key={`mid${n}`}>
+                    <fieldset className="w-full form-control" key={`mid${n}`}>
                       <legend className="fieldset-legend">Exam {n} Score (Out of 10)</legend>
-                      <input type="number" name={`mid${n}`} max="10" className="input input-bordered w-full" placeholder="e.g. 9" />
+                      <input type="number" name={`mid${n}`} max="10" className="w-full input input-bordered" placeholder="e.g. 9" />
                     </fieldset>
                   ))}
                 </div>
               </div>
             </div>
 
-            <button type="button" onClick={handleCalculate} className="btn btn-secondary w-full shadow-lg">
+            <button type="button" onClick={handleCalculate} className="w-full shadow-lg btn btn-secondary">
               Calculate Grade
             </button>
           </form>
 
-          <div className="mt-8 card bg-base-300 shadow-lg p-4">
-            <h3 className="text-xl font-semibold mb-2">Estimated Final Grade:</h3>
+          <div className="p-4 mt-8 shadow-lg card bg-base-300">
+            <h3 className="mb-2 text-xl font-semibold">Estimated Final Grade:</h3>
             <div className="text-2xl font-bold">{finalGrade}%</div>
           </div>
         </div>

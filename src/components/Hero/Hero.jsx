@@ -32,7 +32,7 @@ const FuzzyOverlay = () => {
       style={{
         backgroundImage: `url(${images["blacknoise.png"]})`,
       }}
-      className="pointer-events-none absolute -inset-[100%] opacity-[4%]"
+      className="absolute pointer-events-none -inset-full opacity-4"
     />
   );
 };
@@ -90,7 +90,7 @@ function Hero() {
 
   return (
     <div
-      className="hero min-h-screen relative overflow-hidden"
+      className="relative min-h-screen overflow-hidden hero"
       style={{
         backgroundImage: `url(${heroBg})`,
       }}
@@ -99,15 +99,15 @@ function Hero() {
       <div className="hero-overlay opacity-40"></div>
       <FuzzyOverlay />
 
-      <div className="hero-content text-neutral-content text-center rounded-2xl lg:p-9 lg:pb-6 lg:shadow-2xl">
-        <div className="lg:max-w-xl lg:w-xl max-w-md">
+      <div className="text-center hero-content text-neutral-content rounded-2xl lg:p-9 lg:pb-6 lg:shadow-2xl">
+        <div className="max-w-md lg:max-w-xl lg:w-xl">
           <TypeIt
-            className="text-4xl sm:text-6xl font-bold"
+            className="text-4xl font-bold sm:text-6xl"
             options={{ startDelay: 1500 }}
           >
             hi, i&apos;m yousef khan.
           </TypeIt>
-          <p className="mb-5 mt-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl max-w-md">
+          <p className="max-w-md mt-5 mb-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl">
             I&apos;m a{" "}
             <span className="hover:bg-primary hover:text-primary-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5 hover:cursor-none">
               Computer Science Student
@@ -127,11 +127,11 @@ function Hero() {
             Also, I love spreadsheets.
           </p>
           <p className="mb-5">and discord.</p>
-          <div className="justify-center flex" onClick={handleOpenDrawer}>
+          <div className="flex justify-center" onClick={handleOpenDrawer}>
             <img
               src={emojiKeys[emojiIndex]}
               alt="emojis"
-              className="h-16 w-16 hover:cursor-none clickable transition-transform duration-400 ease-in-out transform hover:scale-110 hover:rotate-[12deg]"
+              className="w-16 h-16 transition-transform ease-in-out transform hover:cursor-none clickable duration-400 hover:scale-110 hover:rotate-12"
               onMouseEnter={() => window.innerWidth >= 640 && handleHover()}
               onClick={() => window.innerWidth < 640 && handleHover()}
             />

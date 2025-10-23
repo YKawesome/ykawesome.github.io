@@ -7,11 +7,11 @@ const ProjectsDrawer = ({ open, setOpen, activeProject, setActiveProject, naviga
   return (
     <DragCloseDrawer open={open} setOpen={setOpen}>
       <div>
-        <p className="text-8xl font-bold text-center text-neutral-content mb-10">
+        <p className="mb-10 font-bold text-center text-8xl text-neutral-content">
           Projects
         </p>
       </div>
-      <div className="flex flex-row gap-5 justify-center text-neutral-content">
+      <div className="flex flex-row justify-center gap-5 text-neutral-content">
         {[
           { id: "antlogic", icon: "antlogicicon.png", text: "AntLogic", route: "/projects/antlogic" },
           { id: "checkersai", icon: "checkersaiicon.png", text: "CheckersAI", route: "/projects/checkersai" },

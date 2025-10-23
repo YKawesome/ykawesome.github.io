@@ -10,7 +10,7 @@ export default function ICSYAKBot() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.25 }}
-      className="bg-base-100 min-h-screen"
+      className="min-h-screen bg-base-100"
     >
       {/* Hero Banner */}
       <div
@@ -18,23 +18,23 @@ export default function ICSYAKBot() {
         style={{ backgroundImage: hero ? `url(${hero})` : undefined }}
       >
         <div className="hero-overlay bg-opacity-70" />
-        <div className="hero-content text-center text-neutral-content">
+        <div className="text-center hero-content text-neutral-content">
           <div className="max-w-3xl">
-            <div className="flex flex-wrap justify-center gap-3 mb-4">
+            <div className="flex flex-wrap justify-center mb-4 gap-3">
               <span className="badge badge-primary badge-outline">Discord</span>
               <span className="badge badge-secondary badge-outline">
                 Automation
               </span>
               <span className="badge badge-accent badge-outline">EdTech</span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
               Building ICSYAK
             </h1>
-            <p className="mt-4 opacity-90 text-lg">
+            <p className="mt-4 text-lg opacity-90">
               Unifying Ed Discussion, Piazza, and Gradescope into a single
               conversational hub inside Discord.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4 justify-center text-sm opacity-80">
+            <div className="flex flex-wrap justify-center mt-6 text-sm gap-4 opacity-80">
               <span>Published: Feb 2025</span>
               <span>Reading time: ~7 min</span>
               <span>Development: Deployed & Maintained</span>
@@ -43,20 +43,20 @@ export default function ICSYAKBot() {
         </div>
       </div>
       {/* Article Body */}
-      <article className="prose prose-invert max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+      <article className="max-w-4xl px-4 py-12 mx-auto prose prose-invert sm:px-6 space-y-8">
         {/* Meta Panel */}
-        <div className="not-prose grid gap-4 md:grid-cols-3 my-6">
-          <div className="stat bg-base-200/30 rounded-xl p-4">
+        <div className="my-6 not-prose grid gap-4 md:grid-cols-3">
+          <div className="p-4 stat bg-base-200/30 rounded-xl">
             <div className="stat-title opacity-70">Threads Indexed</div>
             <div className="stat-value text-primary">1k+</div>
             <div className="stat-desc">Involving any category</div>
           </div>
-          <div className="stat bg-base-200/30 rounded-xl p-4">
+          <div className="p-4 stat bg-base-200/30 rounded-xl">
             <div className="stat-title opacity-70">Students Assisted</div>
             <div className="stat-value text-secondary">1.5k+</div>
             <div className="stat-desc">Peak concurrency 600+</div>
           </div>
-          <div className="stat bg-base-200/30 rounded-xl p-4">
+          <div className="p-4 stat bg-base-200/30 rounded-xl">
             <div className="stat-title opacity-70">Courses Utilized</div>
             <div className="stat-value text-accent">15+</div>
             <div className="stat-desc">Across 7 quarters</div>
@@ -64,12 +64,12 @@ export default function ICSYAKBot() {
         </div>
 
         {/* Table of Contents */}
-        <details className="not-prose collapse collapse-arrow bg-base-200/40 border border-base-300 rounded-xl">
-          <summary className="collapse-title font-semibold">
+        <details className="border not-prose collapse collapse-arrow bg-base-200/40 border-base-300 rounded-xl">
+          <summary className="font-semibold collapse-title">
             Table of Contents
           </summary>
           <div className="collapse-content">
-            <ol className="list-decimal ps-5 space-y-1 text-sm">
+            <ol className="text-sm list-decimal ps-5 space-y-1">
               <li>
                 <a href="#problem" className="link link-hover">
                   Scattered Segments
@@ -126,7 +126,7 @@ export default function ICSYAKBot() {
 
         <h2
           id="problem"
-          className="text-2xl font-semibold tracking-tight mt-10 mb-3"
+          className="mt-10 mb-3 text-2xl font-semibold tracking-tight"
         >
           1. Scattered Segments
         </h2>
@@ -141,7 +141,7 @@ export default function ICSYAKBot() {
           and people would start freaking out (and then I'd have to deal with
           that).
         </p>
-        <div className="alert alert-info not-prose my-4">
+        <div className="my-4 alert alert-info not-prose">
           <span>
             Observation: Students would often re-ask questions already answered
             on a different platform within the same hour.
@@ -155,14 +155,14 @@ export default function ICSYAKBot() {
 
         <h2
           id="goals"
-          className="text-2xl font-semibold tracking-tight mt-10 mb-3"
+          className="mt-10 mb-3 text-2xl font-semibold tracking-tight"
         >
           2. Constraints & Goals
         </h2>
-        <div className="not-prose mt-2">
+        <div className="mt-2 not-prose">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+            <div className="flex flex-col h-full p-4 border card bg-base-200/30 border-base-300/40 rounded-xl">
+              <h4 className="mb-1 text-sm font-semibold tracking-wide uppercase opacity-70">
                 Zero Friction
               </h4>
               <p className="text-sm opacity-85">
@@ -170,8 +170,8 @@ export default function ICSYAKBot() {
                 navigation.
               </p>
             </div>
-            <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+            <div className="flex flex-col h-full p-4 border card bg-base-200/30 border-base-300/40 rounded-xl">
+              <h4 className="mb-1 text-sm font-semibold tracking-wide uppercase opacity-70">
                 Opt‑In Delivery
               </h4>
               <p className="text-sm opacity-85">
@@ -179,8 +179,8 @@ export default function ICSYAKBot() {
                 who chose it get notified.
               </p>
             </div>
-            <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+            <div className="flex flex-col h-full p-4 border card bg-base-200/30 border-base-300/40 rounded-xl">
+              <h4 className="mb-1 text-sm font-semibold tracking-wide uppercase opacity-70">
                 No Spam
               </h4>
               <p className="text-sm opacity-85">
@@ -188,8 +188,8 @@ export default function ICSYAKBot() {
                 storms.
               </p>
             </div>
-            <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+            <div className="flex flex-col h-full p-4 border card bg-base-200/30 border-base-300/40 rounded-xl">
+              <h4 className="mb-1 text-sm font-semibold tracking-wide uppercase opacity-70">
                 Scoped Ingestion
               </h4>
               <p className="text-sm opacity-85">
@@ -197,16 +197,16 @@ export default function ICSYAKBot() {
                 code path for future courses.
               </p>
             </div>
-            <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+            <div className="flex flex-col h-full p-4 border card bg-base-200/30 border-base-300/40 rounded-xl">
+              <h4 className="mb-1 text-sm font-semibold tracking-wide uppercase opacity-70">
                 Resilient
               </h4>
               <p className="text-sm opacity-85">
                 Backoff, snapshot cache & queue hide upstream flakiness.
               </p>
             </div>
-            <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+            <div className="flex flex-col h-full p-4 border card bg-base-200/30 border-base-300/40 rounded-xl">
+              <h4 className="mb-1 text-sm font-semibold tracking-wide uppercase opacity-70">
                 Auditable
               </h4>
               <p className="text-sm opacity-85">
@@ -214,8 +214,8 @@ export default function ICSYAKBot() {
                 when&rdquo;.
               </p>
             </div>
-            <div className="card bg-base-200/30 border border-base-300/40 rounded-xl p-4 h-full flex flex-col sm:col-span-2 lg:col-span-3">
-              <h4 className="font-semibold mb-1 text-sm tracking-wide uppercase opacity-70">
+            <div className="flex flex-col h-full p-4 border card bg-base-200/30 border-base-300/40 rounded-xl sm:col-span-2 lg:col-span-3">
+              <h4 className="mb-1 text-sm font-semibold tracking-wide uppercase opacity-70">
                 Evolvable
               </h4>
               <p className="text-sm opacity-85">
@@ -224,7 +224,7 @@ export default function ICSYAKBot() {
               </p>
             </div>
           </div>
-          <p className="mt-6 text-sm opacity-80 text-center">
+          <p className="mt-6 text-sm text-center opacity-80">
             A pattern developed where I&apos;d notice friction, learn a new
             discord.py feature, and add something new :)
           </p>
@@ -232,7 +232,7 @@ export default function ICSYAKBot() {
 
         <h2
           id="arch"
-          className="text-2xl font-semibold tracking-tight mt-10 mb-3"
+          className="mt-10 mb-3 text-2xl font-semibold tracking-tight"
         >
           3. Architecture
         </h2>
@@ -259,7 +259,7 @@ export default function ICSYAKBot() {
           Piazza, normalizes them into a shared shape, then compares the IDs
           against what the Discord channel has already seen.
         </p>
-        <pre className="mockup-code text-xs leading-snug my-3">
+        <pre className="my-3 text-xs leading-snug mockup-code">
           <code>{`  class THREADGRABBER(commands.Cog):
         def __init__(self, bot):
             self.bot = bot
@@ -292,7 +292,7 @@ export default function ICSYAKBot() {
           tag, which keeps the Cog composable as enrollment shifts.
         </p>
 
-        <div className="alert alert-warning not-prose my-4">
+        <div className="my-4 alert alert-warning not-prose">
           <span>
             Limitation: Ed Discussion API occasionally redacts comment authors,
             so I either anonymize (&quot;anonymous&quot;) or omit the line. The

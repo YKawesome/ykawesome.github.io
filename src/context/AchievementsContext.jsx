@@ -91,8 +91,8 @@ export function AchievementsProvider({ children }) {
     <AchievementsContext.Provider value={{ achievements, unlock }}>
       {children}
       {justUnlocked && (
-        <div className="toast toast-center z-50">
-          <div className="alert alert-success shadow-lg">
+        <div className="z-50 toast toast-center">
+          <div className="shadow-lg alert alert-success">
             <span>
               Achievement Unlocked: <strong>{justUnlocked.title}</strong>
             </span>

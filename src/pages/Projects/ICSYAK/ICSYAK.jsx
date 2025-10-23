@@ -13,19 +13,19 @@ function ICSYAK() {
       transition={{ duration: 0.25 }}
     >
       <div
-        className="hero  min-h-screen"
+        className="min-h-screen hero "
         style={{
           backgroundImage: `url(${icsyakImage})`,
         }}
       >
         <div className="hero-overlay bg-opacity-70"></div>
         <div className="hero-content text-neutral-content sm:text-center">
-          <div className="md:w-lg sm:w-sm w-xs p-8 glass bg-black/20 rounded-2xl shadow-2xl">
-            <div className="text-6xl md:text-8xl text-neutral-content font-bold mb-6 ">
+          <div className="p-8 shadow-2xl md:w-lg sm:w-sm w-xs glass bg-black/20 rounded-2xl">
+            <div className="mb-6 text-6xl font-bold md:text-8xl text-neutral-content ">
               ICSYAK.
             </div>
             <TypeIt
-              className=" text-lg sm:text-xl md:text-2xl"
+              className="text-lg  sm:text-xl md:text-2xl"
               options={{ speed: 23 }}
             >
               A{" "}
@@ -63,17 +63,17 @@ function ICSYAK() {
                 url="https://github.com/YKawesome/ICSYAK"
                 target="_blank"
               >
-                <button className="btn btn-secondary md:btn-lg mt-3">
+                <button className="mt-3 btn btn-secondary md:btn-lg">
                   GitHub
                 </button>
               </LinkPreview>
               {/* <a href="https://ant-logic.thebenjicat.dev/" target="_blank">
-                    <button className="btn btn-primary my-6 join-item">
+                    <button className="my-6 btn btn-primary join-item">
                     Live Site
                     </button>
                 </a>
                 <a href="https://devpost.com/software/antlogic" target="_blank">
-                    <button className="btn btn-accent my-6 join-item">
+                    <button className="my-6 btn btn-accent join-item">
                     Devpost
                     </button>
                 </a> */}
@@ -82,11 +82,11 @@ function ICSYAK() {
         </div>
       </div>
 
-      <div className="hero min-h-fit bg-base-100 flex flex-col items-center justify-center">
-        <h1 className="text-4xl md:text-6xl text-base-content text-center font-bold mt-10 mb-5">
+      <div className="flex flex-col items-center justify-center hero min-h-fit bg-base-100">
+        <h1 className="mt-10 mb-5 text-4xl font-bold text-center md:text-6xl text-base-content">
           Courses Served
         </h1>
-        <div className="overflow-x-auto sm:w-7/12 w-10/12">
+        <div className="w-10/12 overflow-x-auto sm:w-7/12">
           <table className="table">
             {/* head */}
             <thead>

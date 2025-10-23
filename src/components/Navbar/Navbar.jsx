@@ -9,7 +9,7 @@ function Avatar({ shetr }) {
   const avatar = images["avatar.png"];
   const shetravatar = images["shetravatar.png"];
   return (
-    <div className="avatar flex-1 sm:flex hidden">
+    <div className="flex-1 hidden avatar sm:flex">
       <div className="w-10 rounded-full">
         <img alt="Avatar" src={shetr ? shetravatar : avatar} />
       </div>
@@ -28,7 +28,7 @@ function DrawerContent({ closeDrawer }) {
   ];
 
   return (
-    <ul className="menu bg-neutral text-neutral-content min-h-full w-80 p-4 text-2xl gap-1">
+    <ul className="min-h-full gap-1 p-4 text-2xl menu bg-neutral text-neutral-content w-80">
       <li className="sm:hidden">
         <a
           href={RESUME_LINK}
@@ -38,7 +38,7 @@ function DrawerContent({ closeDrawer }) {
           Resume
         </a>
       </li>
-      <li className="mt-2 font-bold opacity-70 uppercase text-sm tracking-wide">Projects</li>
+      <li className="mt-2 text-sm font-bold tracking-wide uppercase opacity-70">Projects</li>
       {links.map(({ to, label }) => (
         <li key={to}>
           <Link to={to} onClick={closeDrawer}>
@@ -47,14 +47,14 @@ function DrawerContent({ closeDrawer }) {
           </Link>
         </li>
       ))}
-      <div className="divider my-2"></div>
-      <li className="mt-1 font-bold opacity-70 uppercase text-sm tracking-wide">Blog</li>
+      <div className="my-2 divider"></div>
+      <li className="mt-1 text-sm font-bold tracking-wide uppercase opacity-70">Blog</li>
       <li>
         <Link to="/blog" onClick={closeDrawer} className="">
           All Posts
         </Link>
       </li>
-      {/* <li className="mt-1 font-bold opacity-70 uppercase text-sm tracking-wide">Fun</li> */}
+      {/* <li className="mt-1 text-sm font-bold tracking-wide uppercase opacity-70">Fun</li> */}
       {/* <li>
         <Link to="/achievements" onClick={closeDrawer} className="">
           Achievements
@@ -62,15 +62,15 @@ function DrawerContent({ closeDrawer }) {
       </li> */}
       {postsMeta.slice(0, 6).map((p) => (
         <li key={p.slug} className="ps-2">
-          <Link to={`/blog/${p.slug}`} onClick={closeDrawer} className="text-base border-l-4 border-neutral-content/30 hover:border-neutral-content/70 rounded-none">
+          <Link to={`/blog/${p.slug}`} onClick={closeDrawer} className="text-base border-l-4 rounded-none border-neutral-content/30 hover:border-neutral-content/70">
             {p.title.length > 28 ? p.title.slice(0, 25) + '…' : p.title}
           </Link>
         </li>
       ))}
       {postsMeta.length > 6 && (
-        <li className="ps-2 italic opacity-70 text-sm">+ {postsMeta.length - 6} more</li>
+        <li className="text-sm italic ps-2 opacity-70">+ {postsMeta.length - 6} more</li>
       )}
-      <div className="mt-auto flex justify-end gap-4">
+      <div className="flex justify-end gap-4 mt-auto">
         <SocialLinks />
       </div>
     </ul>
@@ -168,22 +168,22 @@ function Navbar({ shetr = false }) {
   };
 
   return (
-    <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-[5rem]">
-      <div className="ps-4 md:hovergrow flex flex-row md:ml-[-1rem] ml-[-1rem]">
-        <Link to="/" className="btn btn-ghost text-2xl mr-1">
+    <div className="navbar bg-neutral text-neutral-content h-[8vh] max-h-20">
+      <div className="flex flex-row -ml-4 ps-4 md:hovergrow md:-ml-4">
+        <Link to="/" className="mr-1 text-2xl btn btn-ghost">
           {shetr ? "SHETR" : "Yousef Khan"}
         </Link>
         <Avatar shetr={shetr} />
       </div>
 
-      <div className="flex grow justify-end px-1">
+      <div className="flex justify-end px-1 grow">
         <div className="flex items-stretch">
           {shetr ? (
             <></>
           ) : (
             <>
               <a
-                className="btn lg:btn-lg btn-ghost rounded-field hovergrow hidden sm:flex"
+                className="hidden btn lg:btn-lg btn-ghost rounded-field hovergrow sm:flex"
                 href={RESUME_LINK}
                 target="_blank"
               >
@@ -203,7 +203,7 @@ function Navbar({ shetr = false }) {
                   >
                     <label
                       htmlFor="projects-drawer"
-                      className="cursor-none sm:block hidden"
+                      className="hidden cursor-none sm:block"
                     >
                       Projects | Blog
                     </label>
@@ -212,7 +212,7 @@ function Navbar({ shetr = false }) {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
-                        className="inline-block h-6 w-6 stroke-current sm:hidden"
+                        className="inline-block w-6 h-6 stroke-current sm:hidden"
                       >
                         <path
                           strokeLinecap="round"
@@ -224,7 +224,7 @@ function Navbar({ shetr = false }) {
                     </label>
                   </div>
                 </div>
-                <div className="drawer-side z-10">
+                <div className="z-10 drawer-side">
                   <label
                     htmlFor="projects-drawer"
                     aria-label="close sidebar"

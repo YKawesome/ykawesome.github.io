@@ -4,10 +4,10 @@ import { images } from '../../../utils/preloadimages';
 export default function HexamazeNotes() {
   const hero = images['hexamaze.png'];
   return (
-    <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:0.25}} className="bg-base-100 min-h-screen">
+    <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:0.25}} className="min-h-screen bg-base-100">
       <div className="hero min-h-[40vh]" style={{ backgroundImage: hero ? `url(${hero})` : undefined }}>
         <div className="hero-overlay bg-opacity-70" />
-        <div className="hero-content text-center text-neutral-content">
+        <div className="text-center hero-content text-neutral-content">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold">Hexamaze Notes</h1>
             <p className="mt-4 opacity-90">Strategies and grid mental models.</p>
@@ -15,7 +15,7 @@ export default function HexamazeNotes() {
         </div>
       </div>
 
-      <article className="prose prose-invert max-w-3xl mx-auto px-4 sm:px-6 py-10">
+      <article className="max-w-3xl px-4 py-10 mx-auto prose prose-invert sm:px-6">
         <h2>Visualization</h2>
         <p>Consistent axial coordinate mapping made mental rotation faster.</p>
         <h2>Pattern Recognition</h2>
