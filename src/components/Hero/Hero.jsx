@@ -109,15 +109,15 @@ function Hero() {
           </TypeIt>
           <p className="mb-5 mt-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl max-w-md">
             I&apos;m a{" "}
-            <span className="hover:bg-primary hover:text-primary-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5">
+            <span className="hover:bg-primary hover:text-primary-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5 hover:cursor-none">
               Computer Science Student
             </span>{" "}
             at{" "}
-            <span className="hover:bg-secondary hover:text-secondary-content transform hover:-rotate-2 inline-block transition-transform ease-in-out px-0.5">
+            <span className="hover:bg-secondary hover:text-secondary-content transform hover:-rotate-2 inline-block transition-transform ease-in-out px-0.5 hover:cursor-none">
               UCI
             </span>
             . I&apos;m passionate about many things, but I truly love{" "}
-            <span className="hover:bg-accent hover:text-accent-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5">
+            <span className="hover:bg-accent hover:text-accent-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5 hover:cursor-none">
               making things
             </span>{" "}
             that save people time.

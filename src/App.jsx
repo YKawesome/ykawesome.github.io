@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Sugar } from "react-preloaders";
 import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import AnimatedCursor from "react-animated-cursor";
 import { useMediaQuery } from "react-responsive";
 
 import "./App.css";
@@ -25,6 +24,7 @@ import CheckersAIMinimax from "./pages/Blog/posts/CheckersAIMinimax";
 import HexamazeNotes from "./pages/Blog/posts/HexamazeNotes";
 import OpenlabSetup from "./pages/Blog/posts/OpenlabSetup";
 import Achievements from "./pages/Achievements/Achievements";
+import MotionCursor from "./components/MotionCursor/MotionCursor";
 
 function AnimatedRoutes({ shetr, toggleShetr }) {
   const location = useLocation();
@@ -111,11 +111,11 @@ function App() {
       />
 
       {isNotMobile && (
-        <AnimatedCursor
+        <MotionCursor
           innerSize={12}
-          outerSize={32}
+          outerSize={40}
           innerScale={1}
-          outerScale={2.5}
+          outerScale={2.2}
           hasBlendMode={true}
           clickables={[
             'a',

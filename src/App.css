@@ -40,3 +40,11 @@
     transform: scale(1.25) rotate(12deg);
     filter: drop-shadow(0 0 8px rgba(255,255,180,0.7));
 }
+
+:root {
+  --cursor-color: var(--color-neutral-content); /* you already use this */
+}
+
+.yk-hide-cursor, .yk-hide-cursor * {
+  cursor: none !important;
+}
