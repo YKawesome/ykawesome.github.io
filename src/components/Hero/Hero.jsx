@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import ProjectsDrawer from "../ui/ProjectsDrawer";
 import { useAchievements } from "../../context/AchievementsContext";
+import heroVid from "../../assets/deeryakmainslow.mp4";
 
 const emojis = {};
 const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", {
@@ -40,7 +41,6 @@ const FuzzyOverlay = () => {
 function Hero() {
   const [emojiIndex, setEmojiIndex] = useState(3);
   const emojiKeys = Object.values(emojis);
-  const heroBg = images["deeryakmainslow.gif"];
   const [open, setOpen] = useState(false);
   const [activeProject, setActiveProject] = useState(null); // Track active project
   const highlightRef = useRef(null);
@@ -89,14 +89,18 @@ function Hero() {
   }, []);
 
   return (
-    <div
-      className="relative min-h-screen overflow-hidden hero"
-      style={{
-        backgroundImage: `url(${heroBg})`,
-      }}
-    >
+    <div className="relative min-h-screen overflow-hidden hero">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-10"
+      >
+        <source src={heroVid} type="video/mp4" />
+      </video>
       <div className="hero-overlay"></div>
-      <div className="hero-overlay opacity-40"></div>
+      <div className="hero-overlay opacity-60"></div>
       <FuzzyOverlay />
 
       <div className="text-center hero-content text-neutral-content rounded-2xl lg:p-9 lg:pb-6 lg:shadow-2xl">

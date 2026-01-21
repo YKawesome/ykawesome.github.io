@@ -1,6 +1,47 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { images } from "../../utils/preloadimages";
 import { motion } from "framer-motion";
+
+// Function to download images as a ZIP file
+const downloadAsZipFile = async (results) => {
+  try {
+    // Dynamically import JSZip
+    const JSZip = (await import("jszip")).default;
+    const zip = new JSZip();
+
+    // Add each image to the ZIP
+    for (const result of results) {
+      // Convert data URL to blob
+      const response = await fetch(result.dataUrl);
+      const blob = await response.blob();
+      zip.file(result.filename, blob);
+    }
+
+    // Generate the ZIP file
+    const content = await zip.generateAsync({ type: "blob" });
+
+    // Create download link for the ZIP
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(content);
+    link.download = "split_images.zip";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(link.href);
+  } catch (error) {
+    console.error("Error creating ZIP file:", error);
+    alert("Failed to create ZIP file. Downloading files separately instead.");
+    // Fallback to individual downloads
+    results.forEach((result) => {
+      const link = document.createElement("a");
+      link.href = result.dataUrl;
+      link.download = result.filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+};
 
 function Splitter() {
   const banner = images["suneri.png"];
@@ -107,22 +148,33 @@ function Splitter() {
           }
         }
 
-        // Update state and set success message
+        // Update state
         setCroppedImages(results.map((res) => res.dataUrl));
+        setErrorMessage("");
+
+        // Ask user if they want to download as ZIP (default option)
+        const downloadAsZip = window.confirm(
+          "Download as ZIP file? (Recommended)\n\nClick OK to download as ZIP\nClick Cancel to download all files separately"
+        );
+
+        if (downloadAsZip) {
+          // Download as ZIP
+          downloadAsZipFile(results);
+        } else {
+          // Download each file separately
+          results.forEach((result) => {
+            const link = document.createElement("a");
+            link.href = result.dataUrl;
+            link.download = result.filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          });
+        }
+
         setSuccessMessage(
           "Image split successfully! Download should start right now :D"
         );
-        setErrorMessage("");
-
-        // Automatically download each cropped image with a row/column prefix
-        results.forEach((result) => {
-          const link = document.createElement("a");
-          link.href = result.dataUrl;
-          link.download = result.filename;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        });
       };
 
       img.onerror = () => {

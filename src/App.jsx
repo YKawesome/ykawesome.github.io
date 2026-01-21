@@ -113,9 +113,9 @@ function App() {
       {isNotMobile && (
         <MotionCursor
           innerSize={12}
-          outerSize={40}
+          outerSize={36}
           innerScale={1}
-          outerScale={2.2}
+          outerScale={2}
           hasBlendMode={true}
           clickables={[
             'a',
