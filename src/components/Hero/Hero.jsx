@@ -56,7 +56,7 @@ function Hero() {
       <div className="intro-copy">
         <TypingHeading />
         <p>i’m a computer science student at uci.<br />i like making things that save people time.</p>
-        <p className="intro-aside">also, i love spreadsheets. and discord.</p>
+        <p className="intro-aside">also, i love spreadsheets. and discord...</p>
         <Link className="intro-scroll" to="/#experience"><span className="intro-scroll-label">a little more about me</span><span className="intro-scroll-arrow" aria-hidden="true">↓</span></Link>
       </div>
     </section>

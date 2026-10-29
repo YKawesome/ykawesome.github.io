@@ -12,7 +12,7 @@ export const experience = [
     role: "Software Engineering Intern",
     start: "2026-06",
     end: "2026-09",
-    description: "Built telemetry tools for Hermes: a **Grafana datasource plugin**, TimescaleDB and OpenTelemetry providers, and a VS Code remote-host flow.",
+    description: "Built telemetry tools for Hermes: a **Grafana datasource plugin**, TimescaleDB and OpenTelemetry providers, and a VS Code extension optimizations. Still here :D",
     href: "https://github.com/nasa/hermes",
     links: [
       { label: "Final presentation", href: "https://drive.google.com/file/d/1heZtwuvexGAHG2ZJdmEuJg9HD63b7pQe/view?usp=drive_link" },
@@ -27,7 +27,7 @@ export const experience = [
     reaction: reactions.hearts,
     role: "Tech Lead",
     start: "2025-10",
-    description: "Helping lead **12 developers and 8 designers** building for nonprofits. Working on PostgreSQL schemas, REST APIs, and Google/Microsoft sign-in.",
+    description: "Helping lead **12 developers and 8 designers** building for The Hub OC (resources for the homeless), previously working with ELDR/CC (elder law clinic).",
     href: "https://github.com/ctc-uci/eldr",
     links: [
       { label: "ELDR Demo Video", href: "https://www.youtube.com/watch?v=KmCgWAyic48" },
@@ -42,7 +42,7 @@ export const experience = [
     reaction: reactions.sweat,
     role: "Logistics Director",
     start: "2023-05",
-    description: "Logistics for IrvineHacks (**500+ attendees**) and directing ZotHacks. Built the virtual queue that handled **400+ day-of check-ins**.",
+    description: "Logistics for IrvineHacks (**500+ attendees**) and directing ZotHacks. Built the virtual queue that handled **400+ day-of check-ins**, and currently expanding IrvineHacks to involve 50% more hackers.",
     href: "https://github.com/HackAtUCI/irvinehacks-site",
   },
   {
@@ -55,7 +55,7 @@ export const experience = [
     role: "Teaching Assistant · ICS 6B / 6D",
     start: "2024-03",
     end: "2026-04",
-    description: "Exam review, grading quality control, and disputes for **600+ students**. Helped bring Pensieve into the grading workflow.",
+    description: "Led Exam review, grading quality control, and disputes for **600+ students**. Helped bring Pensieve (an AI-powered grading platform) into the grading workflow.",
   },
   {
     id: "yss",
@@ -66,6 +66,6 @@ export const experience = [
     reaction: reactions.relieved,
     role: "Technical Director",
     start: "2022-12",
-    description: "Rebuilt checkout with Stripe, server-side validation, and atomic Prisma transactions to **prevent duplicate charges**.",
+    description: "Revamped administrative portal, rebuilt checkout with Stripe (from PayPal), fixed server-side validation, and atomic Prisma transactions to **prevent duplicate charges**.",
   },
 ];
