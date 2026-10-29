@@ -132,8 +132,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .site-footer nav a { padding-block: 8px; }
 .site-footer a:hover { text-decoration: underline; }
 .footer-bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 0.65rem; }
-.fade-section { transition: opacity 550ms ease, transform 550ms ease; }
-.fade-section.reveal-ready:not(.is-visible) { opacity: 0; transform: translateY(14px); }
 .project-modal { margin: auto; width: min(620px, calc(100% - 32px)); max-height: 88svh; padding: 0; color: var(--ink); background: var(--surface); border: 1px solid #655a4e; border-radius: 14px; box-shadow: 0 24px 100px #0008; overflow-y: auto; overscroll-behavior: contain; opacity: 0; transform: translateY(18px) scale(0.98); transition: opacity 200ms ease, transform 200ms ease, display 200ms allow-discrete, overlay 200ms allow-discrete; }
 .project-modal[open] { opacity: 1; transform: translateY(0) scale(1); }
 .project-modal::backdrop { background: #0000; transition: background 200ms, display 200ms allow-discrete, overlay 200ms allow-discrete; }
@@ -214,7 +212,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .intro-typewriter-space { visibility: visible; }
   .intro-typed-text { visibility: hidden; }
   .intro-typed-text::after { display: none; }
-  .fade-section.reveal-ready:not(.is-visible) { opacity: 1; transform: none; }
 }
 
 /* Original hand-drawn faces, with short interactions instead of a motion loop. */

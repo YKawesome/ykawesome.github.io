@@ -39,7 +39,7 @@ function AboutPhoto() {
   };
 
   return (
-    <figure className="about-photo">
+    <figure className="about-photo" data-reveal="photo">
       <button className="about-photo-button" type="button" onClick={popFaces} aria-label="Pop out more emojis around Yousef’s photo">
         <span className="photo-peeks" aria-hidden="true">
           {faces.map((src, index) => (

@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import ProjectsCarousel from "../../components/ProjectsCarousel";
 import AboutPhoto from "../../components/AboutPhoto";
+import AmbientBackground from "../../components/AmbientBackground";
+import useScrollReveal from "../../hooks/useScrollReveal";
 
 const experience = [
   {
@@ -57,33 +59,18 @@ const experience = [
 
 function Home() {
   const contentRef = useRef(null);
-
-  useEffect(() => {
-    const sections = contentRef.current.querySelectorAll(".fade-section");
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      }
-    }, { threshold: 0.05 });
-    sections.forEach((section) => {
-      section.classList.add("reveal-ready");
-      observer.observe(section);
-    });
-    return () => observer.disconnect();
-  }, []);
+  useScrollReveal(contentRef);
 
   return (
     <>
       <Hero />
       <div className="home-content" ref={contentRef}>
-        <section id="experience" className="experience-section section-shell fade-section" aria-labelledby="experience-heading">
-          <h2 id="experience-heading">work & experience.</h2>
+        <AmbientBackground />
+        <section id="experience" className="experience-section section-shell" aria-labelledby="experience-heading">
+          <h2 id="experience-heading" data-reveal="heading">work & experience.</h2>
           <div className="experience-list">
-            {experience.map((item) => (
-              <article className="experience-row" key={item.organization}>
+            {experience.map((item, index) => (
+              <article className="experience-row" key={item.organization} data-reveal="row" style={{ "--reveal-delay": `${index % 3 * 70}ms` }}>
                 <span className={`experience-logo experience-logo--${item.logoVariant ?? "light"}`} aria-hidden="true">
                   <img src={item.logo} alt="" width="160" height="160" loading="lazy" decoding="async" />
                 </span>
@@ -102,16 +89,16 @@ function Home() {
             ))}
           </div>
         </section>
-        <section id="projects" className="projects-section section-shell fade-section" aria-labelledby="projects-heading">
+        <section id="projects" className="projects-section section-shell" aria-labelledby="projects-heading">
           <ProjectsCarousel />
-          <div className="little-tools"><span>One smaller tool:</span><Link to="/splitter">Instagram banner splitter ↗</Link></div>
+          <div className="little-tools" data-reveal><span>One smaller tool:</span><Link to="/splitter">Instagram banner splitter ↗</Link></div>
         </section>
-        <section id="about" className="about-section section-shell fade-section" aria-labelledby="about-heading">
+        <section id="about" className="about-section section-shell" aria-labelledby="about-heading">
           <div className="about-copy">
-            <h2 id="about-heading">a bit more.</h2>
-            <p>I’m studying computer science at UC Irvine (class of 2027). I like building for the communities I’m part of, from Discord servers to hackathons and nonprofits.</p>
-            <p>Outside of that: board games, indie games, and making spreadsheets more complicated than they need to be. The little faces around here are hand-drawn by me.</p>
-            <a className="text-link" href="/Yousef-Khan-Resume.pdf" target="_blank" rel="noopener noreferrer">the longer version (my resume) ↗</a>
+            <h2 id="about-heading" data-reveal="heading">a bit more.</h2>
+            <p data-reveal>I’m studying computer science at UC Irvine (class of 2027). I like building for the communities I’m part of, from Discord servers to hackathons and nonprofits.</p>
+            <p data-reveal style={{ "--reveal-delay": "90ms" }}>Outside of that: board games, indie games, and making spreadsheets more complicated than they need to be. The little faces around here are hand-drawn by me.</p>
+            <a className="text-link" data-reveal style={{ "--reveal-delay": "160ms" }} href="/Yousef-Khan-Resume.pdf" target="_blank" rel="noopener noreferrer">the longer version (my resume) ↗</a>
           </div>
           <AboutPhoto />
         </section>

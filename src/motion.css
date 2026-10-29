@@ -1,0 +1,93 @@
+/* Warm dot paper, with movement kept behind the reading surface. */
+.home-content { isolation: isolate; }
+.ambient-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, #000 100px, #000 calc(100% - 80px), transparent);
+}
+.ambient-parallax { position: absolute; inset: -64px 0; }
+.ambient-grid {
+  position: absolute;
+  inset: -32px;
+  background-image: radial-gradient(circle, #d1b18e45 1px, transparent 1.6px);
+  background-size: 30px 30px;
+  opacity: 0.45;
+  mask-image: linear-gradient(90deg, #000, #0005 30%, #0005 70%, #000);
+  animation: dot-grid-drift 32s linear infinite;
+}
+.ambient-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 0% 22%, #b8874d12, transparent 45%), radial-gradient(ellipse at 100% 74%, #b8b18b0d, transparent 42%);
+  animation: ambient-breathe 12s ease-in-out infinite alternate;
+}
+.ambient-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px #d1b18e55;
+  animation: dot-float var(--dot-duration) ease-in-out var(--dot-delay) infinite alternate;
+}
+.ambient-background[data-active="false"] :is(.ambient-grid, .ambient-wash, .ambient-dot) { animation-play-state: paused; }
+@keyframes dot-grid-drift { to { transform: translate(30px, -30px); } }
+@keyframes ambient-breathe { from { opacity: 0.4; } to { opacity: 0.85; } }
+@keyframes dot-float {
+  from { opacity: 0.25; transform: translate(0, 14px); }
+  to { opacity: 0.65; transform: translate(var(--dot-drift), -14px); }
+}
+@supports (animation-timeline: scroll()) {
+  .ambient-parallax { animation: ambient-scroll linear both; animation-timeline: scroll(root block); }
+  @keyframes ambient-scroll { from { transform: translateY(30px); } to { transform: translateY(-30px); } }
+}
+
+/* Individual transform properties leave the existing hover tilts independent. */
+[data-reveal="heading"] { --reveal-y: 16px; }
+[data-reveal="row"] { --reveal-x: -18px; --reveal-y: 12px; }
+[data-reveal="card"] { --reveal-y: 22px; --reveal-rotate: -1.5deg; }
+[data-reveal="photo"] { --reveal-x: 20px; --reveal-y: 16px; --reveal-rotate: 3deg; --reveal-delay: 100ms; }
+[data-reveal].reveal-ready:not(.is-visible) {
+  opacity: 0;
+  translate: var(--reveal-x, 0) var(--reveal-y, 24px);
+  rotate: var(--reveal-rotate, 0deg);
+}
+[data-reveal].reveal-ready.is-visible {
+  animation: scroll-arrive 700ms cubic-bezier(0.2, 0.75, 0.25, 1) var(--reveal-delay, 0ms) both;
+}
+@keyframes scroll-arrive {
+  from { opacity: 0; translate: var(--reveal-x, 0) var(--reveal-y, 24px); rotate: var(--reveal-rotate, 0deg); }
+  to { opacity: 1; translate: 0 0; rotate: 0deg; }
+}
+
+.intro-copy > p { animation: intro-arrive 750ms ease-out 180ms both; }
+.intro-copy > .intro-aside { animation-delay: 320ms; }
+.intro-scroll { animation: intro-arrive 750ms ease-out 460ms both; }
+@keyframes intro-arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+.experience-row { transition: border-color 220ms ease; }
+.experience-logo { transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-row:focus-within { border-color: #81705e; }
+.experience-row:focus-within .experience-logo { transform: translateY(-2px) rotate(-4deg); }
+.carousel-controls button { transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
+.carousel-controls button:active:not(:disabled) { transform: scale(0.92); }
+.site-footer nav a { transition: color 180ms ease, transform 180ms ease; }
+.site-footer nav a:focus-visible { color: var(--accent); transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) {
+  .experience-row:hover { border-color: #81705e; }
+  .experience-row:hover .experience-logo { transform: translateY(-2px) rotate(-4deg); }
+  .site-footer nav a:hover { color: var(--accent); transform: translateY(-2px); }
+}
+@media (max-width: 600px) {
+  .ambient-grid { background-size: 30px 30px; opacity: 0.35; }
+  [data-reveal="row"] { --reveal-x: 0px; --reveal-y: 18px; }
+  [data-reveal="photo"] { --reveal-x: 0px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal].reveal-ready { opacity: 1; translate: none; rotate: none; }
+  .ambient-dot { opacity: 0.3; }
+  .ambient-parallax, .ambient-grid, .ambient-dot,
+  .experience-row:is(:hover, :focus-within) .experience-logo,
+  .carousel-controls button:active:not(:disabled),
+  .site-footer nav a:is(:hover, :focus-visible) { transform: none; }
+}

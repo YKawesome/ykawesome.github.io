@@ -36,7 +36,7 @@ function ProjectsCarousel() {
 
   return (
     <>
-      <div className="projects-heading">
+      <div className="projects-heading" data-reveal="heading">
         <div><h2 id="projects-heading">projects.</h2><p>Some things I’ve made. Click one to take a look.</p></div>
         <div className="carousel-controls" aria-label="Project carousel controls">
           <button type="button" onClick={() => move(-1)} disabled={atStart} aria-label="Previous projects">←</button>
@@ -44,8 +44,8 @@ function ProjectsCarousel() {
         </div>
       </div>
       <div className="project-carousel" ref={trackRef} onScroll={updatePosition} role="region" aria-label="Projects" aria-roledescription="carousel">
-        {projects.map((project) => (
-          <button type="button" className="project-card" key={project.id} onClick={() => openProject(project)} aria-haspopup="dialog" aria-label={`Read about ${project.name}`}>
+        {projects.map((project, index) => (
+          <button type="button" className="project-card" key={project.id} data-reveal="card" style={{ "--reveal-delay": `${index * 80}ms` }} onClick={() => openProject(project)} aria-haspopup="dialog" aria-label={`Read about ${project.name}`}>
             <div className={`project-art ${project.id}-art`}>
               {project.image ? <img className="project-thumbnail" src={project.image} alt="" width="640" height="480" loading="lazy" decoding="async" /> : <span aria-hidden="true">{project.id === "grouper" ? "grouper" : "401(k)"}</span>}
               <img className="project-reaction" src={project.reaction} alt="" width="160" height="160" loading="lazy" decoding="async" />
