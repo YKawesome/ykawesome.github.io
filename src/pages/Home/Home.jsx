@@ -76,12 +76,12 @@ function Home() {
         </section>
         <section id="projects" className="projects-section section-shell fade-section" aria-labelledby="projects-heading">
           <ProjectsCarousel />
-          <div className="little-tools"><span>A couple of smaller tools:</span><Link to="/splitter">Instagram banner splitter ↗</Link><Link to="/calculator">Grade calculators ↗</Link></div>
+          <div className="little-tools"><span>One smaller tool:</span><Link to="/splitter">Instagram banner splitter ↗</Link></div>
         </section>
         <section id="about" className="about-section section-shell fade-section" aria-labelledby="about-heading">
           <h2 id="about-heading">a bit more.</h2>
           <p>I’m studying computer science at UC Irvine (class of 2027). I like building for the communities I’m part of, from Discord servers to hackathons and nonprofits.</p>
-          <p>Outside of that: board games, indie games, and making spreadsheets more complicated than they need to be.</p>
+          <p>Outside of that: board games, indie games, and making spreadsheets more complicated than they need to be. The little faces around here are hand-drawn by me.</p>
           <a className="text-link" href="/Yousef-Khan-Resume.pdf" target="_blank" rel="noopener noreferrer">the longer version (my resume) ↗</a>
         </section>
       </div>

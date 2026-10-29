@@ -8,21 +8,20 @@ import Home from "./pages/Home/Home";
 // Project code and assets are downloaded only when that page is opened.
 const AntLogic = lazy(() => import("./pages/Projects/Antlogic/Antlogic"));
 const ICSYAK = lazy(() => import("./pages/Projects/ICSYAK/ICSYAK"));
-const CheckersAI = lazy(() => import("./pages/Projects/CheckersAI/CheckersAI"));
 const Splitter = lazy(() => import("./pages/Splitter/Splitter"));
-const Calculator = lazy(() => import("./pages/Calculator/Calculator"));
 const KTANE = lazy(() => import("./pages/KTANE/KTANE"));
 
 function ScrollToLocation() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, key } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      document.getElementById(hash.slice(1))?.scrollIntoView();
+      const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior });
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
-  }, [pathname, hash]);
+  }, [pathname, hash, key]);
 
   return null;
 }
@@ -39,12 +38,12 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/splitter" element={<Splitter />} />
             <Route path="/ktane" element={<KTANE />} />
-            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/calculator" element={<Navigate to="/#projects" replace />} />
             <Route path="/projects/antlogic" element={<AntLogic />} />
             <Route path="/projects/icsyak" element={<ICSYAK />} />
-            <Route path="/projects/checkersai" element={<CheckersAI />} />
+            <Route path="/projects/checkersai" element={<Navigate to="/#projects" replace />} />
             <Route path="/projects/splitter" element={<Splitter />} />
-            <Route path="/projects/calculator" element={<Calculator />} />
+            <Route path="/projects/calculator" element={<Navigate to="/#projects" replace />} />
             <Route path="/blog/*" element={<Navigate to="/#projects" replace />} />
             <Route path="/achievements" element={<Navigate to="/" replace />} />
             <Route path="*" element={

@@ -48,6 +48,7 @@ function ProjectsCarousel() {
           <button type="button" className="project-card" key={project.id} onClick={() => openProject(project)} aria-haspopup="dialog" aria-label={`Read about ${project.name}`}>
             <div className={`project-art ${project.id}-art`}>
               {project.image ? <img src={project.image} alt="" width="640" height="640" loading="lazy" decoding="async" /> : <span aria-hidden="true">{project.id === "grouper" ? "grouper" : "401(k)"}</span>}
+              <img className="project-reaction" src={project.reaction} alt="" width="160" height="160" loading="lazy" decoding="async" />
               <span className="project-expand" aria-hidden="true">↗</span>
             </div>
             <div className="project-card-copy">

@@ -3,11 +3,14 @@ import { preload } from "react-dom";
 import { Link } from "react-router-dom";
 import heroVideo from "../../assets/deeryakmainslow.mp4";
 import heroPoster from "../../assets/hero-poster.webp";
+import { introExpressions } from "../../data/reactions";
 
 function Hero() {
   preload(heroPoster, { as: "image", fetchPriority: "high" });
   const videoRef = useRef(null);
   const [started, setStarted] = useState(false);
+  const [expressionIndex, setExpressionIndex] = useState(0);
+  const expression = introExpressions[expressionIndex];
   const [paused, setPaused] = useState(() =>
     window.matchMedia("(prefers-reduced-motion: reduce)").matches || Boolean(navigator.connection?.saveData)
   );
@@ -54,8 +57,13 @@ function Hero() {
       <div className="intro-shade" aria-hidden="true" />
       <div className="intro-copy">
         <h1 id="intro-heading" aria-label="hi, i'm yousef khan."><span aria-hidden="true">hi, i’m yousef khan.</span></h1>
-        <p>I’m a computer science student at UCI.<br />I like making things that save people time.</p>
-        <p className="intro-aside">Also, I love spreadsheets. and discord.</p>
+        <p>i’m a computer science student at uci.<br />i like making things that save people time.</p>
+        <p className="intro-aside">
+          <span>also, i love spreadsheets. and discord.</span>
+          <button type="button" className="intro-emoji" onClick={() => setExpressionIndex((index) => (index + 1) % introExpressions.length)} aria-label={`Change hand-drawn expression, currently ${expression.name}`} title="i drew these :) click for another face">
+            <img src={expression.src} alt="" width="160" height="160" decoding="async" />
+          </button>
+        </p>
         <Link className="intro-scroll" to="/#experience">a little more about me <span aria-hidden="true">↓</span></Link>
       </div>
       <button type="button" className="animation-toggle" onClick={() => setPaused((value) => !value)} aria-label={paused ? "Play landing animation" : "Pause landing animation"}>

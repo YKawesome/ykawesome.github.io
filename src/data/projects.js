@@ -1,10 +1,11 @@
 import icsyakImage from "../assets/icsyak.webp";
 import antlogicImage from "../assets/antlogic.webp";
-import checkersImage from "../assets/checkersai.webp";
+import { reactions } from "./reactions";
 
 export const projects = [
   {
     id: "grouper",
+    reaction: reactions.hearts,
     name: "Grouper",
     kind: "Group coordination",
     summary: "Plans, rides, and shared expenses. All in one place.",
@@ -15,6 +16,7 @@ export const projects = [
   },
   {
     id: "smart401k",
+    reaction: reactions.nerd,
     name: "Smart401K",
     kind: "Retirement planning",
     summary: "Making sense of the funds in a 401(k) plan.",
@@ -25,6 +27,7 @@ export const projects = [
   },
   {
     id: "icsyak",
+    reaction: reactions.teehee,
     name: "ICSYAK",
     kind: "Discord bot",
     image: icsyakImage,
@@ -36,6 +39,7 @@ export const projects = [
   },
   {
     id: "antlogic",
+    reaction: reactions.smile,
     name: "AntLogic",
     kind: "IrvineHacks 2024",
     image: antlogicImage,
@@ -48,16 +52,5 @@ export const projects = [
       { label: "GitHub", href: "https://github.com/benjamin-cates/ant_logic" },
       { label: "Devpost", href: "https://devpost.com/software/antlogic" },
     ],
-  },
-  {
-    id: "checkersai",
-    name: "CheckersAI",
-    kind: "CS 171",
-    image: checkersImage,
-    summary: "A few moves ahead, with Monte Carlo Tree Search.",
-    description: "A checkers AI using Monte Carlo Tree Search and a capture heuristic. Built with Amin Boukour for UCI’s Introduction to Artificial Intelligence course.",
-    detail: "The final report covers our approach and results.",
-    stack: "AI · Monte Carlo Tree Search",
-    links: [{ label: "Final report", href: "https://docs.google.com/document/d/1IN9ijCWQVAfQLkW-jE5PGGN-ucdlqjwJAsfMfAFGgkg/edit?usp=sharing" }],
   },
 ];

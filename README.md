@@ -25,7 +25,9 @@ npm run preview
 - The typing introduction uses a short CSS animation, with the complete heading available to screen readers immediately.
 - The carousel uses native scrolling and CSS scroll snapping. Project dialogs use browser focus trapping, Escape handling, and short CSS transitions.
 - Navigation uses ordinary links and the system cursor. No animation library, global image preloader, screenshot preview service, or achievement tracking.
-- Retired blog and achievement URLs redirect home. Project and tool URLs remain available, including `/ktane`.
+- Section links scroll smoothly, with instant navigation for reduced-motion preferences.
+- Hand-drawn reaction stickers use small WebP derivatives from `src/assets/emojis`. They wiggle on hover or keyboard focus; the intro face cycles on click. Original drawings stay unchanged, and reduced-motion preferences disable the animations.
+- Retired blog, achievement, grade-calculator, and CheckersAI URLs redirect home. The banner splitter and `/ktane` remain available.
 
 Update featured projects in `src/data/projects.js`, experience in `src/pages/Home/Home.jsx`, and the downloadable resume in `public/Yousef-Khan-Resume.pdf`. Grouper links to its public demo; Smart401K has no public demo or repository.
 

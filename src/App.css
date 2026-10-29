@@ -5,6 +5,7 @@
   --muted: #b2aaa0;
   --rule: #454039;
   --accent: #d1b18e;
+  --landing-cream: #f6e7cc;
   background: var(--paper);
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -21,23 +22,25 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 ::selection { background: #d1b18e; color: #201e1b; }
 .section-shell { padding-inline: max(7vw, calc((100vw - 1120px) / 2)); }
 .site-header { position: relative; z-index: 2; min-height: 88px; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-inline: max(5vw, calc((100vw - 1320px) / 2)); }
-.home-header { position: absolute; top: 0; left: 0; right: 0; color: #fff; }
+.home-header { position: absolute; top: 0; left: 0; right: 0; color: var(--landing-cream); text-shadow: 0 2px 12px #24140999; }
 .site-name { font-weight: 650; font-size: 1.15rem; letter-spacing: -0.035em; }
 .site-header nav { display: flex; gap: 28px; font-size: 0.85rem; }
-.site-header nav a { padding-block: 12px; }
+.site-header nav a { display: inline-block; padding-block: 12px; transition: transform 180ms ease; }
+.site-header nav a:hover, .site-header nav a:focus-visible { transform: translateY(2px); }
 .site-header a:hover { text-decoration: underline; }
 .intro { min-height: 100svh; position: relative; display: grid; place-items: center; overflow: hidden; isolation: isolate; }
 .intro-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; z-index: -3; }
 .intro-shade { position: absolute; inset: 0; background: linear-gradient(180deg, #14131135 0%, #14131170 38%, #14131180 65%, #201e1b 100%); z-index: -2; }
-.intro-copy { text-align: center; padding: 150px 24px 170px; max-width: 1000px; color: #fff; }
-.intro h1 { font-size: clamp(2.5rem, 5.4vw, 5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.055em; margin-bottom: 28px; }
+.intro-copy { text-align: center; padding: 150px 24px 170px; max-width: 1000px; color: var(--landing-cream); text-shadow: 0 2px 12px #24140999; }
+.intro h1 { font-size: clamp(2.5rem, 5.4vw, 5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.055em; margin-bottom: 28px; text-shadow: 0 3px 6px #24140988, 0 12px 32px #24140955; }
 .intro h1 span { display: inline-block; animation: type-reveal 1.3s 0.2s steps(21, end) both; }
 @keyframes type-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
 .intro-copy > p { font-size: clamp(1.1rem, 2vw, 1.6rem); line-height: 1.75; letter-spacing: -0.02em; }
-.intro-copy > .intro-aside { margin-top: 20px; font-size: 0.95rem; color: #eee8df; }
-.intro-scroll { display: inline-flex; align-items: center; gap: 20px; padding: 14px 0; margin-top: 40px; font-size: 0.8rem; color: #eee8df; }
+.intro-copy > .intro-aside { margin-top: 20px; font-size: 0.95rem; color: var(--landing-cream); }
+.intro-scroll { display: inline-flex; align-items: center; gap: 20px; padding: 14px 0; margin-top: 40px; font-size: 0.8rem; color: var(--landing-cream); }
 .intro-scroll:hover { text-decoration: underline; }
-.intro-scroll span { font-size: 1.2rem; }
+.intro-scroll span { display: inline-block; font-size: 1.2rem; transition: transform 180ms ease; }
+.intro-scroll:hover span, .intro-scroll:focus-visible span { transform: translateY(4px); }
 .animation-toggle { position: absolute; bottom: 30px; right: 5vw; min-height: 40px; padding: 8px 14px; border: 1px solid #a89d8b70; border-radius: 6px; color: #eee8df; background: #201e1b; font-size: 0.7rem; cursor: pointer; }
 .animation-toggle:hover { border-color: #eee8df; }
 .home-content { position: relative; }
@@ -165,4 +168,31 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .intro h1 span { clip-path: none; }
   .fade-section.reveal-ready:not(.is-visible) { opacity: 1; transform: none; }
+}
+
+/* Original hand-drawn faces, with short interactions instead of a motion loop. */
+.intro-copy > .intro-aside { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 12px; }
+.intro-emoji { display: inline-grid; place-items: center; width: 52px; height: 52px; padding: 2px; border-radius: 50%; cursor: pointer; flex-shrink: 0; }
+.intro-emoji img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.intro-emoji:hover img, .intro-emoji:focus-visible img { animation: reaction-wiggle 480ms ease both; }
+.site-header nav a { position: relative; }
+.nav-reaction { position: absolute; width: 48px; height: 48px; object-fit: contain; left: 50%; top: calc(100% - 4px); opacity: 0; pointer-events: none; transform: translate(-50%, -6px) rotate(-12deg) scale(0.6); transition: opacity 140ms ease, transform 220ms cubic-bezier(0.2, 1.5, 0.5, 1); }
+.site-header nav a:hover .nav-reaction, .site-header nav a:focus-visible .nav-reaction { opacity: 1; transform: translate(-50%, 2px) rotate(8deg) scale(1); }
+.project-art .project-reaction { position: absolute; right: 14px; top: 14px; width: 60px; height: 60px; object-fit: contain; transform: rotate(8deg); pointer-events: none; }
+.project-card:hover .project-reaction, .project-card:focus-visible .project-reaction { animation: reaction-wiggle 480ms ease both; }
+@keyframes reaction-wiggle {
+  0% { transform: rotate(8deg) scale(1); }
+  25% { transform: translateY(-6px) rotate(-12deg) scale(1.12); }
+  55% { transform: translateY(-2px) rotate(12deg) scale(1.08); }
+  80% { transform: rotate(-4deg) scale(1.03); }
+  100% { transform: rotate(8deg) scale(1); }
+}
+@media (hover: none) { .nav-reaction { display: none; } }
+@media (max-width: 600px) {
+  .intro-emoji { width: 44px; height: 44px; }
+  .project-art .project-reaction { width: 54px; height: 54px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-emoji:hover img, .intro-emoji:focus-visible img, .project-card:hover .project-reaction, .project-card:focus-visible .project-reaction { animation: none; }
+  .nav-reaction { transition: none; }
 }
