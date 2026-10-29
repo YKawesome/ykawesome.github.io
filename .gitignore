@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Keep the original portrait local; the website uses the optimized WebP.
+/public/yousef-boba.jpg
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

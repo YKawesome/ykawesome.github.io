@@ -79,10 +79,15 @@ function Home() {
           <div className="little-tools"><span>One smaller tool:</span><Link to="/splitter">Instagram banner splitter ↗</Link></div>
         </section>
         <section id="about" className="about-section section-shell fade-section" aria-labelledby="about-heading">
-          <h2 id="about-heading">a bit more.</h2>
-          <p>I’m studying computer science at UC Irvine (class of 2027). I like building for the communities I’m part of, from Discord servers to hackathons and nonprofits.</p>
-          <p>Outside of that: board games, indie games, and making spreadsheets more complicated than they need to be. The little faces around here are hand-drawn by me.</p>
-          <a className="text-link" href="/Yousef-Khan-Resume.pdf" target="_blank" rel="noopener noreferrer">the longer version (my resume) ↗</a>
+          <div className="about-copy">
+            <h2 id="about-heading">a bit more.</h2>
+            <p>I’m studying computer science at UC Irvine (class of 2027). I like building for the communities I’m part of, from Discord servers to hackathons and nonprofits.</p>
+            <p>Outside of that: board games, indie games, and making spreadsheets more complicated than they need to be. The little faces around here are hand-drawn by me.</p>
+            <a className="text-link" href="/Yousef-Khan-Resume.pdf" target="_blank" rel="noopener noreferrer">the longer version (my resume) ↗</a>
+          </div>
+          <figure className="about-photo">
+            <img src="/yousef-boba.webp" alt="Yousef wearing sunglasses and enjoying a boba tea" width="800" height="748" loading="lazy" decoding="async" />
+          </figure>
         </section>
       </div>
     </>
