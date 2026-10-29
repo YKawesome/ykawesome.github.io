@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
+import usePinnedScroll from "../hooks/usePinnedScroll";
 
 function ProjectsCarousel() {
   const trackRef = useRef(null);
+  const { scrollerRef, frameRef, scrollTrackTo } = usePinnedScroll(trackRef);
   const dialogRef = useRef(null);
   const [selected, setSelected] = useState(projects[0]);
   const [atStart, setAtStart] = useState(true);
@@ -22,11 +25,11 @@ function ProjectsCarousel() {
 
   const move = (direction) => {
     const track = trackRef.current;
-    const card = track.querySelector(".project-card");
-    track.scrollBy({
-      left: direction * (card.offsetWidth + 20),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
-    });
+    const step = track.querySelector(".project-card").offsetWidth + parseFloat(getComputedStyle(track).columnGap);
+    scrollTrackTo(
+      (Math.round(track.scrollLeft / step) + direction) * step,
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    );
   };
 
   const openProject = (project) => {
@@ -36,28 +39,34 @@ function ProjectsCarousel() {
 
   return (
     <>
-      <div className="projects-heading" data-reveal="heading">
-        <div><h2 id="projects-heading">projects.</h2><p>Some things I’ve made. Click one to take a look.</p></div>
-        <div className="carousel-controls" aria-label="Project carousel controls">
-          <button type="button" onClick={() => move(-1)} disabled={atStart} aria-label="Previous projects">←</button>
-          <button type="button" onClick={() => move(1)} disabled={atEnd} aria-label="Next projects">→</button>
+      <div className="projects-scroller" ref={scrollerRef}>
+        <div className="projects-pin" ref={frameRef}>
+          <div className="projects-heading" data-reveal="heading">
+            <div><h2 id="projects-heading">projects.</h2><p>Some things I’ve made. Click one to take a look.</p></div>
+            <div className="carousel-controls" aria-label="Project carousel controls">
+              <button type="button" onClick={() => move(-1)} disabled={atStart} aria-label="Previous projects">←</button>
+              <button type="button" onClick={() => move(1)} disabled={atEnd} aria-label="Next projects">→</button>
+            </div>
+          </div>
+          <div className="project-carousel" ref={trackRef} onScroll={updatePosition} role="region" aria-label="Projects" aria-roledescription="carousel">
+            {projects.map((project, index) => (
+              <button type="button" className="project-card" key={project.id} data-reveal="card" style={{ "--reveal-delay": `${index * 80}ms` }} onClick={() => openProject(project)} aria-haspopup="dialog" aria-label={`Read about ${project.name}`}>
+                <div className={`project-art ${project.id}-art`}>
+                  {project.image ? <img className="project-thumbnail" src={project.image} alt="" width="640" height="480" loading="lazy" decoding="async" /> : <span aria-hidden="true">{project.id === "grouper" ? "grouper" : "401(k)"}</span>}
+                  <img className="project-reaction" src={project.reaction} alt="" width="160" height="160" loading="lazy" decoding="async" />
+                  <span className="project-expand" aria-hidden="true">↗</span>
+                </div>
+                <div className="project-card-copy">
+                  <span className="project-kind">{project.kind}</span>
+                  <h3>{project.name}</h3>
+                  <p>{project.summary}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+          <div className="carousel-progress" aria-hidden="true"><span /></div>
+          <div className="little-tools" data-reveal><span>One smaller tool:</span><Link to="/splitter">Instagram banner splitter ↗</Link></div>
         </div>
-      </div>
-      <div className="project-carousel" ref={trackRef} onScroll={updatePosition} role="region" aria-label="Projects" aria-roledescription="carousel">
-        {projects.map((project, index) => (
-          <button type="button" className="project-card" key={project.id} data-reveal="card" style={{ "--reveal-delay": `${index * 80}ms` }} onClick={() => openProject(project)} aria-haspopup="dialog" aria-label={`Read about ${project.name}`}>
-            <div className={`project-art ${project.id}-art`}>
-              {project.image ? <img className="project-thumbnail" src={project.image} alt="" width="640" height="480" loading="lazy" decoding="async" /> : <span aria-hidden="true">{project.id === "grouper" ? "grouper" : "401(k)"}</span>}
-              <img className="project-reaction" src={project.reaction} alt="" width="160" height="160" loading="lazy" decoding="async" />
-              <span className="project-expand" aria-hidden="true">↗</span>
-            </div>
-            <div className="project-card-copy">
-              <span className="project-kind">{project.kind}</span>
-              <h3>{project.name}</h3>
-              <p>{project.summary}</p>
-            </div>
-          </button>
-        ))}
       </div>
       <dialog className="project-modal" ref={dialogRef} aria-labelledby="modal-title" onClick={(event) => {
         if (event.target === event.currentTarget) dialogRef.current.close();

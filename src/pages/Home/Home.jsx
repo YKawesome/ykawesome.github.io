@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import ProjectsCarousel from "../../components/ProjectsCarousel";
 import AboutPhoto from "../../components/AboutPhoto";
@@ -91,7 +90,6 @@ function Home() {
         </section>
         <section id="projects" className="projects-section section-shell" aria-labelledby="projects-heading">
           <ProjectsCarousel />
-          <div className="little-tools" data-reveal><span>One smaller tool:</span><Link to="/splitter">Instagram banner splitter ↗</Link></div>
         </section>
         <section id="about" className="about-section section-shell" aria-labelledby="about-heading">
           <div className="about-copy">

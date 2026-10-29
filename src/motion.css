@@ -8,7 +8,6 @@
   pointer-events: none;
   mask-image: linear-gradient(to bottom, transparent, #000 100px, #000 calc(100% - 80px), transparent);
 }
-.ambient-parallax { position: absolute; inset: -64px 0; }
 .ambient-grid {
   position: absolute;
   inset: -32px;
@@ -18,30 +17,9 @@
   mask-image: linear-gradient(90deg, #000, #0005 30%, #0005 70%, #000);
   animation: dot-grid-drift 32s linear infinite;
 }
-.ambient-wash {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 0% 22%, #b8874d12, transparent 45%), radial-gradient(ellipse at 100% 74%, #b8b18b0d, transparent 42%);
-  animation: ambient-breathe 12s ease-in-out infinite alternate;
-}
-.ambient-dot {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 12px #d1b18e55;
-  animation: dot-float var(--dot-duration) ease-in-out var(--dot-delay) infinite alternate;
-}
-.ambient-background[data-active="false"] :is(.ambient-grid, .ambient-wash, .ambient-dot) { animation-play-state: paused; }
+/* The second value keeps the scroll-driven pin hold below running while the drift pauses. */
+.ambient-background[data-active="false"] .ambient-grid { animation-play-state: paused, running; }
 @keyframes dot-grid-drift { to { transform: translate(30px, -30px); } }
-@keyframes ambient-breathe { from { opacity: 0.4; } to { opacity: 0.85; } }
-@keyframes dot-float {
-  from { opacity: 0.25; transform: translate(0, 14px); }
-  to { opacity: 0.65; transform: translate(var(--dot-drift), -14px); }
-}
-@supports (animation-timeline: scroll()) {
-  .ambient-parallax { animation: ambient-scroll linear both; animation-timeline: scroll(root block); }
-  @keyframes ambient-scroll { from { transform: translateY(30px); } to { transform: translateY(-30px); } }
-}
 
 /* Individual transform properties leave the existing hover tilts independent. */
 [data-reveal="heading"] { --reveal-y: 16px; }
@@ -60,6 +38,30 @@
   from { opacity: 0; translate: var(--reveal-x, 0) var(--reveal-y, 24px); rotate: var(--reveal-rotate, 0deg); }
   to { opacity: 1; translate: 0 0; rotate: 0deg; }
 }
+
+/* Pinned projects: page scroll moves the cards sideways, see usePinnedScroll.
+   Where scroll-driven animations exist, the dots move down with the page for the
+   length of the pin, so they hold still behind the sticky frame. */
+.carousel-progress { display: none; }
+@media (min-width: 768px) and (min-height: 680px) and (prefers-reduced-motion: no-preference) {
+  .projects-section { padding-block: 0; scroll-margin-top: 0; }
+  .projects-scroller { height: calc(100svh + var(--pin-distance, 0px)); }
+  .projects-pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+  .project-carousel { margin-inline: calc(-1 * var(--shell-pad)); padding: 16px var(--shell-pad) 26px; overflow-x: hidden; scroll-snap-type: none; }
+  .project-card { flex-basis: clamp(280px, min(30vw, (100svh - 450px) * 4 / 3), 400px); }
+  .carousel-progress { display: block; height: 2px; overflow: hidden; border-radius: 2px; background: var(--rule); }
+  .carousel-progress span { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(var(--pin-progress, 0)); }
+  @supports (animation-timeline: view()) {
+    .home-content { timeline-scope: --projects-pin; }
+    .projects-scroller { view-timeline: --projects-pin block; }
+    .ambient-grid {
+      animation: dot-grid-drift 32s linear infinite, pin-hold linear both;
+      animation-timeline: auto, --projects-pin;
+      animation-range: normal, contain;
+    }
+  }
+}
+@keyframes pin-hold { from { translate: 0 0; } to { translate: 0 var(--pin-distance, 0px); } }
 
 .intro-copy > p { animation: intro-arrive 750ms ease-out 180ms both; }
 .intro-copy > .intro-aside { animation-delay: 320ms; }
@@ -85,8 +87,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal].reveal-ready { opacity: 1; translate: none; rotate: none; }
-  .ambient-dot { opacity: 0.3; }
-  .ambient-parallax, .ambient-grid, .ambient-dot,
+  .ambient-grid,
   .experience-row:is(:hover, :focus-within) .experience-logo,
   .carousel-controls button:active:not(:disabled),
   .site-footer nav a:is(:hover, :focus-visible) { transform: none; }
