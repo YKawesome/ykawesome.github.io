@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import portrait from "../assets/yousef-boba.webp";
 import { reactions } from "../data/reactions";
 
 const faces = [reactions.teehee, reactions.hearts, reactions.nerd, reactions.smile];
@@ -46,7 +47,7 @@ function AboutPhoto() {
             <img className="photo-peek" key={src} src={src} alt="" width="160" height="160" loading="lazy" decoding="async" style={{ ...peekPositions[index], "--peek-delay": `${index * 45}ms` }} />
           ))}
         </span>
-        <img className="about-portrait" src="/yousef-boba.webp" alt="Yousef wearing sunglasses and enjoying a boba tea" width="800" height="748" loading="lazy" decoding="async" />
+        <img className="about-portrait" src={portrait} alt="Yousef wearing sunglasses and enjoying a boba tea" width="800" height="748" loading="lazy" decoding="async" />
         <span className="photo-bursts" aria-hidden="true">
           {bursts.flatMap((id) => burstOrigins.map((origin, index) => (
             <img className="photo-burst" key={`${id}-${index}`} src={faces[(id + index) % faces.length]} alt="" width="160" height="160" decoding="async" style={{ left: origin.left, top: origin.top, "--burst-x": `${origin.x}px`, "--burst-y": `${origin.y}px`, "--burst-angle": `${(id % 2 ? -1 : 1) * (18 + index * 9)}deg`, animationDelay: `${index * 55}ms` }} />

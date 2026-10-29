@@ -122,7 +122,7 @@ html { scrollbar-width: thin; scrollbar-color: #6b5f52 var(--paper); }
 .experience-star-peek { position: relative; display: inline-grid; place-items: center; width: 48px; height: 48px; margin-bottom: 10px; color: var(--landing-cream); cursor: pointer; border-radius: 50%; }
 .experience-star { position: relative; z-index: 1; display: grid; place-items: center; width: 40px; height: 40px; font-size: 1.7rem; line-height: 1; border-radius: 50%; background: var(--paper); }
 .experience-star svg { width: 24px; height: 24px; fill: currentColor; stroke: currentColor; stroke-width: 0.7; stroke-linejoin: round; }
-.experience-spacex { position: absolute; top: 50%; left: 50%; width: 42px; height: 28px; background: var(--landing-cream); mask: url("/logos/x.svg") center / 42px 42px no-repeat; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) rotate(-6deg) scale(0.65); }
+.experience-spacex { position: absolute; top: 50%; left: 50%; width: 42px; height: 28px; background: var(--landing-cream); mask: url("./assets/logos/x.svg") center / 42px 42px no-repeat; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) rotate(-6deg) scale(0.65); }
 @media (max-width: 760px) {
   .experience-intro { flex-wrap: wrap; gap: 18px; }
   .experience-scroll-note { flex-basis: 100%; }

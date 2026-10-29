@@ -1,3 +1,8 @@
+import ctcLogo from "../assets/logos/ctc.webp";
+import hackLogo from "../assets/logos/hack.webp";
+import icsLogo from "../assets/logos/ics.webp";
+import jplLogo from "../assets/logos/jpl.png";
+import yssLogo from "../assets/logos/yss.webp";
 import { reactions } from "./reactions";
 
 // Months are "YYYY-MM" and inclusive; a missing end means ongoing.
@@ -7,7 +12,7 @@ export const experience = [
     id: "jpl",
     organization: "NASA Jet Propulsion Laboratory",
     short: "JPL",
-    logo: "/logos/jpl.png",
+    logo: jplLogo,
     reaction: reactions.happycry,
     role: "Software Engineering Intern",
     start: "2026-06",
@@ -25,7 +30,7 @@ export const experience = [
     id: "ctc",
     organization: "Commit the Change",
     short: "CTC",
-    logo: "/logos/ctc.png",
+    logo: ctcLogo,
     reaction: reactions.hearts,
     role: "Tech Lead",
     start: "2025-10",
@@ -41,7 +46,7 @@ export const experience = [
     id: "hack",
     organization: "Hack at UCI",
     short: "Hack at UCI",
-    logo: "/logos/hack.png",
+    logo: hackLogo,
     logoVariant: "dark",
     reaction: reactions.sweat,
     role: "Logistics Director",
@@ -57,7 +62,7 @@ export const experience = [
     id: "ics",
     organization: "UCI ICS",
     short: "ICS TA",
-    logo: "/logos/ics.png",
+    logo: icsLogo,
     logoVariant: "full",
     reaction: reactions.tired,
     role: "Teaching Assistant · ICS 6B / 6D",
@@ -70,7 +75,7 @@ export const experience = [
     id: "yss",
     organization: "Youth Spiritual Summit",
     short: "YSS",
-    logo: "/logos/yss.jpg",
+    logo: yssLogo,
     logoVariant: "full",
     reaction: reactions.relieved,
     role: "Technical Director",
