@@ -67,25 +67,62 @@
 .intro-copy > .intro-aside { animation-delay: 320ms; }
 .intro-scroll { animation: intro-arrive 750ms ease-out 460ms both; }
 @keyframes intro-arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
-/* Experience: pointing at a row or its timeline bar lights up both (data-active,
-   set in Experience.jsx). Bars grow and phrases get highlighted once on arrival. */
-.experience-row { transition: border-color 220ms ease; }
+/* Alternating cards arrive from their side of the path. */
+.experience-card[data-reveal="row"] { --reveal-x: -36px; --reveal-y: 20px; --reveal-rotate: -2deg; }
+.experience-stop:nth-child(even) .experience-card { --reveal-x: 36px; --reveal-rotate: 2deg; --hover-tilt: 1.5deg; }
+.experience-card-wrap::before { transition: opacity 260ms ease; }
+.experience-stop:focus-within .experience-card-wrap::before { opacity: 1; }
+.experience-card { transition: border-color 240ms ease, box-shadow 240ms ease, transform 300ms ease; }
+.experience-logo-echo { transition: opacity 220ms ease, transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-stop[data-scroll-active] .experience-logo-echo { transition-duration: 140ms, 260ms; }
+.experience-stop:is([data-scroll-active], :focus-within) .experience-logo-echo { opacity: 0.456; transform: translate(calc(var(--echo-direction) * var(--echo-reach, clamp(48px, 7vw, 110px))), -50%) rotate(calc(var(--echo-direction) * 10deg)) scale(1); }
+.experience-stop[data-scroll-active] .experience-card { border-color: #a18b70; }
+@media (max-width: 760px) {
+  .experience-stop:is([data-scroll-active], :focus-within) .experience-logo-echo { opacity: 0.336; transform: translate(var(--echo-mobile-reach, 32px), -50%) rotate(8deg) scale(1); }
+}
 .experience-logo { transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1); }
 .experience-sticker { transition: transform 300ms cubic-bezier(0.2, 1.5, 0.5, 1); }
-.experience-row:is([data-active], :focus-within) { border-color: #81705e; }
-.experience-row:is([data-active], :focus-within) .experience-logo { transform: translateY(-2px) rotate(-4deg); }
-.experience-row:is([data-active], :focus-within) .experience-sticker { transform: translate(4px, -3px) rotate(8deg) scale(1.15); }
-.timeline-bar { transition: opacity 200ms ease, box-shadow 200ms ease; }
-.timeline-label { transition: color 200ms ease; }
-.experience-timeline[data-has-active] .timeline-bar { opacity: 0.25; }
-.timeline-row[data-active] .timeline-bar { opacity: 1; box-shadow: 0 0 14px #d1b18e55; }
-.timeline-row[data-active] .timeline-label { color: var(--ink); }
-/* Each bar starts when a steady sweep through time reaches it, so ongoing roles arrive at "now" together. */
-.experience-timeline { --sweep: 1400ms; }
-.experience-timeline.is-visible .timeline-bar { animation: bar-grow calc(var(--length) * var(--sweep)) linear calc(380ms + var(--start) * var(--sweep)) both; }
-.experience-row.is-visible .experience-description strong { animation: marker-swipe 650ms cubic-bezier(0.6, 0, 0.3, 1) calc(var(--reveal-delay, 0ms) + 450ms) both; }
-@keyframes bar-grow { from { transform: scaleX(0); } }
+.experience-node > span { transition: background 240ms ease, box-shadow 240ms ease, transform 240ms ease; }
+.experience-year { transition: color 240ms ease; }
+.experience-stop:is([data-reached], [data-scroll-active], :focus-within) .experience-year { color: #f6e7cce6; }
+.experience-year-burst { transition: opacity 180ms ease, transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-stop:is([data-scroll-active], :focus-within) .experience-year-burst { opacity: 0.8; transform: none; }
+.experience-stop:is([data-scroll-active], :focus-within) .year-streak { stroke-dashoffset: 0; animation: year-streak-draw 480ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--streak-delay, 0ms) both; }
+@keyframes year-streak-draw {
+  from { stroke-dashoffset: 1; opacity: 0; }
+  25% { opacity: 1; }
+  to { stroke-dashoffset: 0; opacity: 1; }
+}
+.experience-stop:focus-within .experience-card { border-color: var(--landing-cream); box-shadow: 0 18px 45px -20px #000a, 0 0 32px -18px #f6e7cc55; }
+.experience-stop:focus-within .experience-node > span { transform: scale(1.25); }
+.experience-card:focus-within .experience-logo { transform: translateY(-3px) rotate(-5deg); }
+.experience-card:focus-within .experience-sticker { transform: translate(4px, -4px) rotate(10deg) scale(1.18); }
+@media (hover: hover) and (pointer: fine) {
+  .experience-stop:hover .experience-card-wrap::before { opacity: 1; }
+  .experience-stop:hover .experience-card { transform: translateY(-5px) rotate(var(--hover-tilt, -1.5deg)); border-color: var(--landing-cream); box-shadow: 0 18px 45px -20px #000a, 0 0 32px -18px #f6e7cc55; }
+  .experience-stop:hover .experience-node > span { transform: scale(1.25); }
+  .experience-card:hover .experience-logo { transform: translateY(-3px) rotate(-5deg); }
+  .experience-card:hover .experience-sticker { transform: translate(4px, -4px) rotate(10deg) scale(1.18); }
+}
+.experience-card.is-visible .experience-description strong { animation: marker-swipe 650ms cubic-bezier(0.6, 0, 0.3, 1) 450ms both; }
 @keyframes marker-swipe { from { background-size: 0% 45%; } }
+@media (max-width: 760px) {
+  .experience-card[data-reveal="row"], .experience-stop:nth-child(even) .experience-card { --reveal-x: 18px; --reveal-y: 16px; --reveal-rotate: 0deg; }
+}
+[data-reveal="tagline"] { --reveal-y: 12px; }
+.experience-tagline.is-visible > span { animation: tagline-arrive 650ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(120ms + var(--phrase-step) * 130ms) both; }
+@keyframes tagline-arrive {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+.experience-spacex { transition: opacity 180ms ease, transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-star { transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1), text-shadow 240ms ease; }
+.experience-star-peek:is(:focus-visible, [aria-pressed="true"]) .experience-spacex { opacity: 1; transform: translate(12px, 8px) rotate(8deg) scale(1); }
+.experience-star-peek:is(:focus-visible, [aria-pressed="true"]) .experience-star { transform: rotate(12deg); text-shadow: 0 0 10px #f6e7cc33; }
+@media (hover: hover) and (pointer: fine) {
+  .experience-star-peek:hover .experience-spacex { opacity: 1; transform: translate(12px, 8px) rotate(8deg) scale(1); }
+  .experience-star-peek:hover .experience-star { transform: rotate(12deg); text-shadow: 0 0 10px #f6e7cc33; }
+}
 .carousel-controls button { transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
 .carousel-controls button:active:not(:disabled) { transform: scale(0.92); }
 .site-footer nav a { transition: color 180ms ease, transform 180ms ease; }
@@ -100,8 +137,9 @@
 }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal].reveal-ready { opacity: 1; translate: none; rotate: none; }
+  .experience-journey[data-tracking] .experience-path-fill { clip-path: none; }
   .ambient-grid,
-  .experience-row:is([data-active], :focus-within) :is(.experience-logo, .experience-sticker),
+  .experience-stop:is(:hover, :focus-within) :is(.experience-card, .experience-logo, .experience-sticker, .experience-node > span),
   .carousel-controls button:active:not(:disabled),
   .site-footer nav a:is(:hover, :focus-visible) { transform: none; }
 }

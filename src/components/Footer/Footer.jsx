@@ -7,7 +7,7 @@ function Footer() {
         <a href="https://www.linkedin.com/in/theyousefkhan/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
         <a href="mailto:theyousefkhan@gmail.com">Email ↗</a>
       </nav>
-      <div className="footer-bottom"><span>© {new Date().getFullYear()} Yousef Khan</span><a href="https://github.com/YKawesome/ykawesome.github.io" target="_blank" rel="noopener noreferrer">Source ↗</a></div>
+      <div className="footer-bottom"><span>© {new Date().getFullYear()} Yousef Khan</span></div>
     </footer>
   );
 }
