@@ -27,12 +27,13 @@ npm run preview
 - The page scrollbar is thin and warm-toned to match the theme, with a WebKit fallback for Safari.
 - Navigation uses ordinary links and the system cursor. No animation library, global image preloader, screenshot preview service, or achievement tracking.
 - Section links scroll smoothly, with instant navigation for reduced-motion preferences.
+- The experience section opens with a small timeline of every role, built from the start and end months and running up to today. Its bars grow in one sweep through time, so ongoing roles reach “now” together. Pointing at or focusing a row lights its bar, and pointing at a bar lights its row. Each row has a hand-drawn reaction sticker, and one key phrase per role gets a highlighter swipe as it arrives. The chart is hidden from screen readers because each row states its own dates.
 - Headings, experience rows, project cards, and about content enter individually as they scroll into view. A shared IntersectionObserver runs each entrance once; keyboard focus immediately reveals its target. The independent entrance transforms preserve card and photo hover tilts.
 - A warm dot grid drifts slowly behind the homepage content. In browsers with CSS scroll-driven animations, it holds still while the projects section is pinned. The drift pauses offscreen and in hidden tabs. Reduced-motion preferences show the content immediately with a static background.
 - Hand-drawn reaction stickers use small WebP derivatives from `src/assets/emojis`. Project stickers gently wiggle on hover or keyboard focus; navbar links reveal reaction faces. Original drawings stay unchanged, and reduced-motion preferences disable the animations.
 - Retired blog, achievement, grade-calculator, and CheckersAI URLs redirect home. The banner splitter and `/ktane` remain available.
 
-Update featured projects in `src/data/projects.js`, experience in `src/pages/Home/Home.jsx`, and the downloadable resume in `public/Yousef-Khan-Resume.pdf`. Grouper links to its public demo; Smart401K has no public demo or repository.
+Update featured projects in `src/data/projects.js`, experience in `src/data/experience.js` (`YYYY-MM` start and end months; `**double asterisks**` mark the highlighted phrase), and the downloadable resume in `public/Yousef-Khan-Resume.pdf`. Grouper links to its public demo; Smart401K has no public demo or repository.
 
 The about photo uses the lazy-loaded `public/yousef-boba.webp`; the original upload is retained locally as `public/yousef-boba.jpg` and excluded from Git. To replace it, update the WebP or the image source in `src/components/AboutPhoto.jsx`. The frame preserves the photo’s proportions and stacks below the text on mobile. Hover reveals hand-drawn faces; clicking adds a short burst.
 

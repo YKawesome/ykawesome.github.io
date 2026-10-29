@@ -67,17 +67,30 @@
 .intro-copy > .intro-aside { animation-delay: 320ms; }
 .intro-scroll { animation: intro-arrive 750ms ease-out 460ms both; }
 @keyframes intro-arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+/* Experience: pointing at a row or its timeline bar lights up both (data-active,
+   set in Experience.jsx). Bars grow and phrases get highlighted once on arrival. */
 .experience-row { transition: border-color 220ms ease; }
 .experience-logo { transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1); }
-.experience-row:focus-within { border-color: #81705e; }
-.experience-row:focus-within .experience-logo { transform: translateY(-2px) rotate(-4deg); }
+.experience-sticker { transition: transform 300ms cubic-bezier(0.2, 1.5, 0.5, 1); }
+.experience-row:is([data-active], :focus-within) { border-color: #81705e; }
+.experience-row:is([data-active], :focus-within) .experience-logo { transform: translateY(-2px) rotate(-4deg); }
+.experience-row:is([data-active], :focus-within) .experience-sticker { transform: translate(4px, -3px) rotate(8deg) scale(1.15); }
+.timeline-bar { transition: opacity 200ms ease, box-shadow 200ms ease; }
+.timeline-label { transition: color 200ms ease; }
+.experience-timeline[data-has-active] .timeline-bar { opacity: 0.25; }
+.timeline-row[data-active] .timeline-bar { opacity: 1; box-shadow: 0 0 14px #d1b18e55; }
+.timeline-row[data-active] .timeline-label { color: var(--ink); }
+/* Each bar starts when a steady sweep through time reaches it, so ongoing roles arrive at "now" together. */
+.experience-timeline { --sweep: 1400ms; }
+.experience-timeline.is-visible .timeline-bar { animation: bar-grow calc(var(--length) * var(--sweep)) linear calc(380ms + var(--start) * var(--sweep)) both; }
+.experience-row.is-visible .experience-description strong { animation: marker-swipe 650ms cubic-bezier(0.6, 0, 0.3, 1) calc(var(--reveal-delay, 0ms) + 450ms) both; }
+@keyframes bar-grow { from { transform: scaleX(0); } }
+@keyframes marker-swipe { from { background-size: 0% 45%; } }
 .carousel-controls button { transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
 .carousel-controls button:active:not(:disabled) { transform: scale(0.92); }
 .site-footer nav a { transition: color 180ms ease, transform 180ms ease; }
 .site-footer nav a:focus-visible { color: var(--accent); transform: translateY(-2px); }
 @media (hover: hover) and (pointer: fine) {
-  .experience-row:hover { border-color: #81705e; }
-  .experience-row:hover .experience-logo { transform: translateY(-2px) rotate(-4deg); }
   .site-footer nav a:hover { color: var(--accent); transform: translateY(-2px); }
 }
 @media (max-width: 600px) {
@@ -88,7 +101,7 @@
 @media (prefers-reduced-motion: reduce) {
   [data-reveal].reveal-ready { opacity: 1; translate: none; rotate: none; }
   .ambient-grid,
-  .experience-row:is(:hover, :focus-within) .experience-logo,
+  .experience-row:is([data-active], :focus-within) :is(.experience-logo, .experience-sticker),
   .carousel-controls button:active:not(:disabled),
   .site-footer nav a:is(:hover, :focus-visible) { transform: none; }
 }

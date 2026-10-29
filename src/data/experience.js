@@ -1,0 +1,71 @@
+import { reactions } from "./reactions";
+
+// Months are "YYYY-MM" and inclusive; a missing end means ongoing.
+// **Double asterisks** mark the phrase the highlighter swipes across.
+export const experience = [
+  {
+    id: "jpl",
+    organization: "NASA Jet Propulsion Laboratory",
+    short: "JPL",
+    logo: "/logos/jpl.png",
+    reaction: reactions.happycry,
+    role: "Software Engineering Intern",
+    start: "2026-06",
+    end: "2026-09",
+    description: "Built telemetry tools for Hermes: a **Grafana datasource plugin**, TimescaleDB and OpenTelemetry providers, and a VS Code remote-host flow.",
+    href: "https://github.com/nasa/hermes",
+    links: [
+      { label: "Final presentation", href: "https://drive.google.com/file/d/1heZtwuvexGAHG2ZJdmEuJg9HD63b7pQe/view?usp=drive_link" },
+      { label: "Final report", href: "https://drive.google.com/file/d/1EZ62fXrMKz7oJEecJKWR4Y7jNHJvn8s6/view?usp=drive_link" },
+    ],
+  },
+  {
+    id: "ctc",
+    organization: "Commit the Change",
+    short: "CTC",
+    logo: "/logos/ctc.png",
+    reaction: reactions.hearts,
+    role: "Tech Lead",
+    start: "2025-10",
+    description: "Helping lead **12 developers and 8 designers** building for nonprofits. Working on PostgreSQL schemas, REST APIs, and Google/Microsoft sign-in.",
+    href: "https://github.com/ctc-uci/eldr",
+    links: [
+      { label: "ELDR Demo Video", href: "https://www.youtube.com/watch?v=KmCgWAyic48" },
+    ],
+  },
+  {
+    id: "hack",
+    organization: "Hack at UCI",
+    short: "Hack at UCI",
+    logo: "/logos/hack.png",
+    logoVariant: "dark",
+    reaction: reactions.sweat,
+    role: "Logistics Director",
+    start: "2023-05",
+    description: "Logistics for IrvineHacks (**500+ attendees**) and directing ZotHacks. Built the virtual queue that handled **400+ day-of check-ins**.",
+    href: "https://github.com/HackAtUCI/irvinehacks-site",
+  },
+  {
+    id: "ics",
+    organization: "UCI ICS",
+    short: "ICS TA",
+    logo: "/logos/ics.png",
+    logoVariant: "full",
+    reaction: reactions.tired,
+    role: "Teaching Assistant · ICS 6B / 6D",
+    start: "2024-03",
+    end: "2026-04",
+    description: "Exam review, grading quality control, and disputes for **600+ students**. Helped bring Pensieve into the grading workflow.",
+  },
+  {
+    id: "yss",
+    organization: "Youth Spiritual Summit",
+    short: "YSS",
+    logo: "/logos/yss.jpg",
+    logoVariant: "full",
+    reaction: reactions.relieved,
+    role: "Technical Director",
+    start: "2022-12",
+    description: "Rebuilt checkout with Stripe, server-side validation, and atomic Prisma transactions to **prevent duplicate charges**.",
+  },
+];
