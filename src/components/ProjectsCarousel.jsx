@@ -43,7 +43,7 @@ function ProjectsCarousel() {
       <div className="projects-scroller" ref={scrollerRef}>
         <div className="projects-pin" ref={frameRef}>
           <div className="projects-heading" data-reveal="heading">
-            <div><h2 id="projects-heading">projects.</h2><p>some things i've made!! check em out :)</p></div>
+            <div><h2 id="projects-heading">projects.</h2><p>some things i’ve made!! check em out :)</p></div>
             <div className="carousel-controls" aria-label="Project carousel controls" hidden={atStart && atEnd}>
               <button type="button" onClick={() => move(-1)} disabled={atStart} aria-label="Previous projects">←</button>
               <button type="button" onClick={() => move(1)} disabled={atEnd} aria-label="Next projects">→</button>
