@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { images } from "../../utils/preloadimages";
-import { motion } from "framer-motion";
+import banner from "../../assets/suneri.webp";
 
 // Function to download images as a ZIP file
 const downloadAsZipFile = async (results) => {
@@ -44,10 +43,8 @@ const downloadAsZipFile = async (results) => {
 };
 
 function Splitter() {
-  const banner = images["suneri.png"];
 
   const [file, setFile] = useState(null);
-  const [croppedImages, setCroppedImages] = useState([]);
   const [rows, setRows] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -59,7 +56,6 @@ function Splitter() {
       setFile(selected);
       setErrorMessage("");
       setSuccessMessage("");
-      setCroppedImages([]); // Clear any previous results
     }
   };
 
@@ -149,7 +145,6 @@ function Splitter() {
         }
 
         // Update state
-        setCroppedImages(results.map((res) => res.dataUrl));
         setErrorMessage("");
 
         // Ask user if they want to download as ZIP (default option)
@@ -188,12 +183,7 @@ function Splitter() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-    >
+    <div>
       <div
         className="min-h-screen hero"
         style={{
@@ -202,7 +192,7 @@ function Splitter() {
       >
         <div className="hero-overlay"></div>
         <div className="hero-content text-neutral-content md:text-center">
-          <div className="p-8 shadow-2xl md:w-xl sm:w-sm w-xs glass bg-black/20 rounded-2xl">
+          <div className="p-8 md:w-xl sm:w-sm w-xs tool-panel">
             <h1 className="mb-5 text-5xl font-bold text-center md:text-6xl">
               IG Banner Splitter
             </h1>
@@ -224,6 +214,7 @@ function Splitter() {
             <div className="flex flex-col items-center justify-center space-y-4">
               <input
                 type="file"
+                aria-label="Banner image"
                 accept="image/*"
                 onChange={handleFileChange}
                 className={`file-input file-input-bordered w-full max-w-xs bg-neutral ${
@@ -236,6 +227,7 @@ function Splitter() {
               />
               <input
                 type="number"
+                aria-label="Number of banner rows"
                 placeholder="Rows"
                 min={1}
                 onChange={(e) => setRows(parseInt(e.target.value, 10) || 1)}
@@ -257,7 +249,7 @@ function Splitter() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

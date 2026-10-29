@@ -1,4 +1,5 @@
-import { images } from "../../utils/preloadimages";
+import hexamini from "../../assets/hexamini.png";
+import hexamaze from "../../assets/hexamaze.png";
 import { useState } from "react";
 
 function Hexamaze() {
@@ -23,14 +24,14 @@ function Hexamaze() {
             <div className="py-5 hero bg-base-200">
                 <div className="flex flex-col items-center text-center hero-content">
                     <img
-                        src={images["hexamini.png"]}
+                        src={hexamini}
                         className="w-1/4 transition-transform duration-300 cursor-grab"
                         style={{ transform: `rotate(${rotation}deg)` }}
                         alt="Hexamaze puzzle"
                         onClick={handleRotate}
                     />
                     <img
-                        src={images["hexamaze.png"]}
+                        src={hexamaze}
                         className="w-7/12 transition-transform duration-300 cursor-grab"
                         style={{ transform: `rotate(${rotation}deg)` }}
                         alt="Hexamaze puzzle"

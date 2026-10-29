@@ -1,85 +1,42 @@
 # Yousef Khan
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/135c4855-9c27-4669-a838-3aa7ea1a5a4a" width="200" alt="Yousef Khan Icon"/>
-</p>
+My personal portfolio: a full-screen animated introduction, concise experience, and projects in a swipeable carousel. Project cards open animated native dialogs, keeping the main portfolio on one scrolling page.
 
-<p align="center"><em>This is my super awesome amazing portfolio website :D</em></p>
+Built with React, Vite, Tailwind CSS, and DaisyUI. Hosted on GitHub Pages, with deployment through GitHub Actions on pushes to `main`.
 
----
+## Development
 
-## 🚀 About the Project
-
-This portfolio site showcases who I am, what I’ve worked on, and what I enjoy building. It’s built with modern web technologies and aims to be both functional and expressive — fast, responsive, and smooth.
-
-> From custom link previews to animated page transitions, this site is designed to feel more like a product than a portfolio.
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend Framework**: [React](https://react.dev/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**:
-  - [Tailwind CSS](https://tailwindcss.com/)
-  - [DaisyUI](https://daisyui.com/)
-  - [Aceternity UI](https://ui.aceternity.com/) (used for link previews and aesthetic components)
-- **Animation**: [Framer Motion](https://www.framer.com/motion/) for seamless page transitions
-- **Deployment**:
-  - Hosted on **GitHub Pages**
-  - Continuous Deployment via **GitHub Actions** (automatic deployment on push)
-- **Routing**:
-  - Uses a clever workaround to get `BrowserRouter` working on static sites (GitHub Pages) by redirecting all 404s to `index.html` — based on [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages)
-
----
-
-## 📁 Project Features
-
-- Custom 404 page
-- Animated page transitions
-- Dynamic link previews
-- Mobile-friendly design
-- Minimalist and clean layout
-- Fast and lightweight
-
----
-
-## 📸 Preview
-
-> [View the website](https://theyousefkhan.com)  
-
----
-
-## 🧪 Development
-
-```bash
-npm install
+```sh
+npm ci
 npm run dev
 ```
 
-To build:
-
-```bash
+```sh
 npm run build
+npm run preview
 ```
 
-To deploy manually (auto-deploy is already configured via GitHub Actions):
+## Keeping it fast
 
-```bash
+- The homepage renders immediately, without an image preload gate.
+- Legacy project pages and tools load on demand with React `lazy` and `Suspense`. JSZip loads only when exporting images.
+- Images use explicit imports, so unused artwork stays out of production builds. Project artwork and the landing poster use WebP.
+- The original landing MP4 stays. Its poster renders before playback; the video pauses when offscreen or in a hidden tab. Reduced-motion and data-saving preferences start with a still image, with an explicit play control.
+- The typing introduction uses a short CSS animation, with the complete heading available to screen readers immediately.
+- The carousel uses native scrolling and CSS scroll snapping. Project dialogs use browser focus trapping, Escape handling, and short CSS transitions.
+- Navigation uses ordinary links and the system cursor. No animation library, global image preloader, screenshot preview service, or achievement tracking.
+- Retired blog and achievement URLs redirect home. Project and tool URLs remain available, including `/ktane`.
+
+Update featured projects in `src/data/projects.js`, experience in `src/pages/Home/Home.jsx`, and the downloadable resume in `public/Yousef-Khan-Resume.pdf`. Grouper links to its public demo; Smart401K has no public demo or repository.
+
+GitHub Pages deep links are handled by `public/404.html` and the redirect recovery in `index.html`, based on [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages).
+
+## Deployment
+
+Pushes to `main` deploy automatically. To deploy manually:
+
+```sh
 npm run deploy
 ```
 
----
-
-## 🙌 Credits
-
-- Inspired by the amazing open-source ecosystem
-- Shoutout to [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages) for the 404 routing fix
-
----
-
-## 🪪 License
-
-MIT License © 2025 Yousef Khan
-
----
+MIT License © Yousef Khan

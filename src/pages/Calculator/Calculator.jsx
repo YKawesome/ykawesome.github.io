@@ -1,73 +1,27 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CS161 from "./CS161";
 import CS162 from "./CS162";
 import Empty from "./Empty";
 
-import { motion, AnimatePresence } from "framer-motion";
-
-
 function Calculator() {
   const [selected, setSelected] = useState("");
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="bg-base-200 h-[94vh] min-h-fit flex flex-col items-center justify-center"
-    >
-      <div className="flex flex-col items-center py-4 bg-base-200">
-        <fieldset className="fieldset">
-          <select
-            value={selected}
-            onChange={(e) => setSelected(e.target.value)}
-            className="select select-xl"
-          >
-            <option value="" disabled>
-              Pick a Calculator
-            </option>
+    <section className="bg-base-200 min-h-[65vh] flex flex-col items-center justify-center py-10" aria-labelledby="calculator-heading">
+      <div className="flex flex-col items-center gap-5 py-4">
+        <h1 id="calculator-heading" className="text-4xl font-bold">Grade Calculator</h1>
+        <label className="fieldset">
+          <span className="fieldset-legend">UCI course</span>
+          <select value={selected} onChange={(event) => setSelected(event.target.value)} className="select select-lg">
+            <option value="" disabled>Pick a calculator</option>
             <option value="CS161">CS161</option>
             <option value="CS162">CS162</option>
           </select>
-        </fieldset>
-        <h1 className="mt-4 text-4xl font-bold"> Grade Calculator</h1>
+        </label>
       </div>
-      <AnimatePresence mode="wait">
-        {selected === "" && (
-          <motion.div
-            key="empty"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Empty />
-          </motion.div>
-        )}
-        {selected === "CS161" && (
-          <motion.div
-            key="cs161"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-          >
-            <CS161 />
-          </motion.div>
-        )}
-        {selected === "CS162" && (
-          <motion.div
-            key="cs162"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-          >
-            <CS162 />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      {selected === "" && <Empty />}
+      {selected === "CS161" && <CS161 />}
+      {selected === "CS162" && <CS162 />}
+    </section>
   );
 }
 
