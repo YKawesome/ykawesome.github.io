@@ -41,6 +41,7 @@ html { scrollbar-width: thin; scrollbar-color: #6b5f52 var(--paper); }
 .intro-shade { position: absolute; inset: 0; background: linear-gradient(180deg, #14131170 0%, #14131155 15%, #14131185 38%, #14131199 65%, #201e1b 100%); z-index: -2; }
 .intro-copy { text-align: center; padding: 150px 24px 170px; max-width: 1000px; color: var(--landing-cream); text-shadow: 0 2px 12px #24140999; }
 .intro h1 { font-size: clamp(2.5rem, 5.4vw, 5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.055em; margin-bottom: 28px; text-shadow: 0 2px 4px #24140988, 0 8px 22px #24140955; }
+.intro-name { line-height: inherit; text-align: inherit; text-shadow: inherit; cursor: pointer; }
 .intro-typewriter { display: inline-grid; text-align: left; }
 .intro-typewriter > span { grid-area: 1 / 1; }
 .intro-typewriter-space { visibility: hidden; }
@@ -324,7 +325,7 @@ html { scrollbar-width: thin; scrollbar-color: #6b5f52 var(--paper); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .intro-typewriter-space { visibility: visible; }
+  .intro-typewriter-space[data-current] { visibility: visible; }
   .intro-typed-text { visibility: hidden; }
   .intro-typed-text::after { display: none; }
 }
