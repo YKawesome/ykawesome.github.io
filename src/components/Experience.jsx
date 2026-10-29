@@ -43,7 +43,7 @@ function Experience() {
   return (
     <section id="experience" className="experience-section section-shell" aria-labelledby="experience-heading">
       <div className="experience-intro">
-        <div data-reveal="heading"><h2 id="experience-heading">work & experience.</h2><p>i'm in a lot of places at once...</p></div>
+        <div data-reveal="heading"><h2 id="experience-heading">work & experience.</h2><p>i’m in a lot of places at once...</p></div>
         {/* The rows below carry the same dates, so the chart is visual only. */}
         <div className="experience-timeline" data-reveal style={{ "--reveal-delay": "120ms" }} data-has-active={active ? "" : undefined} aria-hidden="true">
           <div className="timeline-axis">

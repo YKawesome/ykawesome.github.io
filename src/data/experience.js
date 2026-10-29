@@ -12,7 +12,7 @@ export const experience = [
     role: "Software Engineering Intern",
     start: "2026-06",
     end: "2026-09",
-    description: "Built telemetry tools for Hermes: a **Grafana datasource plugin**, TimescaleDB and OpenTelemetry providers, and a VS Code extension optimizations. Still here :D",
+    description: "Built telemetry tools for Hermes: a **Grafana datasource plugin**, TimescaleDB and OpenTelemetry providers, and VS Code extension optimizations. Still here :D",
     href: "https://github.com/nasa/hermes",
     links: [
       { label: "Final presentation", href: "https://drive.google.com/file/d/1heZtwuvexGAHG2ZJdmEuJg9HD63b7pQe/view?usp=drive_link" },
@@ -55,7 +55,7 @@ export const experience = [
     role: "Teaching Assistant · ICS 6B / 6D",
     start: "2024-03",
     end: "2026-04",
-    description: "Led Exam review, grading quality control, and disputes for **600+ students**. Helped bring Pensieve (an AI-powered grading platform) into the grading workflow.",
+    description: "Led exam review, grading quality control, and disputes for **600+ students**. Helped bring Pensieve (an AI-powered grading platform) into the grading workflow.",
   },
   {
     id: "yss",
