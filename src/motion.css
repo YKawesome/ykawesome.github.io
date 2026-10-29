@@ -40,17 +40,18 @@
 }
 
 /* Pinned projects: page scroll moves the cards sideways, see usePinnedScroll.
+   The hook only sets data-pinned when the cards overflow their static row.
    Where scroll-driven animations exist, the dots move down with the page for the
    length of the pin, so they hold still behind the sticky frame. */
 .carousel-progress { display: none; }
 @media (min-width: 768px) and (min-height: 680px) and (prefers-reduced-motion: no-preference) {
-  .projects-section { padding-block: 0; scroll-margin-top: 0; }
-  .projects-scroller { height: calc(100svh + var(--pin-distance, 0px)); }
-  .projects-pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; }
-  .project-carousel { margin-inline: calc(-1 * var(--shell-pad)); padding: 16px var(--shell-pad) 26px; overflow-x: hidden; scroll-snap-type: none; }
-  .project-card { flex-basis: clamp(280px, min(30vw, (100svh - 450px) * 4 / 3), 400px); }
-  .carousel-progress { display: block; height: 2px; overflow: hidden; border-radius: 2px; background: var(--rule); }
-  .carousel-progress span { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(var(--pin-progress, 0)); }
+  .projects-section:has(> [data-pinned]) { padding-block: 0; scroll-margin-top: 0; }
+  .projects-scroller[data-pinned] { height: calc(100svh + var(--pin-distance, 0px)); }
+  [data-pinned] .projects-pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+  [data-pinned] .project-carousel { margin-inline: calc(-1 * var(--shell-pad)); padding: 16px var(--shell-pad) 26px; overflow-x: hidden; scroll-snap-type: none; }
+  [data-pinned] .project-card { flex-basis: clamp(280px, min(30vw, (100svh - 450px) * 4 / 3), 400px); }
+  [data-pinned] .carousel-progress { display: block; height: 2px; overflow: hidden; border-radius: 2px; background: var(--rule); }
+  [data-pinned] .carousel-progress span { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(var(--pin-progress, 0)); }
   @supports (animation-timeline: view()) {
     .home-content { timeline-scope: --projects-pin; }
     .projects-scroller { view-timeline: --projects-pin block; }

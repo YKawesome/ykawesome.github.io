@@ -44,15 +44,16 @@ function ProjectsCarousel() {
         <div className="projects-pin" ref={frameRef}>
           <div className="projects-heading" data-reveal="heading">
             <div><h2 id="projects-heading">projects.</h2><p>some things i've made!! check em out :)</p></div>
-            <div className="carousel-controls" aria-label="Project carousel controls">
+            <div className="carousel-controls" aria-label="Project carousel controls" hidden={atStart && atEnd}>
               <button type="button" onClick={() => move(-1)} disabled={atStart} aria-label="Previous projects">←</button>
               <button type="button" onClick={() => move(1)} disabled={atEnd} aria-label="Next projects">→</button>
             </div>
           </div>
           <div className="project-carousel" ref={trackRef} onScroll={updatePosition} role="region" aria-label="Projects" aria-roledescription="carousel">
             {projects.map((project, index) => (
-              <button type="button" className="project-card" key={project.id} data-reveal="card" style={{ "--reveal-delay": `${index * 80}ms` }} onClick={() => openProject(project)} aria-haspopup="dialog" aria-label={`Read about ${project.name}`}>
+              <button type="button" className="project-card" key={project.id} data-reveal="card" style={{ "--reveal-delay": `${index * 80}ms` }} onClick={() => openProject(project)} aria-haspopup="dialog" aria-label={`Read about ${project.name}${project.featured ? " (featured)" : ""}`}>
                 <div className={`project-art ${project.id}-art`}>
+                  {project.featured && <span className="project-featured" aria-hidden="true">★ Featured</span>}
                   {project.image ? <img className="project-thumbnail" src={project.image} alt="" width="640" height="480" loading="lazy" decoding="async" /> : <span aria-hidden="true">{project.id === "grouper" ? "grouper" : "401(k)"}</span>}
                   <img className="project-reaction" src={project.reaction} alt="" width="160" height="160" loading="lazy" decoding="async" />
                   <span className="project-expand" aria-hidden="true">↗</span>

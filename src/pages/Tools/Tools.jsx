@@ -15,7 +15,7 @@ function Tools() {
       <AmbientBackground />
       <div className="tools-heading" data-reveal="heading">
         <h1>tools.</h1>
-        <p>Small things I made because I needed them. Free to use, no sign-up.</p>
+        <p>small things i made because i needed them. free to use :D</p>
       </div>
       <div className="tools-grid">
         {tools.map((tool, index) => (
@@ -35,7 +35,7 @@ function Tools() {
         <div className="tools-soon" data-reveal="card" style={{ "--reveal-delay": `${tools.length * 80}ms` }}>
           <img src={reactions.popcorn} alt="" width="160" height="160" loading="lazy" decoding="async" />
           <h2>more soon.</h2>
-          <p>I make these whenever something bugs me enough.</p>
+          <p>i make these when i get bothered enough LOL</p>
         </div>
       </div>
     </div>

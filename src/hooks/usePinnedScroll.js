@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef } from "react";
 
-// While the frame is sticky (see motion.css), scrolling the page through the
-// taller scroller moves the track sideways one to one. Sideways swipes over the
-// track, and anything else that scrolls it, move the page to match.
+// When the cards don't fit, the frame turns sticky (see motion.css) and
+// scrolling the page through the taller scroller moves the track sideways one
+// to one. Sideways swipes over the track, and anything else that scrolls it,
+// move the page to match.
 export default function usePinnedScroll(trackRef) {
   const scrollerRef = useRef(null);
   const frameRef = useRef(null);
@@ -41,6 +42,12 @@ export default function usePinnedScroll(trackRef) {
       jumpPage(track.scrollLeft);
     };
     const measure = () => {
+      // Decide from the static row, so pinning can't change its own answer.
+      // Unpinning shortens the page for a moment, which can clamp the scroll near the bottom.
+      const y = window.scrollY;
+      scroller.removeAttribute("data-pinned");
+      scroller.toggleAttribute("data-pinned", track.scrollWidth - track.clientWidth > 1);
+      if (window.scrollY !== y) window.scrollTo({ top: y, behavior: "instant" });
       state.active = getComputedStyle(frame).position === "sticky";
       state.distance = state.active ? track.scrollWidth - track.clientWidth : 0;
       // On the root, so the background's pin hold in motion.css can read it too.

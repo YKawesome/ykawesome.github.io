@@ -154,14 +154,15 @@ html { scrollbar-width: thin; scrollbar-color: #6b5f52 var(--paper); }
 }
 .project-art { flex-shrink: 0; width: 100%; position: relative; aspect-ratio: 4 / 3; overflow: hidden; display: grid; place-items: center; background: #d5c7af; }
 .project-art img { width: 100%; height: 100%; object-fit: cover; }
-.project-art > span:not(.project-expand) { font-size: 3rem; letter-spacing: -0.07em; font-weight: 750; }
+.project-art > span:not(.project-expand, .project-featured) { font-size: 3rem; letter-spacing: -0.07em; font-weight: 750; }
+.project-featured { position: absolute; z-index: 1; left: 14px; top: 14px; padding: 5px 11px; color: var(--paper); background: var(--landing-cream); border-radius: 999px; font-size: 0.7rem; font-weight: 650; letter-spacing: 0.02em; box-shadow: 0 3px 6px -2px #18100866; rotate: -3deg; }
 .grouper-art { background: #153c75; }
 .icsyak-art { background: #1b1b27; }
 .icsyak-art .project-thumbnail { object-position: left top; transform: scale(1.75); transform-origin: top left; }
 .antlogic-art { background: #303030; }
 .antlogic-art .project-thumbnail { object-fit: contain; transform: scale(1.12); }
 .smart401k-art { background: #b6c8b3; color: #263f29; }
-.smart401k-art > span:not(.project-expand) { font-weight: 500; letter-spacing: -0.06em; }
+.smart401k-art > span:not(.project-expand, .project-featured) { font-weight: 500; letter-spacing: -0.06em; }
 .project-expand { position: absolute; right: 14px; bottom: 14px; display: grid; place-items: center; width: 32px; height: 32px; background: var(--paper); color: var(--ink); border-radius: 50%; font-size: 1.1rem; }
 .project-card-copy { flex: 1; padding: 22px; }
 .project-kind { color: var(--muted); font-size: 0.72rem; line-height: 1.5; }
