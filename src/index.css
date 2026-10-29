@@ -1,20 +1,18 @@
-@import 'tailwindcss';
-/* @import "tw-animate-css"; */
-
-@plugin "daisyui" {
-  themes: retro --default;
-}
-@plugin "daisyui/theme" {
-  name: "retro";
-  default: true;
-  --color-neutral: oklch(28.42% 0.0095 355.53);
-  --color-neutral-content: oklch(91.64% 0.0346 90.52);
-  --color-base-100: oklch(91.64% 0.0346 90.52);
-  --color-base-200: oklch(88.27% 0.0494 91.77);
-  --color-base-300: oklch(84.15% 0.0648 90.51);
-  --color-accent: oklch(70.57% 0.125 53.7);
-  --color-secondary: oklch(80.77% 0.0517 160.28);
-  --color-primary: oklch(77.04% 0.1029 23.4);
-  --depth: 1;
-  --noise: 1;
+/* The parts of Tailwind's preflight reset this site relies on. It sits in a
+   layer, so every rule in App.css and motion.css wins over it. */
+@layer reset {
+  *, ::before, ::after, ::backdrop, ::file-selector-button { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid; }
+  html { -webkit-text-size-adjust: 100%; tab-size: 4; line-height: 1.5; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
+  a { color: inherit; text-decoration: inherit; }
+  b, strong { font-weight: bolder; }
+  small { font-size: 80%; }
+  ol, ul, menu { list-style: none; }
+  img, svg, video, canvas, audio, iframe, embed, object { display: block; vertical-align: middle; }
+  img, video { max-width: 100%; height: auto; }
+  button, input, select, optgroup, textarea, ::file-selector-button { font: inherit; letter-spacing: inherit; color: inherit; opacity: 1; background-color: transparent; border-radius: 0; }
+  ::placeholder { opacity: 1; color: color-mix(in oklab, currentcolor 50%, transparent); }
+  textarea { resize: vertical; }
+  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button { appearance: button; }
+  [hidden]:where(:not([hidden="until-found"])) { display: none !important; }
 }

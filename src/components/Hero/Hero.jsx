@@ -1,160 +1,66 @@
-import TypeIt from "typeit-react";
-import { images } from "../../utils/preloadimages";
-import { useState, useEffect, useRef, useMemo } from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import ProjectsDrawer from "../ui/ProjectsDrawer";
-import { useAchievements } from "../../context/AchievementsContext";
-import heroVid from "../../assets/deeryakmainslow.mp4";
-
-const emojis = {};
-const context = import.meta.glob("../../assets/emojis/*.{png,jpg,jpeg,svg}", {
-  eager: true,
-});
-
-for (const path in context) {
-  const fileName = path.split("/").pop();
-  emojis[fileName] = context[path].default;
-}
-
-const FuzzyOverlay = () => {
-  return (
-    <motion.div
-      initial={{ transform: "translateX(-10%) translateY(-10%)" }}
-      animate={{
-        transform: "translateX(10%) translateY(10%)",
-      }}
-      transition={{
-        repeat: Infinity,
-        duration: 0.2,
-        ease: "linear",
-        repeatType: "mirror",
-      }}
-      style={{
-        backgroundImage: `url(${images["blacknoise.png"]})`,
-      }}
-      className="absolute pointer-events-none -inset-full opacity-4"
-    />
-  );
-};
+import { useEffect, useRef, useState } from "react";
+import { preload } from "react-dom";
+import { Link } from "react-router-dom";
+import TypingHeading from "./TypingHeading";
+import heroVideo from "../../assets/deeryakmainslow.mp4";
+import heroPoster from "../../assets/hero-poster.webp";
 
 function Hero() {
-  const [emojiIndex, setEmojiIndex] = useState(3);
-  const emojiKeys = Object.values(emojis);
-  const [open, setOpen] = useState(false);
-  const [activeProject, setActiveProject] = useState(null); // Track active project
-  const highlightRef = useRef(null);
-  const navigate = useNavigate(); // Initialize navigate
-  const { achievements, unlock } = useAchievements();
-  const emojiMasterUnlocked = useMemo(() => achievements.find(a => a.id === 'emoji-master')?.unlocked, [achievements]);
-  const [seen, setSeen] = useState(() => new Set([emojiKeys[3]])); // track unique emojis
-
-  const handleHover = () => {
-    setEmojiIndex((prevIndex) => {
-      const next = (prevIndex + 1) % emojiKeys.length;
-      setSeen(prev => {
-        if (emojiMasterUnlocked) return prev; // no need to track
-        if (!prev.has(emojiKeys[next])) {
-          const updated = new Set(prev);
-            updated.add(emojiKeys[next]);
-            // unlock if all seen
-            if (updated.size === emojiKeys.length && !emojiMasterUnlocked) {
-              unlock('emoji-master');
-            }
-          return updated;
-        }
-        return prev;
-      });
-      return next;
-    });
-  };
-
-  const handleOpenDrawer = () => {
-    if (window.innerWidth >= 1024) {
-      setOpen(true);
-    }
-  };
+  preload(heroPoster, { as: "image", fetchPriority: "high" });
+  const videoRef = useRef(null);
+  const [started, setStarted] = useState(false);
+  const [paused, setPaused] = useState(() =>
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches || Boolean(navigator.connection?.saveData)
+  );
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (highlightRef.current && !highlightRef.current.contains(event.target)) {
-        setActiveProject(null); // Reset active project
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handlePreference = () => setPaused(preference.matches || Boolean(navigator.connection?.saveData));
+    preference.addEventListener("change", handlePreference);
+    return () => preference.removeEventListener("change", handlePreference);
   }, []);
 
+  useEffect(() => {
+    if (!paused) setStarted(true);
+    const video = videoRef.current;
+    let inView = false;
+    let active = true;
+    const updatePlayback = () => {
+      if (paused || !inView || document.hidden) {
+        video.pause();
+      } else if (started) {
+        video.play().catch(() => {
+          if (active) setPaused(true);
+        });
+      }
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      updatePlayback();
+    });
+    observer.observe(video);
+    updatePlayback();
+    document.addEventListener("visibilitychange", updatePlayback);
+    return () => {
+      active = false;
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", updatePlayback);
+      video.pause();
+    };
+  }, [paused, started]);
+
   return (
-    <div className="relative min-h-screen overflow-hidden hero">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover -z-10"
-      >
-        <source src={heroVid} type="video/mp4" />
-      </video>
-      <div className="hero-overlay"></div>
-      <div className="hero-overlay opacity-60"></div>
-      <FuzzyOverlay />
-
-      <div className="text-center hero-content text-neutral-content rounded-2xl lg:p-9 lg:pb-6 lg:shadow-2xl">
-        <div className="max-w-md lg:max-w-xl lg:w-xl">
-          <TypeIt
-            className="text-4xl font-bold sm:text-6xl"
-            options={{ startDelay: 1500 }}
-          >
-            hi, i&apos;m yousef khan.
-          </TypeIt>
-          <p className="max-w-md mt-5 mb-5 text-2xl sm:text-3xl lg:max-w-xl lg:w-xl">
-            I&apos;m a{" "}
-            <span className="hover:bg-primary hover:text-primary-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5 hover:cursor-none">
-              Computer Science Student
-            </span>{" "}
-            at{" "}
-            <span className="hover:bg-secondary hover:text-secondary-content transform hover:-rotate-2 inline-block transition-transform ease-in-out px-0.5 hover:cursor-none">
-              UCI
-            </span>
-            . I&apos;m passionate about many things, but I truly love{" "}
-            <span className="hover:bg-accent hover:text-accent-content transform hover:rotate-1 inline-block transition-transform ease-in-out px-0.5 hover:cursor-none">
-              making things
-            </span>{" "}
-            that save people time.
-          </p>
-          <p className="mb-5 text-xl">
-            {/* Also, I love <span onClick={toggleShetr}>spreadsheets</span>. */}
-            Also, I love spreadsheets.
-          </p>
-          <p className="mb-5">and discord.</p>
-          <div className="flex justify-center" onClick={handleOpenDrawer}>
-            <img
-              src={emojiKeys[emojiIndex]}
-              alt="emojis"
-              className="w-16 h-16 transition-transform ease-in-out transform hover:cursor-none clickable duration-400 hover:scale-110 hover:rotate-12"
-              onMouseEnter={() => window.innerWidth >= 640 && handleHover()}
-              onClick={() => window.innerWidth < 640 && handleHover()}
-            />
-          </div>
-        </div>
+    <section className="intro" aria-labelledby="intro-heading">
+      <video className="intro-video" ref={videoRef} src={started ? heroVideo : undefined} poster={heroPoster} width="888" height="1000" loop muted playsInline preload="none" aria-label="Illustrated Yousef with antlers, holding a boba tea" />
+      <div className="intro-shade" aria-hidden="true" />
+      <div className="intro-copy">
+        <TypingHeading />
+        <p>i’m a computer science student at uci.<br />i like making things that save people time.</p>
+        <p className="intro-aside">also, i love spreadsheets. and discord...</p>
+        <Link className="intro-scroll" to="/#experience"><span className="intro-scroll-label">a little more about me</span><span className="intro-scroll-arrow" aria-hidden="true">↓</span></Link>
       </div>
-
-      <ProjectsDrawer
-        open={open}
-        setOpen={setOpen}
-        activeProject={activeProject}
-        setActiveProject={setActiveProject}
-        navigate={navigate}
-        highlightRef={highlightRef}
-      />
-    </div>
+    </section>
   );
 }
 
 export default Hero;
-
-Hero.propTypes = {};

@@ -1,0 +1,146 @@
+/* Warm dot paper, with movement kept behind the reading surface. */
+.home-content { isolation: isolate; }
+.ambient-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, #000 100px, #000 calc(100% - 80px), transparent);
+}
+.ambient-grid {
+  position: absolute;
+  inset: -32px;
+  background-image: radial-gradient(circle, #d1b18e45 1px, transparent 1.6px);
+  background-size: 30px 30px;
+  opacity: 0.45;
+  mask-image: linear-gradient(90deg, #000, #0005 30%, #0005 70%, #000);
+  animation: dot-grid-drift 32s linear infinite;
+}
+/* The second value keeps the scroll-driven pin hold below running while the drift pauses. */
+.ambient-background[data-active="false"] .ambient-grid { animation-play-state: paused, running; }
+@keyframes dot-grid-drift { to { transform: translate(30px, -30px); } }
+
+/* Individual transform properties leave the existing hover tilts independent. */
+[data-reveal="heading"] { --reveal-y: 16px; }
+[data-reveal="row"] { --reveal-x: -18px; --reveal-y: 12px; }
+[data-reveal="card"] { --reveal-y: 22px; --reveal-rotate: -1.5deg; }
+[data-reveal="photo"] { --reveal-x: 20px; --reveal-y: 16px; --reveal-rotate: 3deg; --reveal-delay: 100ms; }
+[data-reveal].reveal-ready:not(.is-visible) {
+  opacity: 0;
+  translate: var(--reveal-x, 0) var(--reveal-y, 24px);
+  rotate: var(--reveal-rotate, 0deg);
+}
+[data-reveal].reveal-ready.is-visible {
+  animation: scroll-arrive 700ms cubic-bezier(0.2, 0.75, 0.25, 1) var(--reveal-delay, 0ms) both;
+}
+@keyframes scroll-arrive {
+  from { opacity: 0; translate: var(--reveal-x, 0) var(--reveal-y, 24px); rotate: var(--reveal-rotate, 0deg); }
+  to { opacity: 1; translate: 0 0; rotate: 0deg; }
+}
+
+/* Pinned projects: page scroll moves the cards sideways, see usePinnedScroll.
+   The hook only sets data-pinned when the cards overflow their static row.
+   Where scroll-driven animations exist, the dots move down with the page for the
+   length of the pin, so they hold still behind the sticky frame. */
+.carousel-progress { display: none; }
+@media (min-width: 768px) and (min-height: 680px) and (prefers-reduced-motion: no-preference) {
+  .projects-section:has(> [data-pinned]) { padding-block: 0; scroll-margin-top: 0; }
+  .projects-scroller[data-pinned] { height: calc(100svh + var(--pin-distance, 0px)); }
+  [data-pinned] .projects-pin { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+  [data-pinned] .project-carousel { margin-inline: calc(-1 * var(--shell-pad)); padding: 16px var(--shell-pad) 26px; overflow-x: hidden; scroll-snap-type: none; }
+  [data-pinned] .project-card { flex-basis: clamp(280px, min(30vw, (100svh - 450px) * 4 / 3), 400px); }
+  [data-pinned] .carousel-progress { display: block; height: 2px; overflow: hidden; border-radius: 2px; background: var(--rule); }
+  [data-pinned] .carousel-progress span { display: block; height: 100%; background: var(--accent); transform-origin: left; transform: scaleX(var(--pin-progress, 0)); }
+  @supports (animation-timeline: view()) {
+    .home-content { timeline-scope: --projects-pin; }
+    .projects-scroller { view-timeline: --projects-pin block; }
+    .ambient-grid {
+      animation: dot-grid-drift 32s linear infinite, pin-hold linear both;
+      animation-timeline: auto, --projects-pin;
+      animation-range: normal, contain;
+    }
+  }
+}
+@keyframes pin-hold { from { translate: 0 0; } to { translate: 0 var(--pin-distance, 0px); } }
+
+.intro-copy > p { animation: intro-arrive 750ms ease-out 180ms both; }
+.intro-copy > .intro-aside { animation-delay: 320ms; }
+.intro-scroll { animation: intro-arrive 750ms ease-out 460ms both; }
+@keyframes intro-arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+/* Alternating cards arrive from their side of the path. */
+.experience-card[data-reveal="row"] { --reveal-x: -36px; --reveal-y: 20px; --reveal-rotate: -2deg; }
+.experience-stop:nth-child(even) .experience-card { --reveal-x: 36px; --reveal-rotate: 2deg; --hover-tilt: 1.5deg; }
+.experience-card-wrap::before { transition: opacity 260ms ease; }
+.experience-stop:focus-within .experience-card-wrap::before { opacity: 1; }
+.experience-card { transition: border-color 240ms ease, box-shadow 240ms ease, transform 300ms ease; }
+.experience-logo-echo { transition: opacity 220ms ease, transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-stop[data-scroll-active] .experience-logo-echo { transition-duration: 140ms, 260ms; }
+.experience-stop:is([data-scroll-active], :focus-within) .experience-logo-echo { opacity: 0.456; transform: translate(calc(var(--echo-direction) * var(--echo-reach, clamp(48px, 7vw, 110px))), -50%) rotate(calc(var(--echo-direction) * 10deg)) scale(1); }
+.experience-stop[data-scroll-active] .experience-card { border-color: #a18b70; }
+@media (max-width: 760px) {
+  .experience-stop:is([data-scroll-active], :focus-within) .experience-logo-echo { opacity: 0.336; transform: translate(var(--echo-mobile-reach, 32px), -50%) rotate(8deg) scale(1); }
+}
+.experience-logo { transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-sticker { transition: transform 300ms cubic-bezier(0.2, 1.5, 0.5, 1); }
+.experience-node > span { transition: background 240ms ease, box-shadow 240ms ease, transform 240ms ease; }
+.experience-year { transition: color 240ms ease; }
+.experience-stop:is([data-reached], [data-scroll-active], :focus-within) .experience-year { color: #f6e7cce6; }
+.experience-year-burst { transition: opacity 180ms ease, transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-stop:is([data-scroll-active], :focus-within) .experience-year-burst { opacity: 0.8; transform: none; }
+.experience-stop:is([data-scroll-active], :focus-within) .year-streak { stroke-dashoffset: 0; animation: year-streak-draw 480ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--streak-delay, 0ms) both; }
+@keyframes year-streak-draw {
+  from { stroke-dashoffset: 1; opacity: 0; }
+  25% { opacity: 1; }
+  to { stroke-dashoffset: 0; opacity: 1; }
+}
+.experience-stop:focus-within .experience-card { border-color: var(--landing-cream); box-shadow: 0 18px 45px -20px #000a, 0 0 32px -18px #f6e7cc55; }
+.experience-stop:focus-within .experience-node > span { transform: scale(1.25); }
+.experience-card:focus-within .experience-logo { transform: translateY(-3px) rotate(-5deg); }
+.experience-card:focus-within .experience-sticker { transform: translate(4px, -4px) rotate(10deg) scale(1.18); }
+@media (hover: hover) and (pointer: fine) {
+  .experience-stop:hover .experience-card-wrap::before { opacity: 1; }
+  .experience-stop:hover .experience-card { transform: translateY(-5px) rotate(var(--hover-tilt, -1.5deg)); border-color: var(--landing-cream); box-shadow: 0 18px 45px -20px #000a, 0 0 32px -18px #f6e7cc55; }
+  .experience-stop:hover .experience-node > span { transform: scale(1.25); }
+  .experience-card:hover .experience-logo { transform: translateY(-3px) rotate(-5deg); }
+  .experience-card:hover .experience-sticker { transform: translate(4px, -4px) rotate(10deg) scale(1.18); }
+}
+.experience-card.is-visible .experience-description strong { animation: marker-swipe 650ms cubic-bezier(0.6, 0, 0.3, 1) 450ms both; }
+@keyframes marker-swipe { from { background-size: 0% 45%; } }
+@media (max-width: 760px) {
+  .experience-card[data-reveal="row"], .experience-stop:nth-child(even) .experience-card { --reveal-x: 18px; --reveal-y: 16px; --reveal-rotate: 0deg; }
+}
+[data-reveal="tagline"] { --reveal-y: 12px; }
+.experience-tagline.is-visible > span { animation: tagline-arrive 650ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(120ms + var(--phrase-step) * 130ms) both; }
+@keyframes tagline-arrive {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+.experience-spacex { transition: opacity 180ms ease, transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.experience-star { transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1), text-shadow 240ms ease; }
+.experience-star-peek:is(:focus-visible, [aria-pressed="true"]) .experience-spacex { opacity: 1; transform: translate(12px, 8px) rotate(8deg) scale(1); }
+.experience-star-peek:is(:focus-visible, [aria-pressed="true"]) .experience-star { transform: rotate(12deg); text-shadow: 0 0 10px #f6e7cc33; }
+@media (hover: hover) and (pointer: fine) {
+  .experience-star-peek:hover .experience-spacex { opacity: 1; transform: translate(12px, 8px) rotate(8deg) scale(1); }
+  .experience-star-peek:hover .experience-star { transform: rotate(12deg); text-shadow: 0 0 10px #f6e7cc33; }
+}
+.carousel-controls button { transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
+.carousel-controls button:active:not(:disabled) { transform: scale(0.92); }
+.site-footer nav a { transition: color 180ms ease, transform 180ms ease; }
+.site-footer nav a:focus-visible { color: var(--accent); transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) {
+  .site-footer nav a:hover { color: var(--accent); transform: translateY(-2px); }
+}
+@media (max-width: 600px) {
+  .ambient-grid { background-size: 30px 30px; opacity: 0.35; }
+  [data-reveal="row"] { --reveal-x: 0px; --reveal-y: 18px; }
+  [data-reveal="photo"] { --reveal-x: 0px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal].reveal-ready { opacity: 1; translate: none; rotate: none; }
+  .experience-journey[data-tracking] .experience-path-fill { clip-path: none; }
+  .ambient-grid,
+  .experience-stop:is(:hover, :focus-within) :is(.experience-card, .experience-logo, .experience-sticker, .experience-node > span),
+  .carousel-controls button:active:not(:disabled),
+  .site-footer nav a:is(:hover, :focus-visible) { transform: none; }
+}

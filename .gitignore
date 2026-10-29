@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Original drawings and photos stay local; the site uses optimized WebPs in src/assets.
+/originals/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -1,85 +1,51 @@
 # Yousef Khan
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/135c4855-9c27-4669-a838-3aa7ea1a5a4a" width="200" alt="Yousef Khan Icon"/>
-</p>
+My personal portfolio: a full-screen animated introduction, concise experience, and projects in a swipeable carousel. Project cards open animated native dialogs, keeping the main portfolio on one scrolling page.
 
-<p align="center"><em>This is my super awesome amazing portfolio website :D</em></p>
+Built with React and Vite, with hand-written CSS (no CSS framework). Hosted on GitHub Pages, with deployment through GitHub Actions on pushes to `main`.
 
----
+## Development
 
-## 🚀 About the Project
-
-This portfolio site showcases who I am, what I’ve worked on, and what I enjoy building. It’s built with modern web technologies and aims to be both functional and expressive — fast, responsive, and smooth.
-
-> From custom link previews to animated page transitions, this site is designed to feel more like a product than a portfolio.
-
----
-
-## 🛠️ Tech Stack
-
-- **Frontend Framework**: [React](https://react.dev/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**:
-  - [Tailwind CSS](https://tailwindcss.com/)
-  - [DaisyUI](https://daisyui.com/)
-  - [Aceternity UI](https://ui.aceternity.com/) (used for link previews and aesthetic components)
-- **Animation**: [Framer Motion](https://www.framer.com/motion/) for seamless page transitions
-- **Deployment**:
-  - Hosted on **GitHub Pages**
-  - Continuous Deployment via **GitHub Actions** (automatic deployment on push)
-- **Routing**:
-  - Uses a clever workaround to get `BrowserRouter` working on static sites (GitHub Pages) by redirecting all 404s to `index.html` — based on [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages)
-
----
-
-## 📁 Project Features
-
-- Custom 404 page
-- Animated page transitions
-- Dynamic link previews
-- Mobile-friendly design
-- Minimalist and clean layout
-- Fast and lightweight
-
----
-
-## 📸 Preview
-
-> [View the website](https://theyousefkhan.com)  
-
----
-
-## 🧪 Development
-
-```bash
-npm install
+```sh
+npm ci
 npm run dev
 ```
 
-To build:
-
-```bash
+```sh
 npm run build
+npm run preview
 ```
 
-To deploy manually (auto-deploy is already configured via GitHub Actions):
+## Keeping it fast
 
-```bash
+- The homepage renders immediately, without an image preload gate.
+- The tools pages, and each tool’s own code, load on demand with React `lazy` and `Suspense`. JSZip loads only when exporting images.
+- `/tools` lists every tool as a card, followed by a “more soon” card. Each tool lives at `/tools/<slug>` inside a shared page shell (back link, kind, name, description) and only renders the tool itself. The banner splitter cuts a banner into posts in the browser. It reads the row count from the image size and previews the cut lines and the resulting profile grid, starting from a sample banner. Downloads come as a ZIP or as separate files, numbered in the order to post them.
+- Reaction artwork and the landing poster use WebP imports. Project screenshots (`src/assets/projects`) and organization logos (`src/assets/logos`) are imported too, mostly as WebP resized to about twice their largest display size; card CSS controls the framing.
+- The original landing MP4 stays. Its poster renders before playback; the video pauses when offscreen or in a hidden tab. Reduced-motion and data-saving preferences use a still image. The landing has no playback controls.
+- The typing introduction adds whole characters with a brief pause at punctuation and a blinking cursor. It reserves the final heading's space and exposes the complete heading to screen readers immediately.
+- On screens at least 768px wide and 680px tall, the projects section pins in place, and page scrolling moves the cards sideways one to one before the page continues. It is a sticky frame inside a taller section, so the native scroll position drives it; sideways swipes, the arrow buttons, and keyboard focus move the page to match, and a thin line shows progress. Smaller screens and reduced-motion preferences use the native, snapping carousel. Project dialogs use browser focus trapping, Escape handling, and short CSS transitions.
+- The page scrollbar is thin and warm-toned to match the theme, with a WebKit fallback for Safari.
+- Navigation uses ordinary links and the system cursor. No animation library, global image preloader, screenshot preview service, or achievement tracking.
+- Section links scroll smoothly, with instant navigation for reduced-motion preferences.
+- The experience section opens with a small timeline of every role, built from the start and end months and running up to today. Its bars grow in one sweep through time, so ongoing roles reach “now” together. Pointing at or focusing a row lights its bar, and pointing at a bar lights its row. Each row has a hand-drawn reaction sticker, and one key phrase per role gets a highlighter swipe as it arrives. The chart is hidden from screen readers because each row states its own dates.
+- Headings, experience rows, project cards, and about content enter individually as they scroll into view. A shared IntersectionObserver runs each entrance once; keyboard focus immediately reveals its target. The independent entrance transforms preserve card and photo hover tilts.
+- A warm dot grid drifts slowly behind the homepage content. In browsers with CSS scroll-driven animations, it holds still while the projects section is pinned. The drift pauses offscreen and in hidden tabs. Reduced-motion preferences show the content immediately with a static background.
+- Hand-drawn reaction stickers are small WebP derivatives in `src/assets/reactions`; the original drawings are kept locally in the Git-ignored `originals/emojis`. Project stickers gently wiggle on hover or keyboard focus; navbar links reveal reaction faces. Reduced-motion preferences disable the animations.
+- Retired blog, achievement, grade-calculator, CheckersAI, AntLogic, and ICSYAK URLs redirect home, as does `/smart401k` from the resume. `/splitter` and `/projects/splitter` go to the banner splitter, and the retired `/ktane` goes to the tools page.
+
+Update featured projects in `src/data/projects.js`, experience in `src/data/experience.js` (`YYYY-MM` start and end months; `**double asterisks**` mark the highlighted phrase), tools in `src/data/tools.js` (add a folder under `src/pages/Tools` for the tool itself, and the card, page, routes, and homepage link follow), and the downloadable resume in `public/Yousef-Khan-Resume.pdf`. Grouper links to its public demo; Smart401K has no public demo or repository.
+
+The about photo uses the lazy-loaded `src/assets/yousef-boba.webp`; the original upload is retained locally as `originals/yousef-boba.jpg` and excluded from Git. To replace it, update the WebP or the import in `src/components/AboutPhoto.jsx`. The frame preserves the photo’s proportions and stacks below the text on mobile. Hover reveals hand-drawn faces; clicking adds a short burst.
+
+GitHub Pages deep links are handled by `public/404.html` and the redirect recovery in `index.html`, based on [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages).
+
+## Deployment
+
+Pushes to `main` deploy automatically. To deploy manually:
+
+```sh
 npm run deploy
 ```
 
----
-
-## 🙌 Credits
-
-- Inspired by the amazing open-source ecosystem
-- Shoutout to [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages) for the 404 routing fix
-
----
-
-## 🪪 License
-
-MIT License © 2025 Yousef Khan
-
----
+MIT License © Yousef Khan
