@@ -6,11 +6,9 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 
-// Project code and assets are downloaded only when that page is opened.
-const AntLogic = lazy(() => import("./pages/Projects/Antlogic/Antlogic"));
-const ICSYAK = lazy(() => import("./pages/Projects/ICSYAK/ICSYAK"));
-const Splitter = lazy(() => import("./pages/Splitter/Splitter"));
-const KTANE = lazy(() => import("./pages/KTANE/KTANE"));
+// Tool code and assets are downloaded only when a tools page is opened.
+const Tools = lazy(() => import("./pages/Tools/Tools"));
+const ToolPage = lazy(() => import("./pages/Tools/ToolPage"));
 
 function ScrollToLocation() {
   const { pathname, hash, key } = useLocation();
@@ -34,16 +32,20 @@ function App() {
       <a className="skip-link" href="#main-content">Skip to content</a>
       <Navbar />
       <main id="main-content" tabIndex={-1}>
-        <Suspense fallback={<div className="route-loading" role="status">Loading project…</div>}>
+        <Suspense fallback={<div className="route-loading" role="status">Loading…</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/splitter" element={<Splitter />} />
-            <Route path="/ktane" element={<KTANE />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/tools/:slug" element={<ToolPage />} />
+            <Route path="/splitter" element={<Navigate to="/tools/banner-splitter" replace />} />
+            <Route path="/projects/splitter" element={<Navigate to="/tools/banner-splitter" replace />} />
+            <Route path="/ktane" element={<Navigate to="/tools" replace />} />
             <Route path="/calculator" element={<Navigate to="/#projects" replace />} />
-            <Route path="/projects/antlogic" element={<AntLogic />} />
-            <Route path="/projects/icsyak" element={<ICSYAK />} />
+            <Route path="/projects/antlogic" element={<Navigate to="/#projects" replace />} />
+            <Route path="/projects/icsyak" element={<Navigate to="/#projects" replace />} />
             <Route path="/projects/checkersai" element={<Navigate to="/#projects" replace />} />
-            <Route path="/projects/splitter" element={<Splitter />} />
+            {/* Linked from the resume. */}
+            <Route path="/smart401k" element={<Navigate to="/#projects" replace />} />
             <Route path="/projects/calculator" element={<Navigate to="/#projects" replace />} />
             <Route path="/blog/*" element={<Navigate to="/#projects" replace />} />
             <Route path="/achievements" element={<Navigate to="/" replace />} />

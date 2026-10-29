@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
+import { tools } from "../data/tools";
 import usePinnedScroll from "../hooks/usePinnedScroll";
 
 function ProjectsCarousel() {
@@ -65,7 +66,11 @@ function ProjectsCarousel() {
             ))}
           </div>
           <div className="carousel-progress" aria-hidden="true"><span /></div>
-          <div className="little-tools" data-reveal><span>One smaller tool:</span><Link to="/splitter">Instagram banner splitter ↗</Link></div>
+          <div className="little-tools" data-reveal>
+            <span>Little tools:</span>
+            {tools.map((tool) => <Link key={tool.slug} to={`/tools/${tool.slug}`}>{tool.name} ↗</Link>)}
+            <Link to="/tools">all tools ↗</Link>
+          </div>
         </div>
       </div>
       <dialog className="project-modal" ref={dialogRef} aria-labelledby="modal-title" onClick={(event) => {

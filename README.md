@@ -2,7 +2,7 @@
 
 My personal portfolio: a full-screen animated introduction, concise experience, and projects in a swipeable carousel. Project cards open animated native dialogs, keeping the main portfolio on one scrolling page.
 
-Built with React, Vite, Tailwind CSS, and DaisyUI. Hosted on GitHub Pages, with deployment through GitHub Actions on pushes to `main`.
+Built with React and Vite, with hand-written CSS (no CSS framework). Hosted on GitHub Pages, with deployment through GitHub Actions on pushes to `main`.
 
 ## Development
 
@@ -19,7 +19,8 @@ npm run preview
 ## Keeping it fast
 
 - The homepage renders immediately, without an image preload gate.
-- Legacy project pages and tools load on demand with React `lazy` and `Suspense`. JSZip loads only when exporting images.
+- The tools pages, and each tool’s own code, load on demand with React `lazy` and `Suspense`. JSZip loads only when exporting images.
+- `/tools` lists every tool as a card, followed by a “more soon” card. Each tool lives at `/tools/<slug>` inside a shared page shell (back link, kind, name, description) and only renders the tool itself. The banner splitter cuts a banner into posts in the browser. It reads the row count from the image size and previews the cut lines and the resulting profile grid, starting from a sample banner. Downloads come as a ZIP or as separate files, numbered in the order to post them.
 - Reaction artwork and the landing poster use WebP imports. Featured project screenshots live in `public/projects`, with framing controlled by the card CSS; organization logos live in `public/logos`.
 - The original landing MP4 stays. Its poster renders before playback; the video pauses when offscreen or in a hidden tab. Reduced-motion and data-saving preferences use a still image. The landing has no playback controls.
 - The typing introduction adds whole characters with a brief pause at punctuation and a blinking cursor. It reserves the final heading's space and exposes the complete heading to screen readers immediately.
@@ -31,9 +32,9 @@ npm run preview
 - Headings, experience rows, project cards, and about content enter individually as they scroll into view. A shared IntersectionObserver runs each entrance once; keyboard focus immediately reveals its target. The independent entrance transforms preserve card and photo hover tilts.
 - A warm dot grid drifts slowly behind the homepage content. In browsers with CSS scroll-driven animations, it holds still while the projects section is pinned. The drift pauses offscreen and in hidden tabs. Reduced-motion preferences show the content immediately with a static background.
 - Hand-drawn reaction stickers use small WebP derivatives from `src/assets/emojis`. Project stickers gently wiggle on hover or keyboard focus; navbar links reveal reaction faces. Original drawings stay unchanged, and reduced-motion preferences disable the animations.
-- Retired blog, achievement, grade-calculator, and CheckersAI URLs redirect home. The banner splitter and `/ktane` remain available.
+- Retired blog, achievement, grade-calculator, CheckersAI, AntLogic, and ICSYAK URLs redirect home, as does `/smart401k` from the resume. `/splitter` and `/projects/splitter` go to the banner splitter, and the retired `/ktane` goes to the tools page.
 
-Update featured projects in `src/data/projects.js`, experience in `src/data/experience.js` (`YYYY-MM` start and end months; `**double asterisks**` mark the highlighted phrase), and the downloadable resume in `public/Yousef-Khan-Resume.pdf`. Grouper links to its public demo; Smart401K has no public demo or repository.
+Update featured projects in `src/data/projects.js`, experience in `src/data/experience.js` (`YYYY-MM` start and end months; `**double asterisks**` mark the highlighted phrase), tools in `src/data/tools.js` (add a folder under `src/pages/Tools` for the tool itself, and the card, page, routes, and homepage link follow), and the downloadable resume in `public/Yousef-Khan-Resume.pdf`. Grouper links to its public demo; Smart401K has no public demo or repository.
 
 The about photo uses the lazy-loaded `public/yousef-boba.webp`; the original upload is retained locally as `public/yousef-boba.jpg` and excluded from Git. To replace it, update the WebP or the image source in `src/components/AboutPhoto.jsx`. The frame preserves the photo’s proportions and stacks below the text on mobile. Hover reveals hand-drawn faces; clicking adds a short burst.
 
