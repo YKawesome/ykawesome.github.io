@@ -126,12 +126,12 @@
 }
 /* An opening project card: its width is sprung in ProjectsCarousel, and the
    details follow it out in steps. Closing just fades them under the face. */
-.project-card:not([data-open]) .project-details > * { opacity: 0; transition: opacity 160ms ease; }
-.project-card[data-open] .project-details > * { animation: details-arrive 560ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(120ms + var(--step, 0) * 70ms) both; }
-.project-details > :nth-child(2) { --step: 1; }
-.project-details > :nth-child(3) { --step: 2; }
-.project-details > :nth-child(4) { --step: 3; }
-@keyframes details-arrive { from { opacity: 0; translate: 28px 0; } }
+.project-card:not([data-open]) .project-details-body > * { opacity: 0; transition: opacity 160ms ease; }
+.project-card[data-open] .project-details-body > * { animation: details-arrive 560ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(120ms + var(--step, 0) * 70ms) both; }
+.project-details-body > :nth-child(2) { --step: 1; }
+.project-details-body > :nth-child(3) { --step: 2; }
+.project-details-body > :nth-child(4) { --step: 3; }
+@keyframes details-arrive { from { opacity: 0; translate: var(--arrive-from, 28px 0); } }
 .project-card[data-open] .project-stack li { animation: chip-pop 480ms cubic-bezier(0.2, 1.5, 0.5, 1) calc(300ms + var(--chip) * 55ms) both; }
 @keyframes chip-pop { from { opacity: 0; scale: 0.5; rotate: -8deg; } }
 .project-card[data-open] .project-details strong { animation: marker-swipe 650ms cubic-bezier(0.6, 0, 0.3, 1) 450ms both; }
@@ -150,6 +150,10 @@
   .ambient-grid { background-size: 30px 30px; opacity: 0.35; }
   [data-reveal="row"] { --reveal-x: 0px; --reveal-y: 18px; }
   [data-reveal="photo"] { --reveal-x: 0px; }
+  /* Stacked cards open downward, so the arrow and the details follow suit. */
+  .project-details-body { --arrive-from: 0 -12px; }
+  .project-expand { rotate: 90deg; }
+  .project-card[data-open] .project-expand { rotate: 270deg; }
 }
 @media (prefers-reduced-motion: reduce) {
   [data-reveal].reveal-ready { opacity: 1; translate: none; rotate: none; }

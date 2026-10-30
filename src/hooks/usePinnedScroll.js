@@ -94,7 +94,14 @@ export default function usePinnedScroll(trackRef) {
       jumpPage(left);
     };
 
-    const observer = new ResizeObserver(measure);
+    // Only the track's width can change the pin. Stacked cards opening on
+    // phones change its height every frame.
+    let measuredWidth = -1;
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width === measuredWidth) return;
+      measuredWidth = entry.contentRect.width;
+      measure();
+    });
     observer.observe(track);
     window.addEventListener("resize", measure);
     window.addEventListener("scroll", followPage, { passive: true });
