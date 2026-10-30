@@ -41,18 +41,21 @@ function followAcross(track, cards, index, opening, springs, scrollTrackTo, trac
   };
 }
 
-// Stacked on phones, the card grows downward instead, and the page scrolls with
-// it so the card stays on screen, all of it when it fits.
-function followDown(cards, index, opening) {
-  const bodies = cards.map((card) => card.querySelector(".project-details-body"));
-  cards.forEach((card, i) => card.style.setProperty("--details-height", `${bodies[i].offsetHeight}px`));
+// Stacked on phones, the card grows downward instead. One smooth page scroll,
+// aimed at where the card will settle, keeps it on screen (all of it when it
+// fits). Scrolling along every frame stutters on phones.
+function followDown(cards, index, openIndex, behavior) {
+  const heights = cards.map((card) => card.querySelector(".project-details-body").offsetHeight);
+  cards.forEach((card, i) => card.style.setProperty("--details-height", `${heights[i]}px`));
   const card = cards[index];
-  const height = card.offsetHeight - card.clientHeight + card.firstElementChild.offsetHeight + (opening ? bodies[index].offsetHeight : 0);
-  const from = card.getBoundingClientRect().top;
-  const to = Math.max(16, Math.min(from, window.innerHeight - height - 16));
-  return (progress) => {
-    window.scrollBy({ top: card.getBoundingClientRect().top - (from + (to - from) * progress), behavior: "instant" });
-  };
+  // Cards above that open or close move this one by the difference.
+  const shift = cards.slice(0, index).reduce((sum, above, i) => sum + (i === openIndex ? heights[i] : 0) - above.lastElementChild.offsetHeight, 0);
+  const height = card.offsetHeight - card.clientHeight + card.firstElementChild.offsetHeight + (index === openIndex ? heights[index] : 0);
+  // Where layout puts the card, without its entrance animation's offset.
+  const top = card.offsetParent.getBoundingClientRect().top + card.offsetTop;
+  const settled = Math.max(16, Math.min(top, window.innerHeight - height - 16));
+  if (Math.abs(top + shift - settled) >= 1) window.scrollTo({ top: window.scrollY + top + shift - settled, behavior });
+  return () => {};
 }
 
 // Springs each card's --open (App.css turns it into width, or height on phones)
@@ -73,9 +76,10 @@ function useCardSpring(trackRef, openIndex, scrollTrackTo, trackPosition) {
     const opening = openIndex >= 0;
     const start = state[index].value;
     const target = opening ? 1 : 0;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     // Phones stack the cards (see App.css).
     const follow = getComputedStyle(track).display === "grid"
-      ? followDown(cards, index, opening)
+      ? followDown(cards, index, openIndex, reduced ? "instant" : "smooth")
       : followAcross(track, cards, index, opening, state, scrollTrackTo, trackPosition);
     let frame = 0;
     let last = performance.now();
@@ -113,7 +117,7 @@ function useCardSpring(trackRef, openIndex, scrollTrackTo, trackPosition) {
     // Snapping would fight the scroll on every frame, and on phones the card
     // holds a sprung height until it settles (see App.css).
     track.setAttribute("data-animating", "");
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (reduced) {
       state.forEach((spring, i) => Object.assign(spring, { value: i === openIndex ? 1 : 0, velocity: 0 }));
       render(0);
       settle();
@@ -159,9 +163,10 @@ function ProjectsCarousel() {
     );
   };
 
+  // The closing card scrolls itself back into view.
   const close = (card) => {
     setOpenIndex(-1);
-    card.querySelector(".project-face").focus();
+    card.querySelector(".project-face").focus({ preventScroll: true });
   };
 
   return (
