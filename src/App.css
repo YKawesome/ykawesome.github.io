@@ -43,8 +43,8 @@ html { scrollbar-width: thin; scrollbar-color: #6b5f52 var(--paper); }
 .intro-copy { text-align: center; padding: 150px 24px 170px; max-width: 1000px; color: var(--landing-cream); text-shadow: 0 2px 12px #24140999; }
 .intro h1 { font-size: clamp(2.5rem, 5.4vw, 5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.055em; margin-bottom: 28px; text-shadow: 0 2px 4px #24140988, 0 8px 22px #24140955; }
 .intro-name { line-height: inherit; text-align: inherit; text-shadow: inherit; cursor: pointer; }
-.intro-typewriter { display: inline-grid; text-align: left; }
-.intro-typewriter > span { grid-area: 1 / 1; }
+.intro-typewriter { display: inline-grid; text-align: left; transition: width 450ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.intro-typewriter > span { grid-area: 1 / 1; justify-self: start; white-space: nowrap; }
 .intro-typewriter-space { visibility: hidden; }
 .intro-typewriter-space::after { content: ""; display: inline-block; width: 0.105em; }
 .intro-typed-text::after { content: ""; display: inline-block; width: 0.045em; height: 0.85em; margin-left: 0.06em; vertical-align: -0.04em; background: currentColor; animation: typing-caret 700ms step-end infinite; }
@@ -293,7 +293,8 @@ html { scrollbar-width: thin; scrollbar-color: #6b5f52 var(--paper); }
   .site-header nav { gap: 18px; font-size: 0.85rem; }
   .site-header nav a:first-child { display: none; }
   .intro-copy { padding: 150px 7vw 170px; }
-  .intro h1 { font-size: clamp(2.5rem, 9vw, 3.4rem); }
+  /* The longest name fits one line with room to spare: iOS sets it about 9% wider than Chrome. */
+  .intro h1 { font-size: min(9.2vw, 3.4rem); }
   .intro-copy > p { font-size: 1.15rem; }
   .intro-copy > .intro-aside { font-size: 0.95rem; }
   .intro-poster, .intro-video { object-position: center center; }
@@ -333,7 +334,7 @@ html { scrollbar-width: thin; scrollbar-color: #6b5f52 var(--paper); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .intro-typewriter-space[data-current] { visibility: visible; }
+  .intro-typewriter-space { visibility: visible; }
   .intro-typed-text { visibility: hidden; }
   .intro-typed-text::after { display: none; }
 }
