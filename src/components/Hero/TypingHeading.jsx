@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 // Clicking the heading cycles through these, retyping from wherever it is.
 const greetings = ["yousef khan", "yak", "yk_awesome"].map((name) => `hi, i’m ${name}.`);
@@ -8,6 +8,16 @@ function TypingHeading() {
   const [target, setTarget] = useState(0);
   const [typed, setTyped] = useState(() => (reducedMotion() ? greetings[0] : ""));
   const greeting = greetings[target];
+  const boxRef = useRef(null);
+
+  // The box takes the width of the greeting being typed, so each one ends up
+  // centered. It glides there while the old name is erased (App.css), and it's
+  // in em to keep up with the font size.
+  useLayoutEffect(() => {
+    const box = boxRef.current;
+    const width = box.querySelector(".intro-typewriter-space").getBoundingClientRect().width;
+    box.style.width = `${width / parseFloat(getComputedStyle(box).fontSize)}em`;
+  }, [greeting]);
 
   // One keystroke per run: backspace to the shared start, then type the rest.
   useEffect(() => {
@@ -37,9 +47,8 @@ function TypingHeading() {
   return (
     <h1 id="intro-heading">
       <button type="button" className="intro-name" onClick={showNextName} aria-label={greeting}>
-        <span className={`intro-typewriter${typed === greeting ? " is-complete" : ""}`} aria-hidden="true">
-          {/* Every greeting reserves its width, so switching names doesn't shift the line. */}
-          {greetings.map((text) => <span className="intro-typewriter-space" key={text} data-current={text === greeting || undefined}>{text}</span>)}
+        <span className={`intro-typewriter${typed === greeting ? " is-complete" : ""}`} ref={boxRef} aria-hidden="true">
+          <span className="intro-typewriter-space">{greeting}</span>
           <span className="intro-typed-text">{typed}</span>
         </span>
       </button>
