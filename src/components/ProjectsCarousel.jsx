@@ -12,10 +12,51 @@ const DAMPING = 18;
 // A closed card is just its face, plus the card's border.
 const closedWidth = (card) => card.offsetWidth - card.clientWidth + card.firstElementChild.offsetWidth;
 
-// Springs each card's --open (App.css turns it into width) toward 0 or 1, so an
-// opening card overshoots and shoves its neighbors, which lean as they slide.
-// The track scrolls along with the card in motion so it ends up fully in view,
-// details first when it can't all fit.
+// In a row, the track scrolls with the card in motion so it ends up fully in
+// view (details first when it can't all fit), and the cards it shoves lean.
+function followAcross(track, cards, index, opening, springs, scrollTrackTo, trackPosition) {
+  const style = getComputedStyle(track);
+  const gap = parseFloat(style.columnGap);
+  const view = track.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+  const width = closedWidth(cards[index]);
+  const slot = width + gap;
+  const extra = opening ? slot : 0;
+  const left = index * slot;
+  const max = Math.max(cards.length * slot - gap + extra - view, 0);
+  const shown = track.scrollLeft;
+  const goal = Math.min(Math.max(Math.min(shown, left), left + width + extra - view, 0), max);
+  // A pinned page that hasn't reached the frame only moves if the track must.
+  const from = trackPosition();
+  const to = Math.abs(goal - shown) < 1 ? from : goal;
+  const previous = [];
+  return (progress, dt) => {
+    const scroll = from + (to - from) * progress;
+    scrollTrackTo(scroll, "instant");
+    let x = -Math.max(scroll, 0);
+    cards.forEach((card, i) => {
+      if (dt && i !== index) card.style.rotate = `${Math.max(-2.5, Math.min(2.5, ((previous[i] - x) / dt) * 0.0008)).toFixed(2)}deg`;
+      previous[i] = x;
+      x += slot * (1 + springs[i].value);
+    });
+  };
+}
+
+// Stacked on phones, the card grows downward instead, and the page scrolls with
+// it so the card stays on screen, all of it when it fits.
+function followDown(cards, index, opening) {
+  const bodies = cards.map((card) => card.querySelector(".project-details-body"));
+  cards.forEach((card, i) => card.style.setProperty("--details-height", `${bodies[i].offsetHeight}px`));
+  const card = cards[index];
+  const height = card.offsetHeight - card.clientHeight + card.firstElementChild.offsetHeight + (opening ? bodies[index].offsetHeight : 0);
+  const from = card.getBoundingClientRect().top;
+  const to = Math.max(16, Math.min(from, window.innerHeight - height - 16));
+  return (progress) => {
+    window.scrollBy({ top: card.getBoundingClientRect().top - (from + (to - from) * progress), behavior: "instant" });
+  };
+}
+
+// Springs each card's --open (App.css turns it into width, or height on phones)
+// toward 0 or 1, so an opening card overshoots and shoves its neighbors.
 function useCardSpring(trackRef, openIndex, scrollTrackTo, trackPosition) {
   const springs = useRef(null);
   const focus = useRef(-1);
@@ -29,36 +70,19 @@ function useCardSpring(trackRef, openIndex, scrollTrackTo, trackPosition) {
     focus.current = openIndex;
     if (index < 0) return;
 
-    const style = getComputedStyle(track);
-    const gap = parseFloat(style.columnGap);
-    const view = track.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-    const width = closedWidth(cards[index]);
-    const slot = width + gap;
-    const extra = openIndex >= 0 ? slot : 0;
-    const left = index * slot;
-    const max = Math.max(cards.length * slot - gap + extra - view, 0);
-    const shown = track.scrollLeft;
-    const goal = Math.min(Math.max(Math.min(shown, left), left + width + extra - view, 0), max);
-    // A pinned page that hasn't reached the frame only moves if the track must.
-    const from = trackPosition();
-    const to = Math.abs(goal - shown) < 1 ? from : goal;
+    const opening = openIndex >= 0;
     const start = state[index].value;
-    const target = openIndex >= 0 ? 1 : 0;
-    const previous = [];
+    const target = opening ? 1 : 0;
+    // Phones stack the cards (see App.css).
+    const follow = getComputedStyle(track).display === "grid"
+      ? followDown(cards, index, opening)
+      : followAcross(track, cards, index, opening, state, scrollTrackTo, trackPosition);
     let frame = 0;
     let last = performance.now();
 
     const render = (dt) => {
       cards.forEach((card, i) => card.style.setProperty("--open", state[i].value));
-      const progress = start === target ? 1 : (state[index].value - start) / (target - start);
-      const scroll = from + (to - from) * progress;
-      scrollTrackTo(scroll, "instant");
-      let x = -Math.max(scroll, 0);
-      cards.forEach((card, i) => {
-        if (dt && i !== index) card.style.rotate = `${Math.max(-2.5, Math.min(2.5, ((previous[i] - x) / dt) * 0.0008)).toFixed(2)}deg`;
-        previous[i] = x;
-        x += slot * (1 + state[i].value);
-      });
+      follow(start === target ? 1 : (state[index].value - start) / (target - start), dt);
     };
     const settle = () => {
       track.removeAttribute("data-animating");
@@ -86,7 +110,8 @@ function useCardSpring(trackRef, openIndex, scrollTrackTo, trackPosition) {
       else settle();
     };
 
-    // Snapping would fight the scroll on every frame.
+    // Snapping would fight the scroll on every frame, and on phones the card
+    // holds a sprung height until it settles (see App.css).
     track.setAttribute("data-animating", "");
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       state.forEach((spring, i) => Object.assign(spring, { value: i === openIndex ? 1 : 0, velocity: 0 }));
@@ -170,15 +195,17 @@ function ProjectsCarousel() {
                   </div>
                 </button>
                 <div className="project-details" id={`project-${project.id}-details`} role="region" aria-label={project.name} inert={!open}>
-                  <p className="project-description">{withHighlights(project.description)}</p>
-                  <p className="project-detail">{project.detail}</p>
-                  <ul className="project-stack" aria-label="Built with">
-                    {project.stack.split(" · ").map((item, chip) => <li key={item} style={{ "--chip": chip }}>{item}</li>)}
-                  </ul>
-                  <div className="project-actions">
-                    {project.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+                  <div className="project-details-body">
+                    <p className="project-description">{withHighlights(project.description)}</p>
+                    <p className="project-detail">{project.detail}</p>
+                    <ul className="project-stack" aria-label="Built with">
+                      {project.stack.split(" · ").map((item, chip) => <li key={item} style={{ "--chip": chip }}>{item}</li>)}
+                    </ul>
+                    <div className="project-actions">
+                      {project.links.map((link) => <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+                    </div>
+                    <button className="project-close" type="button" onClick={(event) => close(event.currentTarget.closest(".project-card"))} aria-label={`Close ${project.name}`}>×</button>
                   </div>
-                  <button className="project-close" type="button" onClick={(event) => close(event.currentTarget.closest(".project-card"))} aria-label={`Close ${project.name}`}>×</button>
                 </div>
               </article>
             );
