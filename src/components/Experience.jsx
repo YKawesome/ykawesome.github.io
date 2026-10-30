@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { experience } from "../data/experience";
+import withHighlights from "./withHighlights";
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const parseMonth = (value) => value.split("-").map(Number);
@@ -13,8 +14,6 @@ function formatDates({ start, end }) {
     ? `${monthNames[startMonth - 1]} – ${monthNames[endMonth - 1]} ${endYear}`
     : `${monthNames[startMonth - 1]} ${startYear} – ${monthNames[endMonth - 1]} ${endYear}`;
 }
-
-const withHighlights = (text) => text.split(/\*\*(.+?)\*\*/).map((part, index) => (index % 2 ? <strong key={index}>{part}</strong> : part));
 
 // Update the decorative path directly, without rendering React on every scroll.
 function useTimelineProgress(timelineRef) {

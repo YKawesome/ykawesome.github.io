@@ -3,21 +3,33 @@ import { useCallback, useEffect, useRef } from "react";
 // When the cards don't fit, the frame turns sticky (see motion.css) and
 // scrolling the page through the taller scroller moves the track sideways one
 // to one. Sideways swipes over the track, and anything else that scrolls it,
-// move the page to match.
+// move the page to match. An open project card (see ProjectsCarousel) adds to
+// the pin's length but never decides whether there is one.
 export default function usePinnedScroll(trackRef) {
   const scrollerRef = useRef(null);
   const frameRef = useRef(null);
   const pin = useRef({ active: false, distance: 0, applied: 0 });
 
+  // Where the track is, counted the way scrollTrackTo takes it. While pinned
+  // that's the page's way into the pin, which runs past either end of the
+  // track before the frame sticks and after it lets go.
+  const trackPosition = useCallback(() => (
+    pin.current.active ? -scrollerRef.current.getBoundingClientRect().top : trackRef.current.scrollLeft
+  ), [trackRef]);
+
   const scrollTrackTo = useCallback((left, behavior) => {
-    const { active, distance } = pin.current;
+    const { active, refit } = pin.current;
     if (!active) {
       trackRef.current.scrollTo({ left, behavior });
       return;
     }
-    const top = scrollerRef.current.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({ top: top + Math.min(Math.max(left, 0), distance), behavior });
-  }, [trackRef]);
+    // Cards may have changed width since the last measure. Stay inside the pin,
+    // or no further outside it than the page already is.
+    const distance = refit();
+    const offset = trackPosition();
+    const top = window.scrollY - offset;
+    window.scrollTo({ top: top + Math.min(Math.max(left, Math.min(offset, 0)), Math.max(offset, distance)), behavior });
+  }, [trackRef, trackPosition]);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -41,17 +53,26 @@ export default function usePinnedScroll(trackRef) {
       setTrack(track.scrollLeft);
       jumpPage(track.scrollLeft);
     };
-    const measure = () => {
-      // Decide from the static row, so pinning can't change its own answer.
-      // Unpinning shortens the page for a moment, which can clamp the scroll near the bottom.
-      const y = window.scrollY;
-      scroller.removeAttribute("data-pinned");
-      scroller.toggleAttribute("data-pinned", track.scrollWidth - track.clientWidth > 1);
-      if (window.scrollY !== y) window.scrollTo({ top: y, behavior: "instant" });
-      state.active = getComputedStyle(frame).position === "sticky";
+    const refit = () => {
       state.distance = state.active ? track.scrollWidth - track.clientWidth : 0;
       // On the root, so the background's pin hold in motion.css can read it too.
       document.documentElement.style.setProperty("--pin-distance", `${state.distance}px`);
+      return state.distance;
+    };
+    state.refit = refit;
+    const measure = () => {
+      // Decide from the static row with every card closed, so neither pinning
+      // nor an open card can change the answer. Unpinning shortens the page
+      // for a moment, which can clamp the scroll near the bottom.
+      const y = window.scrollY;
+      scroller.removeAttribute("data-pinned");
+      track.setAttribute("data-measuring", "");
+      const overflows = track.scrollWidth - track.clientWidth > 1;
+      track.removeAttribute("data-measuring");
+      scroller.toggleAttribute("data-pinned", overflows);
+      if (window.scrollY !== y) window.scrollTo({ top: y, behavior: "instant" });
+      state.active = getComputedStyle(frame).position === "sticky";
+      refit();
       followPage();
     };
     const steerWheel = (event) => {
@@ -91,5 +112,5 @@ export default function usePinnedScroll(trackRef) {
     };
   }, [trackRef]);
 
-  return { scrollerRef, frameRef, scrollTrackTo };
+  return { scrollerRef, frameRef, scrollTrackTo, trackPosition };
 }
